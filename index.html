@@ -30,7 +30,7 @@
     --border2: rgba(255,255,255,0.15);
     --text: #f0ede8;
     --text2: #999;
-    --text3: #666;
+    --text3: #8a8a8a;
     --gold: #d4a017;
     --gold2: #f0c040;
     --red: #c0392b;
@@ -1059,6 +1059,195 @@
     .theme-toggle span { display: none; }
   }
 
+
+  /* ══ REFINEMENTS ══ */
+
+  /* 4-driver / 4-car grids: tidy 2 × 2 instead of 3 + 1 */
+  @media (min-width: 900px) {
+    .grid-2x2 { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+
+  /* Hero collage */
+  .hero-collage {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    opacity: 0.2;
+    filter: saturate(0.75);
+    z-index: 0;
+  }
+  .hero-collage img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 55% 50% at 50% 50%, var(--bg) 0%, color-mix(in srgb, var(--bg) 75%, transparent) 55%, color-mix(in srgb, var(--bg) 35%, transparent) 100%),
+      linear-gradient(to bottom, transparent 65%, var(--bg));
+  }
+  .hero-eyebrow, .hero-title, .hero-sub, .hero-badges { position: relative; z-index: 2; }
+  .scroll-hint, .speed-lines { z-index: 1; }
+  :root[data-theme="light"] .hero-collage { opacity: 0.16; }
+
+  /* Contents panel */
+  .contents-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-right: 1rem;
+    padding: 0.45rem 0.85rem;
+    border: 1px solid var(--border2);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .contents-btn:hover, .contents-btn[aria-expanded="true"] { border-color: var(--gold); color: var(--gold2); }
+  .contents-btn svg { width: 14px; height: 14px; }
+  .contents-panel {
+    position: fixed;
+    top: 62px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(780px, calc(100vw - 2rem));
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    z-index: 160;
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+  }
+  .contents-panel[hidden] { display: none; }
+  .contents-group h3 {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .contents-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.25rem 1rem; list-style: none; }
+  .contents-group:last-child .contents-list { grid-template-columns: 1fr; }
+  .contents-list a {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.15s;
+  }
+  .contents-list a:hover, .contents-list a:focus-visible { background: var(--bg3); }
+  .contents-list .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* Floating back-to-top */
+  .fab-top {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 150;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 0;
+    background: var(--gold);
+    color: #111;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  .fab-top.show { opacity: 1; pointer-events: auto; transform: none; }
+  .fab-top svg { width: 20px; height: 20px; }
+
+  /* Term tooltips */
+  .term-tip {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    border-bottom: 1px dotted var(--gold);
+    cursor: help;
+  }
+  .term-tip:hover, .term-tip:focus-visible { color: var(--text); border-bottom-style: solid; outline: none; }
+  .tip-pop {
+    position: absolute;
+    z-index: 300;
+    max-width: 320px;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--text2);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.4);
+    pointer-events: none;
+  }
+  .tip-pop[hidden] { display: none; }
+  .tip-pop strong { display: block; color: var(--text); font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .tip-pop span { display: block; margin-top: 0.45rem; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); }
+
+  /* Sources & credits */
+  .sources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem 2rem; }
+  .sources-block h3 {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+  .sources-block ul { list-style: none; display: grid; gap: 0.3rem; }
+  .sources-block a, .credits-list a { color: var(--text2); text-decoration: none; font-size: 0.85rem; border-bottom: 1px solid var(--border2); }
+  .sources-block a:hover, .credits-list a:hover { color: var(--text); border-color: var(--gold); }
+  .credits {
+    margin-top: 2.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+  .credits summary { cursor: pointer; font-weight: 600; font-size: 0.95rem; }
+  .credits p { font-size: 0.85rem; color: var(--text2); margin: 0.75rem 0; line-height: 1.6; }
+  .credits-list { list-style: none; columns: 2 300px; column-gap: 2rem; font-size: 0.8rem; color: var(--text3); }
+  .credits-list li { break-inside: avoid; margin-bottom: 0.45rem; line-height: 1.45; }
+  .credits-list b { color: var(--text2); font-weight: 600; }
+  .last-updated { display: inline-block; margin-top: 0.75rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); }
+  .footer-text a { color: var(--gold2); text-decoration: none; }
+
+  @media (max-width: 900px) {
+    nav > a { display: none; }
+    .contents-panel { grid-template-columns: 1fr; top: 56px; }
+  }
+  @media (max-width: 480px) {
+    .contents-list { grid-template-columns: 1fr; }
+    .hero-collage { grid-template-columns: repeat(2, 1fr); }
+    .hero-collage img:nth-child(n+7) { display: none; }
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     .driver-grid { grid-template-columns: 1fr; }
@@ -1155,6 +1344,18 @@
 
 <!-- HERO -->
 <div class="hero" id="top">
+  <div class="hero-collage" aria-hidden="true">
+    <img src="images/hero/f1.webp" alt="" decoding="async">
+    <img src="images/hero/wec.webp" alt="" decoding="async">
+    <img src="images/hero/nascar.webp" alt="" decoding="async">
+    <img src="images/hero/imsa.webp" alt="" decoding="async">
+    <img src="images/hero/gt1.webp" alt="" decoding="async">
+    <img src="images/hero/indycar.webp" alt="" decoding="async">
+    <img src="images/hero/gt3.webp" alt="" decoding="async">
+    <img src="images/hero/supergt.webp" alt="" decoding="async">
+    <img src="images/hero/dtm.webp" alt="" decoding="async">
+  </div>
+  <div class="hero-veil" aria-hidden="true"></div>
   <div class="hero-track"></div>
   <div class="speed-lines">
     <div class="speed-line" style="--dur:3s;--delay:0s;--top:15%"></div>
@@ -1192,6 +1393,10 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">The Racing Manual</div>
+  <button type="button" class="contents-btn" id="contents-btn" aria-expanded="false" aria-controls="contents-panel">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+    Contents
+  </button>
   <a href="#imsa">IMSA</a>
   <a href="#f1">Formula 1</a>
   <a href="#indycar">IndyCar</a>
@@ -1210,6 +1415,33 @@
     <span>Light</span>
   </button>
 </nav>
+
+<div class="contents-panel" id="contents-panel" hidden>
+  <div class="contents-group">
+    <h3>Championships</h3>
+    <ul class="contents-list">
+        <li><a href="#imsa"><span class="dot" style="background:var(--accent-imsa)"></span>IMSA</a></li>
+        <li><a href="#f1"><span class="dot" style="background:var(--accent-f1)"></span>Formula 1</a></li>
+        <li><a href="#indycar"><span class="dot" style="background:var(--accent-indy)"></span>IndyCar</a></li>
+        <li><a href="#wec"><span class="dot" style="background:var(--accent-wec)"></span>WEC &amp; Le Mans</a></li>
+        <li><a href="#gt3"><span class="dot" style="background:#16a34a"></span>GT3</a></li>
+        <li><a href="#gt1"><span class="dot" style="background:var(--accent-gt1)"></span>GT1 Era</a></li>
+        <li><a href="#nascar"><span class="dot" style="background:var(--accent-nascar)"></span>NASCAR</a></li>
+        <li><a href="#supergt"><span class="dot" style="background:var(--accent-supergt)"></span>Super GT</a></li>
+        <li><a href="#dtm"><span class="dot" style="background:var(--accent-dtm)"></span>DTM</a></li>
+    </ul>
+  </div>
+  <div class="contents-group">
+    <h3>Guides &amp; Tools</h3>
+    <ul class="contents-list">
+        <li><a href="#circuits"><span class="dot" style="background:var(--gold)"></span>Legendary Circuits</a></li>
+        <li><a href="#compare"><span class="dot" style="background:var(--gold)"></span>Compare the Cars</a></li>
+        <li><a href="#terms"><span class="dot" style="background:var(--gold)"></span>Racing Terms</a></li>
+        <li><a href="#quiz"><span class="dot" style="background:var(--gold)"></span>Did You Know? Quiz</a></li>
+        <li><a href="#sources"><span class="dot" style="background:var(--gold)"></span>Sources &amp; Credits</a></li>
+    </ul>
+  </div>
+</div>
 
 <!-- ══ IMSA ══ -->
 <section id="imsa">
@@ -1494,7 +1726,7 @@
     </div>
   </div>
 
-  <div class="driver-grid">
+  <div class="driver-grid grid-2x2">
 
     <!-- Lewis Hamilton -->
     <div class="driver-card reveal reveal-delay-1">
@@ -1588,7 +1820,7 @@
 
   <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">The Cars That Dominated</h3>
 
-  <div class="car-grid">
+  <div class="car-grid grid-2x2">
 
     <!-- Mercedes W11 -->
     <div class="car-card reveal reveal-delay-1">
@@ -1800,7 +2032,7 @@
 
   <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">The Champions</h3>
 
-  <div class="driver-grid">
+  <div class="driver-grid grid-2x2">
 
     <!-- A.J. Foyt -->
     <div class="driver-card reveal reveal-delay-1">
@@ -3946,6 +4178,168 @@
 </section>
 </div>
 
+<hr class="divider">
+
+<!-- ══ SOURCES ══ -->
+<section id="sources">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gold">Behind the Manual</p>
+    <h2 class="section-title">Sources &amp;<br>Credits</h2>
+    <p class="section-desc">The facts on this page were checked against the references below. If you spot something out of date, it's most likely a record that has been broken since.</p>
+  </div>
+
+  <div class="sources-grid reveal">
+    <div class="sources-block">
+      <h3>IMSA</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/International_Motor_Sports_Association" target="_blank" rel="noopener">International Motor Sports Association</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Hurley_Haywood" target="_blank" rel="noopener">Hurley Haywood</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Scott_Pruett" target="_blank" rel="noopener">Scott Pruett</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Al_Holbert" target="_blank" rel="noopener">Al Holbert</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Porsche_962" target="_blank" rel="noopener">Porsche 962</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Jaguar_XJR-9" target="_blank" rel="noopener">Jaguar XJR-9</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Cadillac_DPi-V.R" target="_blank" rel="noopener">Cadillac DPi-V.R</a></li>
+        <li><a href="https://www.stuttcars.com/porsche-at-the-24-hours-of-daytona/" target="_blank" rel="noopener">Stuttcars: Porsche at the 24 Hours of Daytona</a></li>
+      </ul>
+    </div>
+    <div class="sources-block">
+      <h3>Formula 1</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Formula_One" target="_blank" rel="noopener">Formula One</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Lewis_Hamilton" target="_blank" rel="noopener">Lewis Hamilton</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Michael_Schumacher" target="_blank" rel="noopener">Michael Schumacher</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Ayrton_Senna" target="_blank" rel="noopener">Ayrton Senna</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Fernando_Alonso" target="_blank" rel="noopener">Fernando Alonso</a></li>
+      </ul>
+    </div>
+    <div class="sources-block">
+      <h3>IndyCar</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/IndyCar_Series" target="_blank" rel="noopener">IndyCar Series</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Indianapolis_500" target="_blank" rel="noopener">Indianapolis 500</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/A._J._Foyt" target="_blank" rel="noopener">A. J. Foyt</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Mario_Andretti" target="_blank" rel="noopener">Mario Andretti</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Scott_Dixon" target="_blank" rel="noopener">Scott Dixon</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Álex_Palou" target="_blank" rel="noopener">Álex Palou</a></li>
+      </ul>
+    </div>
+    <div class="sources-block">
+      <h3>WEC &amp; Le Mans</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/FIA_World_Endurance_Championship" target="_blank" rel="noopener">FIA World Endurance Championship</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Tom_Kristensen" target="_blank" rel="noopener">Tom Kristensen</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Jacky_Ickx" target="_blank" rel="noopener">Jacky Ickx</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Sébastien_Buemi" target="_blank" rel="noopener">Sébastien Buemi</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Porsche_917" target="_blank" rel="noopener">Porsche 917</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Audi_R10_TDI" target="_blank" rel="noopener">Audi R10 TDI</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Porsche_919_Hybrid" target="_blank" rel="noopener">Porsche 919 Hybrid</a></li>
+      </ul>
+    </div>
+    <div class="sources-block">
+      <h3>GT3 &amp; GT1</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Group_GT3" target="_blank" rel="noopener">Group GT3</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Laurens_Vanthoor" target="_blank" rel="noopener">Laurens Vanthoor</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Augusto_Farfus" target="_blank" rel="noopener">Augusto Farfus</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Christopher_Mies" target="_blank" rel="noopener">Christopher Mies</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/BMW_Z4_(E89)" target="_blank" rel="noopener">BMW Z4 (E89)</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/McLaren_F1_GTR" target="_blank" rel="noopener">McLaren F1 GTR</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Mercedes-Benz_CLK_GTR" target="_blank" rel="noopener">Mercedes-Benz CLK GTR</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Porsche_911_GT1" target="_blank" rel="noopener">Porsche 911 GT1</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/1995_24_Hours_of_Le_Mans" target="_blank" rel="noopener">1995 24 Hours of Le Mans</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/1998_FIA_GT_Championship" target="_blank" rel="noopener">1998 FIA GT Championship</a></li>
+      </ul>
+    </div>
+    <div class="sources-block">
+      <h3>NASCAR</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/NASCAR_Cup_Series" target="_blank" rel="noopener">NASCAR Cup Series</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Richard_Petty" target="_blank" rel="noopener">Richard Petty</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Dale_Earnhardt" target="_blank" rel="noopener">Dale Earnhardt</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Jimmie_Johnson" target="_blank" rel="noopener">Jimmie Johnson</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Bill_Elliott" target="_blank" rel="noopener">Bill Elliott</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Plymouth_Superbird" target="_blank" rel="noopener">Plymouth Superbird</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Next_Gen_(NASCAR)" target="_blank" rel="noopener">Next Gen (NASCAR)</a></li>
+      </ul>
+    </div>
+    <div class="sources-block">
+      <h3>Super GT</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Super_GT" target="_blank" rel="noopener">Super GT</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Ronnie_Quintarelli" target="_blank" rel="noopener">Ronnie Quintarelli</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Sho_Tsuboi" target="_blank" rel="noopener">Sho Tsuboi</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Satoshi_Motoyama" target="_blank" rel="noopener">Satoshi Motoyama</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Nissan_GT-R_in_motorsport" target="_blank" rel="noopener">Nissan GT-R in motorsport</a></li>
+        <li><a href="https://www.dailysportscar.com/2024/12/07/tsuboi-yamashita-toms-clinch-super-gt-gt500-titles-in-suzuka-qualifying.html" target="_blank" rel="noopener">Dailysportscar: 2024 GT500 title</a></li>
+        <li><a href="https://www.race24.asia/en-us/articles/41532" target="_blank" rel="noopener">Race24: 2025 GT500 final</a></li>
+      </ul>
+    </div>
+    <div class="sources-block">
+      <h3>DTM</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Deutsche_Tourenwagen_Masters" target="_blank" rel="noopener">Deutsche Tourenwagen Masters</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Bernd_Schneider_(racing_driver)" target="_blank" rel="noopener">Bernd Schneider (racing driver)</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Klaus_Ludwig" target="_blank" rel="noopener">Klaus Ludwig</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/René_Rast" target="_blank" rel="noopener">René Rast</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Alfa_Romeo_155" target="_blank" rel="noopener">Alfa Romeo 155</a></li>
+        <li><a href="https://sportscardigest.com/1992-dtm-season-mercedes-benz/" target="_blank" rel="noopener">Sports Car Digest: 1992 DTM season</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <details class="credits reveal">
+    <summary>Photo &amp; map credits (45 images)</summary>
+    <p>These images come from Wikimedia Commons under Creative Commons licences or the public domain. Click a licence to see the original file. Track maps were recoloured for this site, and those adaptations are shared under the same licences. Flags are from flagcdn.com. Photos not listed here were supplied by the site author.</p>
+    <ul class="credits-list">
+        <li><b>A.J. Foyt</b> · Sarah Stierch · <a href="https://commons.wikimedia.org/wiki/File:AJ_Foyt_at_Foyt_Wine_Vault_-_2015_-_Sarah_Stierch_2.jpg" target="_blank" rel="noopener">CC BY 4.0</a></li>
+        <li><b>Alfa Romeo 155 V6 TI</b> · MrWalkr · <a href="https://commons.wikimedia.org/wiki/File:1993_Alfa_Romeo_155_V6_TI_DTM_ARM.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Audi R10 TDI</b> · Joachim Köhler · <a href="https://commons.wikimedia.org/wiki/File:Neckarsulm-AudiForum-Audi-R10-TDI.jpg" target="_blank" rel="noopener">CC BY 3.0</a></li>
+        <li><b>Audi RS 5 DTM</b> · Morio · <a href="https://commons.wikimedia.org/wiki/File:Nico_Muller_2019_DTM_Hockenheim_%28May%29_FP1_2.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Bernd Schneider</b> · Lutz H · <a href="https://commons.wikimedia.org/wiki/File:BerndSchneider.JPG" target="_blank" rel="noopener">CC BY 2.0 de</a></li>
+        <li><b>Bill Elliott&#x27;s Thunderbird</b> · Chris Short from Detroit, MI, United States · <a href="https://commons.wikimedia.org/wiki/File:Bill_Elliott_1987_Ford_Thunderbird_%2811700486193%29.jpg" target="_blank" rel="noopener">CC BY-SA 2.0</a></li>
+        <li><b>BMW Z4 GT3</b> · ACBE25 · <a href="https://commons.wikimedia.org/wiki/File:BMW_Z4_GT3_Marc_VDS_Racing.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Cadillac DPi-V.R</b> · Osajus · <a href="https://commons.wikimedia.org/wiki/File:Mustang_Cadillac_DPi-_V.R_%28cropped2%29.jpg" target="_blank" rel="noopener">CC BY 2.0</a></li>
+        <li><b>Dale Earnhardt</b> · Camera Operator: TSGT JACK BRADEN, USAF · <a href="https://commons.wikimedia.org/wiki/File:Dale_Earnhardt_visits_Langley_AFB.jpg" target="_blank" rel="noopener">Public domain</a></li>
+        <li><b>Daytona track map (recoloured)</b> · Stl66dmk · <a href="https://commons.wikimedia.org/wiki/File:Daytona_International_Speedway_Road_Course_2024.svg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Honda NSX-GT</b> · Takayuki Suzuki · <a href="https://commons.wikimedia.org/wiki/File:Green%21_Green%21%21_%28No.100_RAYBRIG_NSX-GT%29.jpg" target="_blank" rel="noopener">CC BY-SA 2.0</a></li>
+        <li><b>Hurley Haywood</b> · Martin Lee from London, UK · <a href="https://commons.wikimedia.org/wiki/File:Hurley_Haywood_on_the_podium_at_the_1994_Le_Mans_%28cropped%29.jpg" target="_blank" rel="noopener">CC BY-SA 2.0</a></li>
+        <li><b>Indianapolis track map (recoloured)</b> · Spyder_Monkey · <a href="https://commons.wikimedia.org/wiki/File:Indianapolis_Oval.svg" target="_blank" rel="noopener">CC BY 3.0</a></li>
+        <li><b>IndyCar banner</b> · Flickr photographer · <a href="https://commons.wikimedia.org/wiki/File:2019_IndyCar_Series%2C_Indianapolis_Motor_Speedway_%2847966333303%29.jpg" target="_blank" rel="noopener">CC BY 2.0</a></li>
+        <li><b>Jacky Ickx</b> · Alexander Migl · <a href="https://commons.wikimedia.org/wiki/File:Jacky_Ickx_Portr%C3%A4t_Mille_Miglia_2018.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Jaguar XJR-9</b> · Morio · <a href="https://commons.wikimedia.org/wiki/File:Jaguar_XJR-9_LM_front-left_Heritage_Motor_Centre%2C_Gaydon.jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+        <li><b>Jimmie Johnson</b> · TaurusEmerald · <a href="https://commons.wikimedia.org/wiki/File:Jimmie_Johnson_Sonoma_2026.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Klaus Ludwig</b> · Crosa from Nuernberg · <a href="https://commons.wikimedia.org/wiki/File:Klaus_Ludwig_%283664589379%29_%28cropped%29.jpg" target="_blank" rel="noopener">CC BY 2.0</a></li>
+        <li><b>Le Mans track map (recoloured)</b> · Will Pittenger · <a href="https://commons.wikimedia.org/wiki/File:Circuit_de_la_Sarthe_track_map.svg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+        <li><b>Mario Andretti</b> · United Autosports · <a href="https://commons.wikimedia.org/wiki/File:Mario_Andretti_Goodwood_Festival_of_Speed_2021_%28cropped%29.jpg" target="_blank" rel="noopener">CC BY-SA 2.0</a></li>
+        <li><b>McLaren F1 GTR</b> · PSParrot from England · <a href="https://commons.wikimedia.org/wiki/File:1998_Goodwood_Festival_of_Speed_%2815781190981%29.jpg" target="_blank" rel="noopener">CC BY 2.0</a></li>
+        <li><b>Mercedes 190E Evo II</b> · Valder137 · <a href="https://commons.wikimedia.org/wiki/File:Mercedes-Benz_190E_1992_2.5-16_AMG_Evolution_II_DTM_Klaus_Ludwig_LSide_MBMuse_9June2013_%2814796951839%29.jpg" target="_blank" rel="noopener">CC BY 2.0</a></li>
+        <li><b>Mercedes CLK GTR</b> · Stephen Hynds · <a href="https://commons.wikimedia.org/wiki/File:Mercedes-Benz_CLK_GTR_at_Goodwood_2014_001.jpg" target="_blank" rel="noopener">CC BY-SA 2.0</a></li>
+        <li><b>Monaco track map (recoloured)</b> · Will Pittenger · <a href="https://commons.wikimedia.org/wiki/File:Monte_Carlo_Formula_1_track_map.svg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+        <li><b>NASCAR Next Gen</b> · Nascar9919 · <a href="https://commons.wikimedia.org/wiki/File:Denny_Hamlin%2C_2026_Las_Vegas_Spring%2C_Cup.jpg" target="_blank" rel="noopener">CC BY 4.0</a></li>
+        <li><b>Nissan GT-R GT500</b> · Tokumeigakarinoaoshima · <a href="https://commons.wikimedia.org/wiki/File:No.23_MOTUL_AUTECH_GT-R_at_2014_SUPER_GT_SUZUKA_TEST_%2819%29.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Plymouth Superbird</b> · BUTTON74 · <a href="https://commons.wikimedia.org/wiki/File:Superbird_Yellow.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Porsche 911 GT1</b> · Morio · <a href="https://commons.wikimedia.org/wiki/File:Porsche_911_GT1-96_front-left_Porsche_Museum.jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+        <li><b>Porsche 911 GT3 R</b> · Florian Volk from Deutschland · <a href="https://commons.wikimedia.org/wiki/File:-911_Porsche_911_GT3_R_-_Manthey_Racing_%2840100143965%29.jpg" target="_blank" rel="noopener">CC BY 2.0</a></li>
+        <li><b>Porsche 917K</b> · MrWalkr · <a href="https://commons.wikimedia.org/wiki/File:1969_Porsche_917K_Red.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Porsche 919 Hybrid</b> · Matti Blume · <a href="https://commons.wikimedia.org/wiki/File:Porsche%2C_IAA_2017%2C_Frankfurt_%281Y7A2248%29.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Porsche 962</b> · Brian Snelson from Hockley, Essex, England · <a href="https://commons.wikimedia.org/wiki/File:2006FOS_1988Porsche962CLeMans.jpg" target="_blank" rel="noopener">CC BY 2.0</a></li>
+        <li><b>Renault R25</b> · Willtron · <a href="https://commons.wikimedia.org/wiki/File:Renault_R25_%282005%29_Fernando_Alonso.jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+        <li><b>René Rast</b> · Steffen Prößdorf · <a href="https://commons.wikimedia.org/wiki/File:2023-04-21_Motorsport%2C_ABB_FIA_Formula_E_World_Championship%2C_Berlin_E-Prix_2023_1DX_0598_by_Stepro.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Richard Petty</b> · TaurusEmerald · <a href="https://commons.wikimedia.org/wiki/File:Richard_Petty_Las_Vegas_Fall_2024.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Ronnie Quintarelli</b> · Thfeeder · <a href="https://commons.wikimedia.org/wiki/File:Quintarelli_Sepang_25.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Satoshi Motoyama</b> · Morio · <a href="https://commons.wikimedia.org/wiki/File:Satoshi_Motoyama_2010_Motorsport_Japan.jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+        <li><b>Scott Dixon</b> · Spongetastic69 · <a href="https://commons.wikimedia.org/wiki/File:Scott_Dixon_at_Road_America_in_2021.png" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Scott Pruett</b> · Nascar fan mx · <a href="https://commons.wikimedia.org/wiki/File:Scott_Pruett.jpg" target="_blank" rel="noopener">Public domain</a></li>
+        <li><b>Sho Tsuboi</b> · Morio · <a href="https://commons.wikimedia.org/wiki/File:Sho_Tsuboi_2024_SF_Suzuka_%28Nov%29.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Spa-Francorchamps track map (recoloured)</b> · Will Pittenger · <a href="https://commons.wikimedia.org/wiki/File:Spa-Francorchamps_of_Belgium.svg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+        <li><b>Sébastien Buemi</b> · Martin Lee from London, UK · <a href="https://commons.wikimedia.org/wiki/File:Ryo_Hirakawa%2C_Brendon_Hartley_%26_Sebastien_Buemi_take_the_podium_for_2nd_in_Hypercar_at_the_2023_Le_Mans_%2853468554280%29_%28cropped%29.jpg" target="_blank" rel="noopener">CC BY-SA 2.0</a></li>
+        <li><b>Tom Kristensen</b> · Audi Communications Motorsport / Ferdi Kräling Motorsport-Bild GmbH · <a href="https://commons.wikimedia.org/wiki/File:Tom_Kristensen_2014-06-10_001.jpg" target="_blank" rel="noopener">CC BY 3.0</a></li>
+        <li><b>Toyota GR Supra GT500</b> · Aos.1905 · <a href="https://commons.wikimedia.org/wiki/File:Au_TOM%27S_GR_Supra_2025_%28front_three-quarter_view%29_at_Osaka_Auto_Messe_2026.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li><b>Álex Palou</b> · City of Detroit · <a href="https://commons.wikimedia.org/wiki/File:Alex_Palou_at_2024_Chevrolet_Detroit_Grand_Prix.jpg" target="_blank" rel="noopener">Public domain</a></li>
+    </ul>
+  </details>
+</section>
+
 <!-- ══ FOOTER ══ -->
 <div class="back-to-top-wrap">
   <a href="#top" class="back-to-top">&#8593; Back to Top</a>
@@ -3957,9 +4351,15 @@
     A tribute to IMSA, Formula 1, IndyCar, FIA WEC, GT3, the golden age of GT1, NASCAR, Super GT and DTM, from 1911 to the present.
     Made by @kuzeyfiratracing on Instagram.<br>
     The greatest cars, the bravest drivers, the most legendary races.<br><br>
-    <span style="color:var(--text3);font-size:0.72rem">Historical content compiled from motorsport records. Photos and track maps from Wikimedia Commons under Creative Commons licenses or public domain; flags from flagcdn.com.</span>
+    <span style="color:var(--text3);font-size:0.72rem">Historical content compiled from motorsport records. Photos and track maps from Wikimedia Commons under Creative Commons licenses or public domain. <a href="#sources">Full sources &amp; credits</a>.</span><br>
+    <span class="last-updated">Last updated: October 2026</span>
   </p>
 </footer>
+
+<button type="button" class="fab-top" id="fab-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<div class="tip-pop" id="tip-pop" role="tooltip" hidden></div>
 
 <script>
 // Reveal on scroll animation
@@ -4226,6 +4626,133 @@ timelineItems.forEach(el => observer.observe(el));
     spec.appendChild(bar);
   });
 })();
+// ── Floating back-to-top ──
+(() => {
+  const fab = document.getElementById('fab-top');
+  if (!fab) return;
+  const onScroll = () => fab.classList.toggle('show', window.scrollY > window.innerHeight * 1.2);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  fab.addEventListener('click', () => window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }));
+  onScroll();
+})();
+
+// ── Contents panel ──
+(() => {
+  const btn = document.getElementById('contents-btn');
+  const panel = document.getElementById('contents-panel');
+  if (!btn || !panel) return;
+  const open = state => {
+    panel.hidden = !state;
+    btn.setAttribute('aria-expanded', state);
+    if (state) panel.querySelector('a').focus({ preventScroll: true });
+  };
+  btn.addEventListener('click', e => { e.stopPropagation(); open(panel.hidden); });
+  panel.addEventListener('click', e => { if (e.target.closest('a')) open(false); });
+  document.addEventListener('click', e => { if (!panel.hidden && !panel.contains(e.target)) open(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { open(false); btn.focus(); } });
+})();
+
+// ── Term tooltips: explain racing terms where they appear in the text ──
+(() => {
+  const pop = document.getElementById('tip-pop');
+  if (!pop) return;
+  const defs = {};
+  document.querySelectorAll('#terms .term-card').forEach(c => {
+    const name = c.querySelector('.term-name').textContent.trim();
+    const text = c.querySelector('.term-def').textContent.trim().replace(/\s+/g, ' ');
+    const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+    let short = sentences[0];
+    if (sentences[1] && (short + sentences[1]).length < 260) short += sentences[1];
+    defs[name] = short.trim();
+  });
+  // alias found in the text -> term name in the Racing Terms section
+  const A = [
+    ['Balance of Performance', 'Balance of Performance (BoP)'], ['BoP', 'Balance of Performance (BoP)'],
+    ['Hypercar', 'Hypercar Class'], ['LMP1', 'LMP1 / LMP2'], ['LMP2', 'LMP1 / LMP2'], ['GTP', 'GTP Class'],
+    ['homologation', 'Homologation'], ['downforce', 'Downforce'], ['pole position', 'Pole Position'],
+    ['DRS', 'DRS (Drag Reduction System)'], ['power unit', 'Power Unit'], ['multi-class', 'Multi-Class Racing'],
+    ['gentleman drivers', 'Gentleman Driver'], ['gentleman driver', 'Gentleman Driver'], ['Pro-Am', 'Pro-Am / Silver Cup'],
+    ['Push-to-Pass', 'Push-to-Pass'], ['Aeroscreen', 'Aeroscreen'], ['Triple Crown', 'Triple Crown of Motorsport'],
+    ['superspeedways', 'Superspeedway'], ['superspeedway', 'Superspeedway'], ['drafting', 'Drafting'], ['slipstream', 'Drafting'],
+    ['success ballast', 'Success Ballast'], ['GT500', 'GT500 / GT300'], ['GT300', 'GT500 / GT300'], ['Class One', 'Class One'],
+    ['touring cars', 'Touring Car'], ['touring car', 'Touring Car'], ['hybrid', 'Hybrid Power'], ['endurance racing', 'Endurance Racing'],
+    ['restrictor plates', 'Superspeedway'], ['ovals', 'Oval Racing'],
+  ].filter(([, t]) => defs[t]);
+  const esc = x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const rx = new RegExp('\\b(' + A.map(([a]) => esc(a)).sort((x, y) => y.length - x.length).join('|') + ')\\b', 'gi');
+  const termFor = word => {
+    for (const [a, t] of A) {
+      const caseSensitive = /[A-Z]/.test(a);
+      if (caseSensitive ? word === a : word.toLowerCase() === a.toLowerCase()) return t;
+    }
+    return null;
+  };
+  const usedIn = new Map();
+  document.querySelectorAll('.section-desc, .timeline-detail, .driver-bio, .car-desc, .era-desc').forEach(el => {
+    if (el.closest('#terms')) return;
+    const sec = el.closest('section');
+    if (!usedIn.has(sec)) usedIn.set(sec, new Set());
+    const used = usedIn.get(sec);
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const text = node.nodeValue;
+      let m, last = 0, frag = null;
+      rx.lastIndex = 0;
+      while ((m = rx.exec(text))) {
+        const term = termFor(m[0]);
+        if (!term || used.has(term)) continue;
+        used.add(term);
+        frag = frag || document.createDocumentFragment();
+        frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'term-tip';
+        b.dataset.term = term;
+        b.setAttribute('aria-describedby', 'tip-pop');
+        b.textContent = m[0];
+        frag.appendChild(b);
+        last = m.index + m[0].length;
+      }
+      if (frag) {
+        frag.appendChild(document.createTextNode(text.slice(last)));
+        node.parentNode.replaceChild(frag, node);
+      }
+    });
+  });
+  let current = null;
+  const show = b => {
+    current = b;
+    const name = b.dataset.term.replace(/^[^\w]+\s*/, '');
+    pop.innerHTML = '';
+    const strong = document.createElement('strong'); strong.textContent = name;
+    const span = document.createElement('span'); span.textContent = 'From Racing Terms';
+    pop.append(strong, document.createTextNode(defs[b.dataset.term]), span);
+    pop.hidden = false;
+    const r = b.getBoundingClientRect();
+    const w = pop.offsetWidth, h = pop.offsetHeight;
+    let left = r.left + r.width / 2 - w / 2;
+    left = Math.max(12, Math.min(left, document.documentElement.clientWidth - w - 12));
+    let top = r.bottom + 10;
+    if (top + h > window.innerHeight - 10) top = r.top - h - 10;
+    pop.style.left = (left + window.scrollX) + 'px';
+    pop.style.top = (top + window.scrollY) + 'px';
+  };
+  const hide = () => { pop.hidden = true; current = null; };
+  document.addEventListener('mouseover', e => { const b = e.target.closest('.term-tip'); if (b) show(b); });
+  document.addEventListener('mouseout', e => { if (e.target.closest('.term-tip')) hide(); });
+  document.addEventListener('focusin', e => { const b = e.target.closest('.term-tip'); if (b) show(b); });
+  document.addEventListener('focusout', e => { if (e.target.closest('.term-tip')) hide(); });
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.term-tip');
+    if (b) { current === b && !pop.hidden ? hide() : show(b); }
+    else if (!pop.hidden) hide();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+  window.addEventListener('scroll', () => { if (!pop.hidden) hide(); }, { passive: true });
+})();
+
 </script>
 
 </body>
