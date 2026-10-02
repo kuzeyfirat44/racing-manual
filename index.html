@@ -1,0 +1,2722 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Racing Manual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --bg4: #222222;
+    --card: #141414;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --text: #f0ede8;
+    --text2: #999;
+    --text3: #666;
+    --gold: #d4a017;
+    --gold2: #f0c040;
+    --red: #c0392b;
+    --red2: #e74c3c;
+    --blue: #1a5276;
+    --blue2: #2980b9;
+    --green: #1e8449;
+    --green2: #27ae60;
+    --accent-imsa: #e67e22;
+    --accent-f1: #e10600;
+    --accent-indy: #3b82f6;
+    --accent-wec: #8e44ad;
+    --accent-gt1: #c0392b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 64px; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero-track {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 120% 60% at 50% 80%, rgba(212,160,23,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 40% at 20% 50%, rgba(192,57,43,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 40% at 80% 50%, rgba(142,68,173,0.05) 0%, transparent 50%);
+  }
+
+  /* Animated speed lines */
+  .speed-lines {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .speed-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,160,23,0.3), transparent);
+    animation: streak var(--dur) linear infinite;
+    animation-delay: var(--delay);
+    top: var(--top);
+    left: -100%;
+    width: 60%;
+  }
+  @keyframes streak {
+    0% { left: -60%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: 110%; opacity: 0; }
+  }
+
+
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-title span.gold { color: var(--gold); }
+  .hero-title span.f1 { color: var(--accent-f1); }
+  .hero-title span.dim { color: var(--text3); font-size: 0.6em; }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text2);
+    max-width: 560px;
+    margin: 1.5rem auto 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+    font-weight: 300;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .badge {
+    padding: 0.45rem 1.2rem;
+    border: 1px solid var(--border2);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .badge:hover { background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+
+  .back-to-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 0.7rem 1.6rem;
+    border: 1px solid var(--border2);
+    border-radius: 100px;
+    color: var(--gold2);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .back-to-top:hover { background: rgba(212,160,23,0.1); border-color: var(--gold); transform: translateY(-2px); }
+  .back-to-top-wrap { text-align: center; }
+  .badge-imsa { border-color: var(--accent-imsa); color: var(--accent-imsa); }
+  .badge-f1 { border-color: var(--accent-f1); color: var(--accent-f1); }
+  .badge-indy { border-color: var(--accent-indy); color: var(--accent-indy); }
+  .badge-wec { border-color: var(--accent-wec); color: var(--accent-wec); }
+  .badge-gt3 { border-color: #16a34a; color: #16a34a; }
+  .badge-gt1 { border-color: var(--accent-gt1); color: var(--accent-gt1); }
+  .badge:hover { transform: translateY(-2px); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+  @media (min-width: 641px) {
+    .scroll-hint {
+      left: 0;
+      right: 0;
+      width: 100%;
+      text-align: center;
+      transform: none;
+    }
+  }
+  .scroll-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin: 0 auto 0.5rem;
+    animation: bounce 1.5s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  .scroll-hint span { font-size: 0.65rem; letter-spacing: 0.25em; color: var(--text3); text-transform: uppercase; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+    align-items: center;
+    overflow-x: auto;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-right: 2rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  nav a {
+    display: block;
+    padding: 1rem 1.25rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text3);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  nav a:hover { color: var(--text); border-bottom-color: var(--gold); }
+
+  /* SECTIONS */
+  section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+  .eyebrow-imsa { color: var(--accent-imsa); }
+  .eyebrow-f1 { color: var(--accent-f1); }
+  .eyebrow-indy { color: var(--accent-indy); }
+  .eyebrow-wec { color: var(--accent-wec); }
+  .eyebrow-gt1 { color: var(--accent-gt1); }
+  .eyebrow-gold { color: var(--gold); }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: var(--text2);
+    max-width: 640px;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s;
+  }
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.38rem;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px var(--gold);
+  }
+  .timeline-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+  .timeline-event {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+  }
+  .timeline-indy::before { background: linear-gradient(to bottom, var(--accent-indy), transparent); }
+  .timeline-indy .timeline-item::before { background: var(--accent-indy); box-shadow: 0 0 12px var(--accent-indy); }
+  .timeline-indy .timeline-year { color: var(--accent-indy); }
+
+  .timeline-detail {
+    font-size: 0.875rem;
+    color: var(--text2);
+    line-height: 1.65;
+  }
+
+  /* STAT CARDS */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 3rem 0;
+  }
+  .stat-card {
+    background: var(--card);
+    padding: 1.75rem 1.5rem;
+    transition: background 0.2s;
+  }
+  .stat-card:hover { background: var(--bg3); }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text3);
+    font-weight: 500;
+  }
+
+  /* DRIVER CARDS */
+  .driver-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .driver-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .driver-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+
+  .driver-header {
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .driver-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border2);
+    flex-shrink: 0;
+  }
+
+  .driver-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 3rem;
+    text-align: right;
+  }
+
+  .driver-info { flex: 1; }
+  .driver-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.02em;
+  }
+  .driver-nat {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .flag {
+    width: 18px;
+    height: 12px;
+    object-fit: cover;
+    border-radius: 2px;
+    vertical-align: -1px;
+    margin-right: 0.35rem;
+  }
+  .driver-tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .driver-body {
+    padding: 1.25rem 1.5rem;
+  }
+  .driver-bio {
+    font-size: 0.875rem;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .driver-achievements {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .achievement {
+    font-size: 0.75rem;
+    color: var(--text3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .achievement::before {
+    content: '-';
+    color: var(--gold);
+    font-size: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  /* CAR CARDS */
+  .car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .car-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .car-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border2);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+  }
+
+  .car-visual {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+  }
+
+  .car-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .car-body {
+    padding: 1.5rem;
+  }
+
+  .car-make {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+  .car-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+  .car-desc {
+    font-size: 0.85rem;
+    color: var(--text2);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .car-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .spec {
+    padding: 0.6rem 0.75rem;
+    background: var(--bg3);
+    border-radius: 6px;
+  }
+  .spec-val {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+  }
+  .spec-key {
+    font-size: 0.65rem;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ERA SECTION */
+  .era-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .era-block:hover { border-color: var(--border2); }
+  .era-accent {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    border-radius: 4px 0 0 4px;
+  }
+  .era-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .era-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.03em;
+  }
+  .era-years {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-weight: 500;
+    align-self: flex-start;
+  }
+  .era-desc {
+    font-size: 0.9rem;
+    color: var(--text2);
+    line-height: 1.75;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border2), transparent);
+    margin: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+  .footer-text {
+    font-size: 0.8rem;
+    color: var(--text3);
+    line-height: 1.6;
+  }
+
+  /* QUOTE */
+  .quote-block {
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: rgba(212,160,23,0.04);
+    border-radius: 0 8px 8px 0;
+  }
+  .quote-text {
+    font-size: 1.05rem;
+    color: var(--text);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .quote-attr {
+    font-size: 0.75rem;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* CIRCUITS */
+  .circuit-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.75rem;
+  }
+  .circuit-wrapper > div:not(.circuit-label) {
+    border: 1px solid var(--border);
+  }
+  .circuit-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+  }
+
+  /* TERMS */
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .term-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--term-color, var(--gold));
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+  }
+  .term-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border2);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+
+  .term-category {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .term-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .term-def {
+    font-size: 0.875rem;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  .term-def strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .terms-intro {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .terms-intro-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .terms-intro p {
+    font-size: 0.9rem;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .driver-grid { grid-template-columns: 1fr; }
+    .car-grid { grid-template-columns: 1fr; }
+    section { padding: 3rem 1.25rem; }
+
+    /* Portrait phone tuning */
+    body { -webkit-text-size-adjust: 100%; }
+    .hero { padding: 1.5rem 1.25rem; min-height: 100svh; }
+    .hero-title { letter-spacing: 0; }
+    .hero-sub { font-size: 1rem; margin: 1.25rem auto 2rem; }
+    .hero-badges { gap: 0.6rem; }
+    .badge { padding: 0.4rem 0.9rem; font-size: 0.68rem; }
+
+    nav { padding: 0 1rem; }
+    .nav-logo { font-size: 1.05rem; margin-right: 1.25rem; }
+    nav a { padding: 0.85rem 0.9rem; font-size: 0.68rem; }
+
+    .section-title { font-size: clamp(2.1rem, 9vw, 3rem); }
+    .section-desc { font-size: 0.92rem; }
+
+    .timeline { padding-left: 1.5rem; }
+    .timeline-item::before { left: -1.88rem; }
+
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-num { font-size: 2.1rem; }
+    .stat-card { padding: 1.25rem 1rem; }
+
+    .term-grid, .stat-grid, .car-grid, .driver-grid { gap: 1px; }
+    .car-specs { grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+
+    .footer-logo { font-size: 1.4rem; }
+    .footer-text { font-size: 0.85rem; padding: 0 1rem; }
+  }
+
+  @media (max-width: 400px) {
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .hero-title { font-size: clamp(2.8rem, 13vw, 5rem); }
+  }
+
+  /* ── REVEAL ANIMATION ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── RACE NUMBER DECORATION ── */
+  .bg-number {
+    position: absolute;
+    right: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 10rem;
+    color: rgba(255,255,255,0.02);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Grid section background strip */
+  .section-strip {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-track"></div>
+  <div class="speed-lines">
+    <div class="speed-line" style="--dur:3s;--delay:0s;--top:15%"></div>
+    <div class="speed-line" style="--dur:2.5s;--delay:0.5s;--top:30%"></div>
+    <div class="speed-line" style="--dur:4s;--delay:1s;--top:45%"></div>
+    <div class="speed-line" style="--dur:2.8s;--delay:1.8s;--top:60%"></div>
+    <div class="speed-line" style="--dur:3.5s;--delay:2.5s;--top:75%"></div>
+    <div class="speed-line" style="--dur:2.2s;--delay:0.8s;--top:88%"></div>
+  </div>
+
+  <p class="hero-eyebrow">The Golden Era of Motorsport</p>
+  <h1 class="hero-title">
+    The <span class="gold">Racing</span> Manual
+  </h1>
+  <p class="hero-sub">Your complete guide to motorsport — covering the history, cars, drivers and championships of <span style="color:var(--accent-imsa)">IMSA</span>, <span style="color:var(--accent-f1)">Formula 1</span>, <span style="color:var(--accent-indy)">IndyCar</span>, <span style="color:var(--accent-wec)">FIA WEC</span>, <span style="color:var(--accent-gt1)">GT1</span> and <span style="color:#16a34a">GT3</span>. From race terminology and flag meanings to legendary drivers and iconic circuits, everything you need to understand and love racing is right here.</p>
+
+  <div class="hero-badges">
+    <a href="#imsa" class="badge badge-imsa">IMSA WeatherTech</a>
+    <a href="#f1" class="badge badge-f1">FIA Formula 1</a>
+    <a href="#indycar" class="badge badge-indy">NTT IndyCar</a>
+    <a href="#wec" class="badge badge-wec">FIA WEC</a>
+    <a href="#gt3" class="badge badge-gt3">GT3 Racing</a>
+    <a href="#gt1" class="badge badge-gt1">BPR / GT1 Class</a>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-dot"></div>
+    <span>Scroll to explore</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">The Racing Manual</div>
+  <a href="#imsa">IMSA</a>
+  <a href="#f1">Formula 1</a>
+  <a href="#indycar">IndyCar</a>
+  <a href="#wec">WEC</a>
+  <a href="#gt3">GT3</a>
+  <a href="#gt1">GT1 Era</a>
+  <a href="#circuits">Circuits</a>
+  <a href="#terms">Racing Terms</a>
+</nav>
+
+<!-- ══ IMSA ══ -->
+<section id="imsa">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-imsa">International Motor Sports Association</p>
+    <h2 class="section-title">The Birth of<br>American Endurance</h2>
+    <p class="section-desc">Founded in 1969 by John Bishop, IMSA became the definitive arena for sports car racing in North America — a series defined by machinery pushed to its absolute limit, day and night.</p>
+  </div>
+
+  <div class="stat-grid reveal reveal-delay-1">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-imsa)">1969</div>
+      <div class="stat-label">Founded</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-imsa)">24</div>
+      <div class="stat-label">Hours of Daytona</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-imsa)">12</div>
+      <div class="stat-label">Hours of Sebring</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-imsa)">50+</div>
+      <div class="stat-label">Years of History</div>
+    </div>
+  </div>
+
+  <div class="timeline reveal reveal-delay-2">
+    <div class="timeline-item">
+      <div class="timeline-year">1969</div>
+      <div class="timeline-event">IMSA Founded</div>
+      <div class="timeline-detail">John Bishop and NASCAR founder Bill France Sr. establish the International Motor Sports Association, creating a unified set of rules for North American sports car racing. The series quickly attracts support from major manufacturers.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1971&ndash;1977</div>
+      <div class="timeline-event">Multi-Class Racing & The GTX Era</div>
+      <div class="timeline-detail">IMSA's GTO and GTU classes let very different cars race side by side. Multi-class racing becomes the series' greatest strength. In 1977 the GTX class opens the door to turbocharged silhouette racers, and the Porsche 935 becomes the car to beat.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1981&ndash;1993</div>
+      <div class="timeline-event">The GTP Era & Peak Factory Warfare</div>
+      <div class="timeline-detail">The Grand Touring Prototype class turns IMSA into a battleground for Porsche, Jaguar, Nissan and Toyota, with purpose-built prototypes producing over 700bhp. The Porsche 962 wins the IMSA GTP title every year from 1985 to 1988 and wins the Daytona 24 Hours five times.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1994</div>
+      <div class="timeline-event">World Sports Cars Replace GTP</div>
+      <div class="timeline-detail">With costs out of control, IMSA replaces GTP with cheaper open-top World Sports Car (WSC) prototypes. The Ferrari 333 SP and Riley & Scott Mk III become the stars of the new era.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1999&ndash;2013</div>
+      <div class="timeline-event">ALMS vs Grand-Am</div>
+      <div class="timeline-detail">Don Panoz launches the American Le Mans Series in 1999 using Le Mans rules, carrying the IMSA name into the 21st century. A rival series, Grand-Am, starts in 2000 with the Daytona 24 Hours as its crown jewel. American sports car racing is split in two for 14 years.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2014</div>
+      <div class="timeline-event">IMSA WeatherTech Championship Born</div>
+      <div class="timeline-detail">The merger of Grand-Am and the American Le Mans Series creates today's IMSA WeatherTech SportsCar Championship, with Prototype, Prototype Challenge, GTLM and GTD classes. The DPi formula follows in 2017.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2023</div>
+      <div class="timeline-event">GTP Returns & The Hybrid Era</div>
+      <div class="timeline-detail">The famous GTP name comes back for a new top class of hybrid LMDh prototypes. Porsche, Cadillac, BMW and Acura all build factory cars, and the same machines can now race at both Daytona and Le Mans.</div>
+    </div>
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">IMSA Legends</h3>
+
+  <div class="driver-grid">
+
+    <!-- Hurley Haywood -->
+    <div class="driver-card reveal reveal-delay-1">
+      <div class="driver-header">
+        <img src="images/img22.webp" alt="Hurley Haywood" class="driver-photo">
+        <div class="driver-number" style="color:var(--accent-imsa)">5×</div>
+        <div class="driver-info">
+          <div class="driver-name">Hurley Haywood</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <span class="driver-tag" style="background:rgba(230,126,34,0.15);color:var(--accent-imsa)">Endurance Icon</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">One of the greatest endurance racers America has produced. Hurley Haywood shares the record for most Daytona 24 Hours victories, with wins spanning almost two decades. He also won Le Mans three times, in three different Porsches, and was one of the first drivers to complete endurance racing's informal Triple Crown of Daytona, Le Mans and Sebring.</p>
+        <div class="driver-achievements">
+          <div class="achievement">5× Daytona 24 Hours winner (1973, 1975, 1977, 1979, 1991)</div>
+          <div class="achievement">3× Le Mans winner (1977, 1983, 1994)</div>
+          <div class="achievement">2× Sebring 12 Hours winner (1973, 1981)</div>
+          <div class="achievement">IMSA GT Champion (1971, 1972)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scott Pruett -->
+    <div class="driver-card reveal reveal-delay-2">
+      <div class="driver-header">
+        <img src="images/img23.webp" alt="Scott Pruett" class="driver-photo">
+        <div class="driver-number" style="color:#f59e0b">5×</div>
+        <div class="driver-info">
+          <div class="driver-name">Scott Pruett</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <span class="driver-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b">Daytona Master</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">Scott Pruett matched Hurley Haywood's record of five Daytona 24 Hours wins, the last four with Chip Ganassi Racing. He won titles in almost everything with a roof: IMSA GTO, Trans-Am and five Grand-Am prototype championships. He also won his class at Le Mans with Corvette. He retired after the 2018 Rolex 24, fifty years after he started racing.</p>
+        <div class="driver-achievements">
+          <div class="achievement">5× Daytona 24 Hours winner (1994, 2007, 2008, 2011, 2013)</div>
+          <div class="achievement">5× Grand-Am prototype champion</div>
+          <div class="achievement">2× IMSA GTO champion (1986, 1988)</div>
+          <div class="achievement">Le Mans GTS class winner, 2001 (Corvette)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">Prototype Icons</h3>
+
+  <div class="car-grid">
+
+    <!-- Porsche 962 -->
+    <div class="car-card reveal reveal-delay-1">
+      <div class="car-visual">
+        <img src="images/img27.webp" alt="Porsche 962">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Porsche</div>
+        <h4 class="car-name">962</h4>
+        <p class="car-desc">The most successful sports prototype ever built. Designed for IMSA's GTP rules, the 962 won the IMSA title every year from 1985 to 1988 and the Daytona 24 Hours five times. As the 962C it also won Le Mans in 1986 and 1987. Private teams kept racing them for almost a decade.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">~700 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">Turbo</div>
+            <div class="spec-key">Flat-6</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">5</div>
+            <div class="spec-key">Daytona Wins</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1984</div>
+            <div class="spec-key">Debut</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jaguar XJR-9 -->
+    <div class="car-card reveal reveal-delay-2">
+      <div class="car-visual">
+        <img src="images/img28.webp" alt="Jaguar XJR-9">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Jaguar / TWR</div>
+        <h4 class="car-name">XJR-9</h4>
+        <p class="car-desc">The car that broke Porsche's grip. Built by Tom Walkinshaw Racing, the V12 XJR-9 won the Daytona 24 Hours on its debut in 1988. Later that year it won Le Mans, Jaguar's first win there since 1957 and the first time since 1980 that Porsche didn't win.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">750 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">6.0L</div>
+            <div class="spec-key">V12 (IMSA)</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">880 kg</div>
+            <div class="spec-key">Weight</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1988</div>
+            <div class="spec-key">Daytona & Le Mans</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cadillac DPi-V.R -->
+    <div class="car-card reveal reveal-delay-3">
+      <div class="car-visual">
+        <img src="images/img29.webp" alt="Cadillac DPi-V.R">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Cadillac</div>
+        <h4 class="car-name">DPi-V.R</h4>
+        <p class="car-desc">The king of the DPi era. Powered by a 5.5-litre V8, the Cadillac won the Daytona 24 Hours four years in a row from 2017 to 2020 and took three IMSA championships. It won 27 of its 59 races, making it the benchmark prototype of modern IMSA.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">~600 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">5.5L</div>
+            <div class="spec-key">V8</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">930 kg</div>
+            <div class="spec-key">Weight</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">4</div>
+            <div class="spec-key">Daytona Wins</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="quote-block reveal reveal-delay-3" style="margin-top:3rem;border-left-color:var(--accent-imsa);background:rgba(230,126,34,0.04);">
+    <p class="quote-text">"If everything seems under control, you're just not going fast enough."</p>
+    <p class="quote-attr">Mario Andretti</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ FORMULA 1 ══ -->
+<div class="section-strip">
+<section id="f1">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-f1">FIA Formula 1 World Championship</p>
+    <h2 class="section-title">The Pinnacle of<br>Motorsport</h2>
+    <p class="section-desc">Since 1950, Formula 1 has been the ultimate test of driver skill, engineering excellence, and raw speed. The fastest, most technologically advanced racing cars on Earth, driven by the greatest talents in motorsport history.</p>
+  </div>
+
+  <div class="stat-grid reveal reveal-delay-1">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-f1)">1950</div>
+      <div class="stat-label">First Championship</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-f1)">20+</div>
+      <div class="stat-label">Races Per Season</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-f1)">350</div>
+      <div class="stat-label">km/h+ Top Speed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-f1)">70+</div>
+      <div class="stat-label">Years of History</div>
+    </div>
+  </div>
+
+  <div class="driver-grid">
+
+    <!-- Lewis Hamilton -->
+    <div class="driver-card reveal reveal-delay-1">
+      <div class="driver-header">
+        <img src="images/img01.webp" alt="Lewis Hamilton" class="driver-photo">
+        <div class="driver-number" style="color:var(--accent-f1)">7×</div>
+        <div class="driver-info">
+          <div class="driver-name">Lewis Hamilton</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/gb.png" alt=""> United Kingdom</div>
+          <span class="driver-tag" style="background:rgba(225,6,0,0.15);color:var(--accent-f1)">Modern Legend</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">Seven world championships, a shared record, and a record 105 Grand Prix wins. Lewis Hamilton redefined what it means to dominate Formula 1. From his title-winning breakthrough with McLaren to his long Mercedes era, he combines raw pace with tactical brilliance and tireless consistency. His 2020 title matched Michael Schumacher's record of seven, and in 2025 he joined Ferrari.</p>
+        <div class="driver-achievements">
+          <div class="achievement">7× F1 World Champion (2008, 2014, 2015, 2017, 2018, 2019, 2020)</div>
+          <div class="achievement">105 Grand Prix wins through 2025, the all-time record</div>
+          <div class="achievement">Most pole positions in F1 history</div>
+          <div class="achievement">Six titles with Mercedes, including the dominant W11 in 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Michael Schumacher -->
+    <div class="driver-card reveal reveal-delay-2">
+      <div class="driver-header">
+        <img src="images/img02.webp" alt="Michael Schumacher" class="driver-photo">
+        <div class="driver-number" style="color:#dc0000">7×</div>
+        <div class="driver-info">
+          <div class="driver-name">Michael Schumacher</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/de.png" alt=""> Germany</div>
+          <span class="driver-tag" style="background:rgba(220,0,0,0.15);color:#dc0000">Record Breaker</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">The man who rewrote the F1 record books. Michael Schumacher's five consecutive championships with Ferrari (2000&ndash;2004) represented total dominance and an era where the red cars were simply untouchable. His relentless work ethic, technical feedback, and obsessive pursuit of perfection transformed Ferrari into a dynasty. The Ferrari F2004 remains one of the most dominant F1 cars ever built.</p>
+        <div class="driver-achievements">
+          <div class="achievement">7× F1 World Champion (1994, 1995, 2000, 2001, 2002, 2003, 2004)</div>
+          <div class="achievement">91 race wins, the all-time record until 2020</div>
+          <div class="achievement">Five consecutive titles with Ferrari</div>
+          <div class="achievement">13 personal wins from 18 races in the 2004 Ferrari F2004</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ayrton Senna -->
+    <div class="driver-card reveal reveal-delay-3">
+      <div class="driver-header">
+        <img src="images/img03.webp" alt="Ayrton Senna" class="driver-photo">
+        <div class="driver-number" style="color:var(--gold)">3×</div>
+        <div class="driver-info">
+          <div class="driver-name">Ayrton Senna</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/br.png" alt=""> Brazil</div>
+          <span class="driver-tag" style="background:rgba(212,160,23,0.15);color:var(--gold)">Immortal</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">Many consider Ayrton Senna the greatest racing driver who ever lived. His connection with the car bordered on supernatural, especially in the rain, where he was untouchable. Senna's battles with Prost, his blinding pace in Monaco, and his sheer commitment to perfection made him a legend. His tragic death at Imola in 1994 shook the world, but his legacy as F1's ultimate artist endures forever.</p>
+        <div class="driver-achievements">
+          <div class="achievement">3× F1 World Champion (1988, 1990, 1991)</div>
+          <div class="achievement">41 race wins, including the dominant MP4/4 season</div>
+          <div class="achievement">Record 6 Monaco Grand Prix victories</div>
+          <div class="achievement">65 pole positions, a mark of unmatched qualifying genius</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fernando Alonso -->
+    <div class="driver-card reveal reveal-delay-1">
+      <div class="driver-header">
+        <img src="images/img04.webp" alt="Fernando Alonso" class="driver-photo">
+        <div class="driver-number" style="color:#0090D0">2×</div>
+        <div class="driver-info">
+          <div class="driver-name">Fernando Alonso</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/es.png" alt=""> Spain</div>
+          <span class="driver-tag" style="background:rgba(0,144,208,0.15);color:#0090D0">El Matador</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">Fernando Alonso is one of F1's most complete drivers: fast, intelligent, and utterly fearless. His back-to-back championships with Renault in 2005 and 2006 broke Ferrari and Schumacher's stranglehold on the sport. Alonso's racecraft and ability to extract maximum performance from any car made him a nightmare for rivals. Even in machinery that wasn't championship-worthy, he remained one of the grid's most dangerous drivers.</p>
+        <div class="driver-achievements">
+          <div class="achievement">2× F1 World Champion (2005, 2006)</div>
+          <div class="achievement">32 race wins and Renault R25 dominance</div>
+          <div class="achievement">Defeated Michael Schumacher's Ferrari dynasty</div>
+          <div class="achievement">Still racing in F1 in his forties with Aston Martin</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">The Cars That Dominated</h3>
+
+  <div class="car-grid">
+
+    <!-- Mercedes W11 -->
+    <div class="car-card reveal reveal-delay-1">
+      <div class="car-visual">
+        <img src="images/img05.webp" alt="Mercedes-AMG F1 W11 EQ Performance">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Mercedes-AMG Petronas</div>
+        <h4 class="car-name">W11 EQ Performance</h4>
+        <p class="car-desc">The most dominant F1 car of the modern era. Lewis Hamilton's 2020 Mercedes W11 won 13 of 17 races, secured both championships by enormous margins, and demonstrated a level of technical superiority rarely seen in F1. The W11 was the ultimate expression of Mercedes' hybrid-era dominance.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">1,000+ hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2020</div>
+            <div class="spec-key">Season</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">13/17</div>
+            <div class="spec-key">Wins</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">Hamilton</div>
+            <div class="spec-key">Driver</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ferrari F2004 -->
+    <div class="car-card reveal reveal-delay-2">
+      <div class="car-visual">
+        <img src="images/img06.webp" alt="Ferrari F2004">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Scuderia Ferrari</div>
+        <h4 class="car-name">F2004</h4>
+        <p class="car-desc">Perhaps the greatest F1 car ever built. Michael Schumacher's Ferrari F2004 won 15 of 18 races in 2004, a level of dominance that may never be matched. The F2004's V10 engine, handling perfection, and Schumacher's brilliance combined to create the most unstoppable force F1 has ever seen.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">~900 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2004</div>
+            <div class="spec-key">Season</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">15/18</div>
+            <div class="spec-key">Wins</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">Schumacher</div>
+            <div class="spec-key">Driver</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- McLaren MP4/4 -->
+    <div class="car-card reveal reveal-delay-3">
+      <div class="car-visual">
+        <img src="images/img07.webp" alt="McLaren MP4/4">
+      </div>
+      <div class="car-body">
+        <div class="car-make">McLaren Honda</div>
+        <h4 class="car-name">MP4/4</h4>
+        <p class="car-desc">The car of legends. Ayrton Senna and Alain Prost's McLaren MP4/4 won 15 of 16 races in 1988, one of the most dominant single seasons in F1 history. Powered by Honda's turbocharged V6, the MP4/4 was a technical masterpiece that left the competition utterly demoralized.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">~685 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1988</div>
+            <div class="spec-key">Season</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">15/16</div>
+            <div class="spec-key">Wins</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">Senna</div>
+            <div class="spec-key">Driver</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Renault R25 -->
+    <div class="car-card reveal reveal-delay-1">
+      <div class="car-visual">
+        <img src="images/img08.webp" alt="Renault R25">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Renault F1 Team</div>
+        <h4 class="car-name">R25</h4>
+        <p class="car-desc">The car that ended Ferrari's dynasty. Fernando Alonso's Renault R25 was a perfectly balanced machine: fast, reliable, and kind to its tyres. Alonso's brilliance combined with the R25's consistency made him the youngest F1 champion in history at the time, aged just 24, breaking Michael Schumacher's five-year winning streak.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">~900 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2005</div>
+            <div class="spec-key">Season</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">8/19</div>
+            <div class="spec-key">Wins</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">Alonso</div>
+            <div class="spec-key">Driver</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="quote-block reveal" style="margin-top:3rem">
+    <p class="quote-text">"To achieve anything in this game, you must be prepared to dabble in the boundary of disaster."</p>
+    <p class="quote-attr"> Stirling Moss, F1 Legend</p>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ══ INDYCAR ══ -->
+<section id="indycar">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-indy">NTT IndyCar Series</p>
+    <h2 class="section-title">America's Open-Wheel<br>Championship</h2>
+    <p class="section-desc">IndyCar is North America's premier single-seater series and the only championship that races on ovals, street circuits and road courses in a single season. Its heart is the Indianapolis 500, first run in 1911 and still the largest single-day sporting event in the world.</p>
+  </div>
+
+  <div class="stat-grid reveal reveal-delay-1">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-indy)">1911</div>
+      <div class="stat-label">First Indy 500</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-indy)">33</div>
+      <div class="stat-label">Cars on the Indy Grid</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-indy)">370</div>
+      <div class="stat-label">km/h+ Oval Top Speed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-indy)">300K+</div>
+      <div class="stat-label">Indy 500 Crowd</div>
+    </div>
+  </div>
+
+  <div class="timeline timeline-indy reveal reveal-delay-2">
+    <div class="timeline-item">
+      <div class="timeline-year">1909&ndash;1911</div>
+      <div class="timeline-event">The Brickyard Opens & The First Indy 500</div>
+      <div class="timeline-detail">Carl Fisher builds the Indianapolis Motor Speedway in 1909 and resurfaces it with 3.2 million paving bricks, which gives the track its nickname. On 30 May 1911 Ray Harroun wins the first Indianapolis 500 in the Marmon Wasp, driving solo with a rear-view mirror instead of a riding mechanic.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1956</div>
+      <div class="timeline-event">USAC Takes Control</div>
+      <div class="timeline-detail">After AAA withdraws from motorsport, the United States Auto Club (USAC) takes over the American national championship. The front-engine roadster era follows, with legends like A.J. Foyt and Parnelli Jones.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1965</div>
+      <div class="timeline-event">The Rear-Engine Revolution</div>
+      <div class="timeline-detail">Jim Clark wins the Indy 500 in the rear-engined Lotus 38, the first rear-engined car to win the race. European F1 technology takes over and the front-engine roadster disappears almost overnight.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1979</div>
+      <div class="timeline-event">CART Is Born</div>
+      <div class="timeline-detail">Team owners led by Roger Penske, Pat Patrick and Dan Gurney break away from USAC to form Championship Auto Racing Teams (CART). Through the 1980s and early 90s CART becomes a global rival to F1, attracting stars like Nigel Mansell, who wins the 1993 title as the reigning F1 World Champion.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1996&ndash;2007</div>
+      <div class="timeline-event">The Split</div>
+      <div class="timeline-detail">Speedway owner Tony George founds the rival Indy Racing League (IRL), built around the Indy 500. American open-wheel racing is divided into two series (CART, later Champ Car, and the IRL). The split drains sponsors, fans and TV audiences for more than a decade, while NASCAR's popularity booms.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2008</div>
+      <div class="timeline-event">Reunification</div>
+      <div class="timeline-detail">Champ Car is absorbed into the IRL and the two series finally become one again, later branded the IndyCar Series. For the first time in twelve years, every top American open-wheel team races for the same championship.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2012</div>
+      <div class="timeline-event">The Dallara DW12</div>
+      <div class="timeline-detail">A new spec chassis debuts, named in honour of Dan Wheldon, the two-time Indy 500 winner who tested it before losing his life at Las Vegas in 2011. Chevrolet and Honda supply turbocharged V6 engines, a rivalry that continues today.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2020&ndash;2024</div>
+      <div class="timeline-event">The Penske Era, Aeroscreen & Hybrid Power</div>
+      <div class="timeline-detail">Roger Penske buys IndyCar and the Indianapolis Motor Speedway. The Aeroscreen cockpit protection is introduced in 2020, and in July 2024 hybrid energy recovery arrives, adding a driver-deployed electric boost to the V6 engines.</div>
+    </div>
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">The Champions</h3>
+
+  <div class="driver-grid">
+
+    <!-- A.J. Foyt -->
+    <div class="driver-card reveal reveal-delay-1">
+      <div class="driver-header">
+        <img src="images/img17.webp" alt="A.J. Foyt" class="driver-photo">
+        <div class="driver-number" style="color:var(--accent-indy)">7×</div>
+        <div class="driver-info">
+          <div class="driver-name">A.J. Foyt</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <span class="driver-tag" style="background:rgba(59,130,246,0.15);color:var(--accent-indy)">Super Tex</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">The toughest man ever to sit in an Indy car. A.J. Foyt won everything he entered: seven national championships, four Indianapolis 500s, the Daytona 500 and, with Dan Gurney, the 24 Hours of Le Mans. His 67 Indy car wins are still the all-time record, and he started a record 35 consecutive Indy 500s.</p>
+        <div class="driver-achievements">
+          <div class="achievement">7× National Champion (record)</div>
+          <div class="achievement">First 4× Indy 500 winner (1961, 1964, 1967, 1977)</div>
+          <div class="achievement">67 Indy car wins, the all-time record</div>
+          <div class="achievement">Won Le Mans 1967 & Daytona 500 1972</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mario Andretti -->
+    <div class="driver-card reveal reveal-delay-2">
+      <div class="driver-header">
+        <img src="images/img18.webp" alt="Mario Andretti" class="driver-photo">
+        <div class="driver-number" style="color:#60a5fa">4×</div>
+        <div class="driver-info">
+          <div class="driver-name">Mario Andretti</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <span class="driver-tag" style="background:rgba(96,165,250,0.15);color:#60a5fa">The Complete Racer</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">Born in Italy and raised in Pennsylvania, Mario Andretti became the most versatile driver in history. He is the only driver to win the Indianapolis 500, the Daytona 500 and the Formula 1 World Championship. His name became shorthand for speed in America, and his Indy car titles span almost two decades.</p>
+        <div class="driver-achievements">
+          <div class="achievement">4× Indy car Champion (1965, 1966, 1969, 1984)</div>
+          <div class="achievement">1969 Indianapolis 500 winner</div>
+          <div class="achievement">1978 Formula 1 World Champion with Lotus</div>
+          <div class="achievement">52 Indy car wins</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scott Dixon -->
+    <div class="driver-card reveal reveal-delay-3">
+      <div class="driver-header">
+        <img src="images/img19.webp" alt="Scott Dixon" class="driver-photo">
+        <div class="driver-number" style="color:var(--gold)">6×</div>
+        <div class="driver-info">
+          <div class="driver-name">Scott Dixon</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/nz.png" alt=""> New Zealand</div>
+          <span class="driver-tag" style="background:rgba(212,160,23,0.15);color:var(--gold)">The Iceman</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">The greatest driver of the modern IndyCar era. Scott Dixon has driven for Chip Ganassi Racing since 2002, winning six championships across three different decades. His fuel-saving skill is legendary: he regularly wins races by going further on a tank than anyone thought possible. Only A.J. Foyt has more titles or more wins.</p>
+        <div class="driver-achievements">
+          <div class="achievement">6× IndyCar Champion (2003, 2008, 2013, 2015, 2018, 2020)</div>
+          <div class="achievement">2008 Indianapolis 500 winner</div>
+          <div class="achievement">Second on the all-time Indy car wins list</div>
+          <div class="achievement">3× Daytona 24 Hours overall winner</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alex Palou -->
+    <div class="driver-card reveal reveal-delay-1">
+      <div class="driver-header">
+        <img src="images/img20.webp" alt="Alex Palou" class="driver-photo">
+        <div class="driver-number" style="color:#facc15">4×</div>
+        <div class="driver-info">
+          <div class="driver-name">&Aacute;lex Palou</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/es.png" alt=""> Spain</div>
+          <span class="driver-tag" style="background:rgba(250,204,21,0.15);color:#facc15">Modern Dominator</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">IndyCar's modern benchmark. Álex Palou joined Chip Ganassi Racing in 2021 and won the title in his first season with the team. He then won three championships in a row from 2023 to 2025. His 2025 season was one of the most dominant in series history, and his Indianapolis 500 win made him the first Spaniard to drink the milk.</p>
+        <div class="driver-achievements">
+          <div class="achievement">4× IndyCar Champion (2021, 2023, 2024, 2025)</div>
+          <div class="achievement">2025 Indianapolis 500 winner</div>
+          <div class="achievement">8 race wins in 2025 alone</div>
+          <div class="achievement">First Spanish IndyCar Champion</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">Iconic Races</h3>
+
+  <div class="era-block reveal reveal-delay-1">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--accent-indy), transparent)"></div>
+    <div class="bg-number">1911</div>
+    <div class="era-header">
+      <h3 class="era-title">The First Indianapolis 500</h3>
+      <span class="era-years">30 May 1911</span>
+    </div>
+    <p class="era-desc">Forty cars take the start of the International 500-Mile Sweepstakes on the brand-new brick surface. Ray Harroun's Marmon Wasp is the only single-seater in the field. Instead of carrying a riding mechanic to watch for traffic, Harroun fits a mirror, one of the first used on a car. He averages 74.6 mph and wins in just under seven hours, starting a tradition that is now more than a century old.</p>
+  </div>
+
+  <div class="era-block reveal reveal-delay-2">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--gold), transparent)"></div>
+    <div class="bg-number">0.043</div>
+    <div class="era-header">
+      <h3 class="era-title">Unser Jr. vs Goodyear</h3>
+      <span class="era-years">1992 Indy 500</span>
+    </div>
+    <p class="era-desc">In one of the coldest Indy 500s ever, crashes eliminate many of the favourites. Al Unser Jr. holds off Scott Goodyear, who started last, by just 0.043 seconds, still the closest finish in Indianapolis 500 history. An emotional Unser Jr. tells the crowd: "You just don't know what Indy means."</p>
+  </div>
+
+  <div class="era-block reveal reveal-delay-3">
+    <div class="era-accent" style="background: linear-gradient(to bottom, #60a5fa, transparent)"></div>
+    <div class="bg-number">2006</div>
+    <div class="era-header">
+      <h3 class="era-title">Hornish Snatches It at the Line</h3>
+      <span class="era-years">2006 Indy 500</span>
+    </div>
+    <p class="era-desc">19-year-old rookie Marco Andretti, grandson of Mario, looks certain to win after passing his own father Michael in the closing laps. On the final straight Sam Hornish Jr. slingshots out of his slipstream and wins by 0.0635 seconds. It is the first last-lap pass for the win in Indy 500 history, and the family's famous "Andretti Curse" at Indianapolis strikes again.</p>
+  </div>
+
+  <div class="era-block reveal reveal-delay-2">
+    <div class="era-accent" style="background: linear-gradient(to bottom, #e74c3c, transparent)"></div>
+    <div class="bg-number">100</div>
+    <div class="era-header">
+      <h3 class="era-title">Wheldon's Final Victory</h3>
+      <span class="era-years">2011 Indy 500</span>
+    </div>
+    <p class="era-desc">At the 100th anniversary race, rookie J.R. Hildebrand leads into the very last corner and then hits the wall while passing a slower car. Dan Wheldon, driving a part-time entry, steers around the wreck to win the Indy 500 for the second time. It is one of the most dramatic finishes the Speedway has ever seen, and it became even more poignant when Wheldon was killed at Las Vegas five months later.</p>
+  </div>
+
+  <div class="quote-block reveal" style="margin-top:3rem;border-left-color:var(--accent-indy);background:rgba(59,130,246,0.04);">
+    <p class="quote-text">"Drivers, start your engines!"</p>
+    <p class="quote-attr">The Traditional Command Before the Indianapolis 500</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ WEC ══ -->
+<div class="section-strip">
+<section id="wec">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-wec">FIA World Endurance Championship</p>
+    <h2 class="section-title">The Global Stage:<br>Le Mans & Beyond</h2>
+    <p class="section-desc">The FIA World Endurance Championship represents the pinnacle of international sports car racing, with the 24 Hours of Le Mans as its jewel. Since its modern formation in 2012, WEC has become the ultimate arena for manufacturer warfare.</p>
+  </div>
+
+  <div class="stat-grid reveal reveal-delay-1">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-wec)">1923</div>
+      <div class="stat-label">First Le Mans 24h</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-wec)">2012</div>
+      <div class="stat-label">Modern WEC Founded</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-wec)">4</div>
+      <div class="stat-label">Continents Visited</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-wec)">8</div>
+      <div class="stat-label">Rounds Per Season</div>
+    </div>
+  </div>
+
+  <div class="era-block reveal reveal-delay-2">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--accent-wec), transparent)"></div>
+    <div class="bg-number">24</div>
+    <div class="era-header">
+      <h3 class="era-title">The Original World Championship</h3>
+      <span class="era-years">1953&ndash;1992</span>
+    </div>
+    <p class="era-desc">The World Sportscar Championship ran under various names from 1953, with legendary battles between Ferrari, Jaguar, Mercedes-Benz, Maserati, Porsche and Aston Martin. Its golden years included the Porsche 917 versus Ferrari 512 fights of 1970&ndash;71 and the Group C era of the 1980s. Rising costs from the 3.5-litre engine rules made manufacturers leave, and the championship ended after 1992.</p>
+  </div>
+
+  <div class="era-block reveal reveal-delay-3">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--gold), transparent)"></div>
+    <div class="bg-number">LM</div>
+    <div class="era-header">
+      <h3 class="era-title">The Le Mans Series Era</h3>
+      <span class="era-years">2004&ndash;2011</span>
+    </div>
+    <p class="era-desc">The Le Mans Series keeps endurance racing alive in Europe while the American Le Mans Series carries the flag in the USA. Audi dominates with the R8 and then the R10 TDI, which in 2006 becomes the first diesel car to win Le Mans. Peugeot strikes back with the 908 HDi FAP, starting a diesel war that wins Peugeot Le Mans in 2009.</p>
+  </div>
+
+  <div class="era-block reveal reveal-delay-2">
+    <div class="era-accent" style="background: linear-gradient(to bottom, #e74c3c, transparent)"></div>
+    <div class="bg-number">LMP</div>
+    <div class="era-header">
+      <h3 class="era-title">The Modern WEC & Hypercar Era</h3>
+      <span class="era-years">2012&ndash;Present</span>
+    </div>
+    <p class="era-desc">The FIA World Endurance Championship is reborn in 2012 for the LMP1 hybrid era. Audi, Toyota and Porsche field extremely complex hybrid prototypes with around 1,000bhp combined. In 2017 Kamui Kobayashi's Toyota TS050 sets the fastest lap ever on the current Le Mans layout (3:14.791), and in 2018 an unrestricted Porsche 919 Hybrid Evo smashes the Nürburgring Nordschleife lap record. Toyota finally wins Le Mans in 2018 after decades of heartbreak. The Hypercar class arrives in 2021, and by 2024 Ferrari, Porsche, Peugeot, Cadillac and BMW have all joined Toyota at the top.</p>
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">Le Mans Legends</h3>
+
+  <div class="driver-grid">
+
+    <!-- Tom Kristensen -->
+    <div class="driver-card reveal reveal-delay-1">
+      <div class="driver-header">
+        <img src="images/img24.webp" alt="Tom Kristensen" class="driver-photo">
+        <div class="driver-number" style="color:var(--accent-wec)">9×</div>
+        <div class="driver-info">
+          <div class="driver-name">Tom Kristensen</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/dk.png" alt=""> Denmark</div>
+          <span class="driver-tag" style="background:rgba(142,68,173,0.15);color:var(--accent-wec)">Mr. Le Mans</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">Nobody has won Le Mans more often. Tom Kristensen won the 24 Hours nine times, including six in a row from 2000 to 2005, mostly with Audi but also with Bentley in 2003. He was brilliant at night, in traffic and in the rain, the qualities that win endurance races. He retired in 2014 as the 2013 World Endurance Champion.</p>
+        <div class="driver-achievements">
+          <div class="achievement">9× Le Mans winner (1997, 2000&ndash;2005, 2008, 2013)</div>
+          <div class="achievement">Record 6 consecutive Le Mans wins</div>
+          <div class="achievement">Record 6× Sebring 12 Hours winner</div>
+          <div class="achievement">2013 FIA WEC World Champion</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jacky Ickx -->
+    <div class="driver-card reveal reveal-delay-2">
+      <div class="driver-header">
+        <img src="images/img25.webp" alt="Jacky Ickx" class="driver-photo">
+        <div class="driver-number" style="color:var(--gold)">6×</div>
+        <div class="driver-info">
+          <div class="driver-name">Jacky Ickx</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/be.png" alt=""> Belgium</div>
+          <span class="driver-tag" style="background:rgba(212,160,23,0.15);color:var(--gold)">The Rain Master</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">Jacky Ickx changed Le Mans forever. In 1969 he protested against the dangerous running start by walking calmly to his car and buckling his belts, starting last. He then won the race, and from 1970 drivers started already strapped in. He went on to win Le Mans six times and finished as F1 runner-up twice.</p>
+        <div class="driver-achievements">
+          <div class="achievement">6× Le Mans winner (1969, 1975, 1976, 1977, 1981, 1982)</div>
+          <div class="achievement">2× World Endurance Champion (1982, 1983)</div>
+          <div class="achievement">8 F1 Grand Prix wins, runner-up 1969 & 1970</div>
+          <div class="achievement">Won the 1983 Paris&ndash;Dakar Rally</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sébastien Buemi -->
+    <div class="driver-card reveal reveal-delay-3">
+      <div class="driver-header">
+        <img src="images/img26.webp" alt="Sébastien Buemi" class="driver-photo">
+        <div class="driver-number" style="color:#e74c3c">4×</div>
+        <div class="driver-info">
+          <div class="driver-name">Sébastien Buemi</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/ch.png" alt=""> Switzerland</div>
+          <span class="driver-tag" style="background:rgba(231,76,60,0.15);color:#e74c3c">Toyota Loyalist</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">The most successful driver of the modern WEC. After three F1 seasons with Toro Rosso, Sébastien Buemi joined Toyota in 2012 and has stayed with the team ever since. He was part of Toyota's long-awaited first Le Mans win in 2018 and won three more after it. He also won the Formula E title.</p>
+        <div class="driver-achievements">
+          <div class="achievement">4× Le Mans winner (2018, 2019, 2020, 2022)</div>
+          <div class="achievement">4× FIA WEC World Champion</div>
+          <div class="achievement">2015&ndash;16 Formula E Champion</div>
+          <div class="achievement">With Toyota since 2012</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">Endurance Machines</h3>
+
+  <div class="car-grid">
+
+    <!-- Porsche 917K -->
+    <div class="car-card reveal reveal-delay-1">
+      <div class="car-visual">
+        <img src="images/img30.webp" alt="Porsche 917K">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Porsche</div>
+        <h4 class="car-name">917K</h4>
+        <p class="car-desc">The car that gave Porsche its first Le Mans win. The flat-12 917 was terrifying at first, until aerodynamic work created the short-tail 917K. It won Le Mans in 1970 and 1971, and the 1971 winner set a distance record that stood until 2010. The Gulf and Salzburg liveries remain icons.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">~630 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">5.0L</div>
+            <div class="spec-key">Flat-12</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">820 kg</div>
+            <div class="spec-key">Weight</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1970&ndash;71</div>
+            <div class="spec-key">Le Mans Wins</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audi R10 TDI -->
+    <div class="car-card reveal reveal-delay-2">
+      <div class="car-visual">
+        <img src="images/img31.webp" alt="Audi R10 TDI">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Audi Sport</div>
+        <h4 class="car-name">R10 TDI</h4>
+        <p class="car-desc">The first diesel to win Le Mans. Only 200 days after it was unveiled, the twin-turbo V12 R10 won Le Mans in 2006, then won again in 2007 and 2008. Its huge torque and fuel efficiency let it run longer between stops than its rivals. It won 36 of the 48 races it entered.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">650 PS</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">5.5L</div>
+            <div class="spec-key">V12 Diesel</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">925 kg</div>
+            <div class="spec-key">Weight</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2006&ndash;08</div>
+            <div class="spec-key">Le Mans Wins</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Porsche 919 Hybrid -->
+    <div class="car-card reveal reveal-delay-3">
+      <div class="car-visual">
+        <img src="images/img32.webp" alt="Porsche 919 Hybrid">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Porsche</div>
+        <h4 class="car-name">919 Hybrid</h4>
+        <p class="car-desc">The peak of the LMP1 hybrid era. A tiny 2.0-litre V4 turbo combined with two energy recovery systems made around 900hp. The 919 won Le Mans and the WEC title three years in a row from 2015 to 2017. In 2018 the unrestricted 919 Evo lapped the Nürburgring Nordschleife in 5:19.546.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">~900 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2.0L</div>
+            <div class="spec-key">V4 Hybrid</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">875 kg</div>
+            <div class="spec-key">Weight</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2015&ndash;17</div>
+            <div class="spec-key">Le Mans Wins</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="quote-block reveal reveal-delay-3" style="margin-top:3rem;border-left-color:var(--accent-wec);background:rgba(142,68,173,0.04);">
+    <p class="quote-text">"Racing is life. Anything before or after is just waiting."</p>
+    <p class="quote-attr">Steve McQueen as Michael Delaney, Le Mans (1971)</p>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ══ GT3 ══ -->
+<div class="section-strip">
+<section id="gt3">
+  <div class="section-header reveal">
+    <p class="section-eyebrow" style="color:#16a34a">FIA GT3 · Customer GT Racing</p>
+    <h2 class="section-title">GT3 Racing &<br>Gentleman Racers</h2>
+    <p class="section-desc">GT3 represents the golden balance between accessibility and performance. Introduced in 2006, the GT3 class allows wealthy privateers and gentleman drivers to race production-based supercars from Porsche, Ferrari, Audi, Mercedes, BMW and more all balanced through BoP (Balance of Performance) to ensure close, competitive racing.</p>
+  </div>
+
+  <div class="stat-grid reveal reveal-delay-1">
+    <div class="stat-card">
+      <div class="stat-num" style="color:#16a34a">2006</div>
+      <div class="stat-label">GT3 Introduced</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:#16a34a">500+</div>
+      <div class="stat-label">HP · GT3 Class</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:#16a34a">15+</div>
+      <div class="stat-label">Manufacturers</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:#16a34a">BoP</div>
+      <div class="stat-label">Balanced Racing</div>
+    </div>
+  </div>
+
+  <div class="era-block reveal reveal-delay-2">
+    <div class="era-accent" style="background: linear-gradient(to bottom, #16a34a, transparent)"></div>
+    <div class="bg-number">GT3</div>
+    <div class="era-header">
+      <h3 class="era-title">The Philosophy of GT3</h3>
+      <span class="era-years">2006 - Present</span>
+    </div>
+    <p class="era-desc">GT3 was designed as the "customer racing" class: cars that wealthy amateurs and professional drivers could purchase from manufacturers and race competitively. Unlike GT1 or LMP1, GT3 focuses on close racing through Balance of Performance (BoP) regulations that adjust each car's weight, power, and aerodynamics to keep all manufacturers competitive. This creates incredible battles where driver skill matters more than outright speed.</p>
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">GT3 Legends</h3>
+
+  <div class="driver-grid">
+
+    <!-- Laurens Vanthoor -->
+    <div class="driver-card reveal reveal-delay-1">
+      <div class="driver-header">
+        <img src="images/img09.webp" alt="Laurens Vanthoor" class="driver-photo">
+        <div class="driver-number" style="color:#16a34a">54</div>
+        <div class="driver-info">
+          <div class="driver-name">Laurens Vanthoor</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/be.png" alt=""> Belgium</div>
+          <span class="driver-tag" style="background:rgba(22,163,74,0.15);color:#16a34a">Porsche Ace</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">One of the finest GT drivers of his generation. Laurens Vanthoor first made his name with Audi, winning the Spa 24 Hours and the Nürburgring 24 Hours before becoming a Porsche factory driver. He has since won GT titles on both sides of the Atlantic, and in 2024 he became the WEC Hypercar World Champion with Porsche.</p>
+        <div class="driver-achievements">
+          <div class="achievement">2× Spa 24 Hours winner (2014, 2020)</div>
+          <div class="achievement">Nürburgring 24 Hours winner (2015)</div>
+          <div class="achievement">2016 FIA GT World Cup winner (Macau)</div>
+          <div class="achievement">2024 FIA WEC Hypercar World Champion</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Augusto Farfus -->
+    <div class="driver-card reveal reveal-delay-2">
+      <div class="driver-header">
+        <img src="images/img10.webp" alt="Augusto Farfus" class="driver-photo">
+        <div class="driver-number" style="color:#0066b1">18</div>
+        <div class="driver-info">
+          <div class="driver-name">Augusto Farfus</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/br.png" alt=""> Brazil</div>
+          <span class="driver-tag" style="background:rgba(0,102,177,0.15);color:#0066b1">BMW Legend</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">BMW's most loyal ace. Augusto Farfus has spent most of his career as a BMW factory driver, in touring cars, DTM and GT racing. He won the Nürburgring 24 Hours overall in 2010 and again in 2025, fifteen years apart. Known for his aggressive, committed style, he also won the FIA GT World Cup in Macau.</p>
+        <div class="driver-achievements">
+          <div class="achievement">2× Nürburgring 24 Hours winner (2010, 2025)</div>
+          <div class="achievement">2018 FIA GT World Cup winner (Macau)</div>
+          <div class="achievement">2× Daytona 24 Hours GTLM class winner</div>
+          <div class="achievement">2020 Intercontinental GT Challenge champion</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Christopher Mies -->
+    <div class="driver-card reveal reveal-delay-3">
+      <div class="driver-header">
+        <img src="images/img11.webp" alt="Christopher Mies" class="driver-photo">
+        <div class="driver-number" style="color:#bb0a30">1</div>
+        <div class="driver-info">
+          <div class="driver-name">Christopher Mies</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/de.png" alt=""> Germany</div>
+          <span class="driver-tag" style="background:rgba(187,10,48,0.15);color:#bb0a30">Audi Master</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">Audi's GT3 specialist. Christopher Mies spent fifteen years as an Audi factory driver, winning the Nürburgring 24 Hours and the Bathurst 12 Hour with the R8 LMS. His feedback helped make the R8 LMS one of GT3's most successful cars. Mies is the model modern GT3 driver: fast, consistent and technically brilliant.</p>
+        <div class="driver-achievements">
+          <div class="achievement">3× Nürburgring 24 Hours winner (2015, 2017, 2024)</div>
+          <div class="achievement">2× Bathurst 12 Hour winner (2011, 2012)</div>
+          <div class="achievement">2009 FIA GT3 European Champion</div>
+          <div class="achievement">2× ADAC GT Masters champion (2016, 2021)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">Legendary GT3 Machines</h3>
+
+  <div class="car-grid">
+
+    <!-- Porsche 911 GT3 R -->
+    <div class="car-card reveal reveal-delay-1">
+      <div class="car-visual">
+        <img src="images/img12.webp" alt="Porsche 911 GT3 R">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Porsche Motorsport</div>
+        <h4 class="car-name">911 GT3 R</h4>
+        <p class="car-desc">One of the most successful GT3 cars in history. Porsche's 911 GT3 R has won countless championships worldwide thanks to its balance, traction from its rear-mounted flat-six, and unmatched reliability. Drivers like Laurens Vanthoor have built entire careers dominating in the 911 GT3 R across IMSA, WEC, and endurance classics.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">550 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">4.0L</div>
+            <div class="spec-key">Flat-6</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1,220 kg</div>
+            <div class="spec-key">Weight</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2019</div>
+            <div class="spec-key">Generation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BMW Z4 GT3 -->
+    <div class="car-card reveal reveal-delay-2">
+      <div class="car-visual">
+        <img src="images/img13.webp" alt="BMW Z4 GT3">
+      </div>
+      <div class="car-body">
+        <div class="car-make">BMW Motorsport</div>
+        <h4 class="car-name">Z4 GT3</h4>
+        <p class="car-desc">An instant classic. The BMW Z4 GT3 won the Dubai 24 Hour in its debut season, took two Super GT GT300 titles and won the 2015 Spa 24 Hours with Marc VDS in its final year. Its screaming naturally aspirated V8, taken from the M3 GT2, made it one of GT3's most iconic sounds.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">~515 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">4.4L</div>
+            <div class="spec-key">V8</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1,190 kg</div>
+            <div class="spec-key">Weight</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2010</div>
+            <div class="spec-key">Debut Year</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audi R8 LMS -->
+    <div class="car-card reveal reveal-delay-3">
+      <div class="car-visual">
+        <img src="images/img14.webp" alt="Audi R8 LMS">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Audi Sport</div>
+        <h4 class="car-name">R8 LMS</h4>
+        <p class="car-desc">Audi's GT3 weapon. The R8 LMS brought endurance racing pedigree to GT3, with victories at the Nurburgring and Spa 24 Hours becoming routine. Drivers like Christopher Mies and René Rast have extracted everything from the R8's high-revving V10, an engine shared with the road car. The R8 LMS proves Audi's motorsport DNA translates perfectly to customer racing.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">585 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">5.2L</div>
+            <div class="spec-key">V10</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1,230 kg</div>
+            <div class="spec-key">Weight</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2022</div>
+            <div class="spec-key">Evo II</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="quote-block reveal reveal-delay-3" style="margin-top:3rem;border-left-color:#16a34a;background:rgba(22,163,74,0.04);">
+    <p class="quote-text">GT3 takes the world's greatest road cars, strips them for racing and balances them through BoP, so the drivers decide the winner.</p>
+    <p class="quote-attr">The GT3 Philosophy</p>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ══ GT1 / BPR ══ -->
+<section id="gt1">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gt1">BPR Global GT Series · FIA GT Championship</p>
+    <h2 class="section-title">Late 90s GT1 &<br>The Supercar Wars</h2>
+    <p class="section-desc">From 1994 to 1999, the BPR Global GT Series and then the FIA GT Championship produced the most spectacular and emotionally charged GT racing ever witnessed. Road-derived supercars from McLaren, Ferrari, Porsche and Mercedes battled in barely controlled fury.</p>
+  </div>
+
+  <div class="stat-grid reveal reveal-delay-1">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-gt1)">600+</div>
+      <div class="stat-label">HP · GT1 Class</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-gt1)">1994</div>
+      <div class="stat-label">BPR Series Founded</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-gt1)">3</div>
+      <div class="stat-label">Epic Rivals</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-gt1)">320</div>
+      <div class="stat-label">km/h+ Top Speed</div>
+    </div>
+  </div>
+
+  <div class="timeline reveal reveal-delay-2">
+    <div class="timeline-item">
+      <div class="timeline-year">1994</div>
+      <div class="timeline-event">BPR Global GT Series Launched</div>
+      <div class="timeline-detail">Stéphane Ratel, Jürgen Barth and Patrick Peter create the BPR series, a pan-European championship for genuine GT supercars. The Ferrari F40, Porsche 911 GT2 and Venturi 600LM headline the grids, and the series becomes one of the most spectacular in the world.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1995</div>
+      <div class="timeline-event">McLaren F1 GTR Conquers Le Mans</div>
+      <div class="timeline-detail">The McLaren F1 GTR, a racing version of a road car, dominates the BPR series and then wins Le Mans outright against purpose-built prototypes. JJ Lehto, Yannick Dalmas and Masanori Sekiya win a race with around 17 hours of rain, and McLarens finish 1st, 3rd, 4th and 5th.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1996</div>
+      <div class="timeline-event">Porsche 911 GT1 & The Rules Are Stretched</div>
+      <div class="timeline-detail">Porsche arrives with the 911 GT1, a purpose-built racer with only a few road versions made to satisfy homologation. It finishes 2nd overall at Le Mans on its debut. From now on, GT1 cars are race cars first and road cars second.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1997</div>
+      <div class="timeline-event">FIA GT Championship & The Mercedes CLK GTR</div>
+      <div class="timeline-detail">The FIA takes over the BPR series and renames it the FIA GT Championship. Mercedes-Benz arrives with the V12 CLK GTR, and McLaren answers with the F1 GTR "Longtail". The two battle all year, and Bernd Schneider wins the title for Mercedes.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1998</div>
+      <div class="timeline-event">Total Mercedes Domination</div>
+      <div class="timeline-detail">Mercedes wins all ten FIA GT rounds with the CLK GTR and the new CLK LM, and Klaus Ludwig and Ricardo Zonta take the title. At Le Mans, though, the Porsche 911 GT1-98 finishes 1st and 2nd overall.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1999</div>
+      <div class="timeline-event">The End of GT1</div>
+      <div class="timeline-detail">With too few entries, the FIA drops the GT1 class and the Chrysler Viper GTS-R becomes the new top GT car. At Le Mans, Mercedes' CLR prototypes take off at speed, twice with Mark Webber and once with Peter Dumbreck in the race. Mercedes withdraws, and the wildest era of GT racing is over.</div>
+    </div>
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">The GT1 Machines</h3>
+
+  <div class="car-grid">
+
+    <!-- McLaren F1 GTR -->
+    <div class="car-card reveal reveal-delay-1">
+      <div class="car-visual">
+        <img src="images/img33.webp" alt="McLaren F1 GTR">
+      </div>
+      <div class="car-body">
+        <div class="car-make">McLaren</div>
+        <h4 class="car-name">F1 GTR</h4>
+        <p class="car-desc">A road car that won Le Mans. Gordon Murray's McLaren F1 was never designed to race, but the GTR version with its BMW V12 won Le Mans in 1995 on its first attempt. In 1997 the 'Longtail' version arrived to fight Mercedes and Porsche. 28 racing chassis were built.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">~600 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">6.1L</div>
+            <div class="spec-key">BMW V12</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1995</div>
+            <div class="spec-key">Le Mans Win</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">28</div>
+            <div class="spec-key">Built</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mercedes-Benz CLK GTR -->
+    <div class="car-card reveal reveal-delay-2">
+      <div class="car-visual">
+        <img src="images/img34.webp" alt="Mercedes-Benz CLK GTR">
+      </div>
+      <div class="car-body">
+        <div class="car-make">AMG-Mercedes</div>
+        <h4 class="car-name">CLK GTR</h4>
+        <p class="car-desc">Built to win from a blank sheet of paper. The CLK GTR was developed as a racing car first, with road cars built afterwards to satisfy homologation rules. It won the FIA GT title in 1997, and with its CLK LM successor Mercedes won every race in 1998.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">600 PS</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">6.0L</div>
+            <div class="spec-key">V12</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1997&ndash;98</div>
+            <div class="spec-key">FIA GT Titles</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">28</div>
+            <div class="spec-key">Road Cars</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Porsche 911 GT1 -->
+    <div class="car-card reveal reveal-delay-3">
+      <div class="car-visual">
+        <img src="images/img35.webp" alt="Porsche 911 GT1">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Porsche</div>
+        <h4 class="car-name">911 GT1</h4>
+        <p class="car-desc">A 911 in name only. The GT1 put a water-cooled twin-turbo flat-six in the middle of the car and wore 911-style headlights. It finished 2nd at Le Mans on its 1996 debut, and in 1998 the GT1-98 gave Porsche a 1-2 finish and its 16th Le Mans win.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">~600 PS</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">3.2L</div>
+            <div class="spec-key">Twin-Turbo Flat-6</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1996</div>
+            <div class="spec-key">Debut</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1998</div>
+            <div class="spec-key">Le Mans Win</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="quote-block reveal reveal-delay-3">
+    <p class="quote-text">The GT1 cars of the late 90s were road cars in name only: some of the most extreme machines ever to race under GT rules.</p>
+    <p class="quote-attr">The GT1 Legacy</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ ICONIC CIRCUITS ══ -->
+<div class="section-strip">
+<section id="circuits">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gold">Track Guide</p>
+    <h2 class="section-title">Legendary<br>Circuits</h2>
+    <p class="section-desc">The tracks that define each championship on this page, from the streets of Monte Carlo to the banking of Daytona.</p>
+  </div>
+
+  <div class="circuit-wrapper reveal">
+    <div class="circuit-label">Circuit de Monaco and Monte Carlo</div>
+    <div style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
+      <img src="images/img15.webp" alt="Monaco Circuit de Monte Carlo track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <div style="display:flex;padding:0 1rem 1rem;">
+        <div class="circuit-pills">
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(225,6,0,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(225,6,0,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-f1);border-radius:50%;box-shadow:0 0 8px var(--accent-f1);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-f1);font-weight:600;letter-spacing:0.1em;">3.337 KM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(225,6,0,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(225,6,0,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-f1);border-radius:50%;box-shadow:0 0 8px var(--accent-f1);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-f1);font-weight:600;letter-spacing:0.1em;">19 CORNERS</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(225,6,0,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(225,6,0,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-f1);border-radius:50%;box-shadow:0 0 8px var(--accent-f1);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-f1);font-weight:600;letter-spacing:0.1em;">78 LAPS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="quote-block reveal reveal-delay-1" style="margin-top:2rem;border-left-color:var(--accent-f1);background:rgba(225,6,0,0.04);">
+    <p class="quote-text">"Racing at Monaco is like riding a bicycle around your living room."</p>
+    <p class="quote-attr">Nelson Piquet, 3× F1 World Champion</p>
+  </div>
+  
+  <div class="circuit-wrapper reveal reveal-delay-2" style="margin-top:3rem;">
+    <div class="circuit-label">Circuit de Spa-Francorchamps in Belgium</div>
+    <div style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
+      <img src="images/img16.webp" alt="Spa-Francorchamps Circuit track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <div style="display:flex;padding:0 1rem 1rem;">
+        <div class="circuit-pills">
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(22,163,74,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(22,163,74,0.3);">
+            <div style="width:8px;height:8px;background:#16a34a;border-radius:50%;box-shadow:0 0 8px #16a34a;"></div>
+            <span style="font-size:0.75rem;color:#16a34a;font-weight:600;letter-spacing:0.1em;">7.004 KM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(22,163,74,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(22,163,74,0.3);">
+            <div style="width:8px;height:8px;background:#16a34a;border-radius:50%;box-shadow:0 0 8px #16a34a;"></div>
+            <span style="font-size:0.75rem;color:#16a34a;font-weight:600;letter-spacing:0.1em;">19 CORNERS</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(22,163,74,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(22,163,74,0.3);">
+            <div style="width:8px;height:8px;background:#16a34a;border-radius:50%;box-shadow:0 0 8px #16a34a;"></div>
+            <span style="font-size:0.75rem;color:#16a34a;font-weight:600;letter-spacing:0.1em;">EAU ROUGE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="quote-block reveal reveal-delay-3" style="margin-top:2rem;border-left-color:#16a34a;background:rgba(22,163,74,0.04);">
+    <p class="quote-text">Eau Rouge and Raidillon, the steep uphill left-right-left after the start, are taken flat out in modern racing cars. It is one of the ultimate tests of commitment in motorsport.</p>
+    <p class="quote-attr">Circuit Fact</p>
+  </div>
+
+  <div class="circuit-wrapper reveal reveal-delay-2" style="margin-top:3rem;">
+    <div class="circuit-label">Indianapolis Motor Speedway in the USA</div>
+    <div style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
+      <img src="images/img21.webp" alt="Indianapolis Motor Speedway oval track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <div style="display:flex;padding:0 1rem 1rem;">
+        <div class="circuit-pills">
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(59,130,246,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(59,130,246,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-indy);border-radius:50%;box-shadow:0 0 8px var(--accent-indy);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-indy);font-weight:600;letter-spacing:0.1em;">4.023 KM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(59,130,246,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(59,130,246,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-indy);border-radius:50%;box-shadow:0 0 8px var(--accent-indy);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-indy);font-weight:600;letter-spacing:0.1em;">4 CORNERS</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(59,130,246,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(59,130,246,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-indy);border-radius:50%;box-shadow:0 0 8px var(--accent-indy);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-indy);font-weight:600;letter-spacing:0.1em;">200 LAPS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block reveal reveal-delay-3" style="margin-top:2rem;border-left-color:var(--accent-indy);background:rgba(59,130,246,0.04);">
+    <p class="quote-text">"The Greatest Spectacle in Racing."</p>
+    <p class="quote-attr">The Indianapolis 500's Official Nickname</p>
+  </div>
+
+  <div class="circuit-wrapper reveal reveal-delay-2" style="margin-top:3rem;">
+    <div class="circuit-label">Circuit de la Sarthe in Le Mans, France</div>
+    <div style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
+      <img src="images/img36.webp" alt="Circuit de la Sarthe Le Mans track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <div style="display:flex;padding:0 1rem 1rem;">
+        <div class="circuit-pills">
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(142,68,173,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(142,68,173,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-wec);border-radius:50%;box-shadow:0 0 8px var(--accent-wec);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-wec);font-weight:600;letter-spacing:0.1em;">13.626 KM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(142,68,173,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(142,68,173,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-wec);border-radius:50%;box-shadow:0 0 8px var(--accent-wec);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-wec);font-weight:600;letter-spacing:0.1em;">24 HOURS</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(142,68,173,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(142,68,173,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-wec);border-radius:50%;box-shadow:0 0 8px var(--accent-wec);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-wec);font-weight:600;letter-spacing:0.1em;">MULSANNE STRAIGHT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="circuit-wrapper reveal reveal-delay-3" style="margin-top:3rem;">
+    <div class="circuit-label">Daytona International Speedway in Florida, USA</div>
+    <div style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
+      <img src="images/img37.webp" alt="Daytona International Speedway road course track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <div style="display:flex;padding:0 1rem 1rem;">
+        <div class="circuit-pills">
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(230,126,34,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(230,126,34,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-imsa);border-radius:50%;box-shadow:0 0 8px var(--accent-imsa);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-imsa);font-weight:600;letter-spacing:0.1em;">5.73 KM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(230,126,34,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(230,126,34,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-imsa);border-radius:50%;box-shadow:0 0 8px var(--accent-imsa);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-imsa);font-weight:600;letter-spacing:0.1em;">12 CORNERS</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(230,126,34,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(230,126,34,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-imsa);border-radius:50%;box-shadow:0 0 8px var(--accent-imsa);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-imsa);font-weight:600;letter-spacing:0.1em;">BANKED OVAL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ══ TERMS ══ -->
+<section id="terms">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gold">New to the Sport?</p>
+    <h2 class="section-title">Info About Terms<br>In Racing</h2>
+    <p class="section-desc">Every sport has its own language. Here's a plain-English guide to every term used throughout this website so nothing goes over your head.</p>
+  </div>
+
+  <div class="terms-intro reveal reveal-delay-1">
+    <div class="terms-intro-icon"></div>
+    <p>Motorsport vocabulary can feel overwhelming at first. These definitions cover the classes, regulations, car types, and race formats mentioned across this site, grouped by category so you can find what you need quickly.</p>
+  </div>
+
+  <div class="terms-grid">
+
+    <!-- SERIES & CHAMPIONSHIPS -->
+    <div class="term-card reveal" style="--term-color: var(--accent-imsa)">
+      <div class="term-category">Series & Championships</div>
+      <div class="term-name">IMSA</div>
+      <p class="term-def">Stands for <strong>International Motor Sports Association</strong>. It is the governing body and championship series for sports car racing in North America. Think of it as the organisation that organises races like the Daytona 24h and sets the rules all teams must follow.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--accent-f1)">
+      <div class="term-category">Series & Championships</div>
+      <div class="term-name">Formula 1 (F1)</div>
+      <p class="term-def">The <strong>FIA Formula 1 World Championship</strong> is the pinnacle of single-seater racing and the most prestigious motorsport series in the world. F1 cars are purpose-built, open-wheel racing machines representing the absolute cutting edge of automotive technology. Championships run from March to December with races (called Grands Prix) across five continents.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--accent-indy)">
+      <div class="term-category">Series & Championships</div>
+      <div class="term-name">IndyCar</div>
+      <p class="term-def">The <strong>NTT IndyCar Series</strong> is North America's top single-seater championship. All teams use the same Dallara chassis with either a Chevrolet or Honda engine, so driver skill and team strategy decide races. It is the only major series that races on ovals, street circuits and road courses in the same season, and its crown jewel is the Indianapolis 500.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: var(--accent-wec)">
+      <div class="term-category">Series & Championships</div>
+      <div class="term-name">FIA WEC</div>
+      <p class="term-def">The <strong>FIA World Endurance Championship</strong> — the global version of IMSA. Run by the FIA (the worldwide governing body of motorsport), WEC races across multiple continents with Le Mans as its centrepiece event. "World" means it visits several continents, with rounds in Europe, Asia and the Americas.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: var(--accent-gt1)">
+      <div class="term-category">Series & Championships</div>
+      <div class="term-name">BPR Global GT Series</div>
+      <p class="term-def">A privately-organised racing series founded in 1994 by <strong>Barth, Peter and Ratel</strong> (the B, P and R). It gave GT supercars a proper international championship to race in before the FIA took over and renamed it the FIA GT Championship in 1997.</p>
+    </div>
+
+    <!-- F1 SPECIFIC TERMS -->
+    <div class="term-card reveal" style="--term-color: var(--accent-f1)">
+      <div class="term-category">F1 Terms</div>
+      <div class="term-name">Grand Prix</div>
+      <p class="term-def">French for <strong>"Grand Prize"</strong> — the name given to each individual F1 race. Each Grand Prix is named after its host country or region (e.g., Monaco Grand Prix, British Grand Prix). A full F1 season consists of approximately 20–24 Grands Prix held worldwide.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--accent-f1)">
+      <div class="term-category">F1 Terms</div>
+      <div class="term-name">Pole Position</div>
+      <p class="term-def">The <strong>first starting position</strong> on the grid, awarded to the driver who sets the fastest qualifying lap time. Starting from pole gives a significant advantage as the driver leads into the first corner with clear track ahead. Lewis Hamilton holds the all-time record with more than 100 pole positions.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: var(--accent-f1)">
+      <div class="term-category">F1 Terms</div>
+      <div class="term-name">DRS (Drag Reduction System)</div>
+      <p class="term-def">A <strong>moveable rear wing flap</strong> that reduced drag to give extra speed on straights. From 2011 to 2025, drivers could open it in set zones when within one second of the car ahead, to help overtaking. For 2026 it was replaced by active aerodynamics on every car and an electric "overtake mode" boost.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: var(--accent-f1)">
+      <div class="term-category">F1 Terms</div>
+      <div class="term-name">Qualifying</div>
+      <p class="term-def">A <strong>time-trial session</strong> held before the race to determine the starting grid order. Qualifying is split into three knockout rounds (Q1, Q2, Q3), with the slowest drivers eliminated after each round. The fastest driver in Q3 earns pole position.</p>
+    </div>
+
+    <div class="term-card reveal" style="--term-color: var(--accent-f1)">
+      <div class="term-category">F1 Terms</div>
+      <div class="term-name">Constructor</div>
+      <p class="term-def">The <strong>team/manufacturer</strong> that builds the F1 car — examples include Mercedes, Ferrari, Red Bull Racing, McLaren. The Constructors' Championship is awarded to the team that scores the most combined points from both of its drivers across a season. It's considered just as prestigious as the Drivers' Championship.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--accent-f1)">
+      <div class="term-category">F1 Terms</div>
+      <div class="term-name">Parc Ferme</div>
+      <p class="term-def">French for <strong>"closed park"</strong> — a strict set of regulations that prevents teams from making significant changes to their cars between qualifying and the race. Once a car enters parc fermé (after qualifying), only minor adjustments are allowed. This ensures teams don't run special qualifying setups.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: var(--accent-f1)">
+      <div class="term-category">F1 Terms</div>
+      <div class="term-name">Power Unit</div>
+      <p class="term-def">Modern F1's term for the <strong>complete propulsion system</strong> — a 1.6-litre turbocharged V6 combined with electric motor-generators that harvest and deploy energy. Since 2026 the MGU-H has been dropped and the electric share has grown to roughly half of the total output, running on fully sustainable fuel. They are the most efficient racing engines ever built.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: var(--accent-f1)">
+      <div class="term-category">F1 Terms</div>
+      <div class="term-name">Undercut / Overcut</div>
+      <p class="term-def"><strong>Pit stop strategies</strong> used to gain track position. An undercut means pitting earlier than your rival to gain an advantage with fresh tyres on clear track. An overcut is the opposite — staying out longer on older tyres, hoping the extra track time gains more than fresh tyres would.</p>
+    </div>
+
+    <!-- INDYCAR TERMS -->
+    <div class="term-card reveal" style="--term-color: var(--accent-indy)">
+      <div class="term-category">IndyCar Terms</div>
+      <div class="term-name">Indianapolis 500</div>
+      <p class="term-def">The <strong>500-mile race</strong> (200 laps) held every May at the Indianapolis Motor Speedway since 1911. Known as "The Greatest Spectacle in Racing", it draws more than 300,000 spectators and is part of motorsport's Triple Crown. It is so important that many drivers value winning it more than the IndyCar championship itself.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--accent-indy)">
+      <div class="term-category">IndyCar Terms</div>
+      <div class="term-name">Oval Racing</div>
+      <p class="term-def">Racing on a <strong>closed loop of banked left-hand turns</strong>, like Indianapolis or Texas. Speeds are extremely high (over 370 km/h at Indy) and cars run nose-to-tail in each other's slipstream for lap after lap. The skills are completely different from road courses: tiny setup changes and bravery in traffic make the difference.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: var(--accent-indy)">
+      <div class="term-category">IndyCar Terms</div>
+      <div class="term-name">Push-to-Pass</div>
+      <p class="term-def">A <strong>button that gives a temporary power boost</strong> (around 60 extra horsepower) on road and street courses. Each driver gets a fixed number of seconds to use across the whole race, so they must choose between attacking, defending or saving it for the final laps. It is IndyCar's answer to F1's DRS, but it can be used for defending too.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: var(--accent-indy)">
+      <div class="term-category">IndyCar Terms</div>
+      <div class="term-name">Aeroscreen</div>
+      <p class="term-def">A <strong>ballistic screen that wraps around the cockpit</strong>, introduced in 2020. It combines a titanium frame (similar to F1's Halo) with a toughened polycarbonate windscreen that protects the driver's head from debris. It is especially important on ovals, where parts can fly off at more than 350 km/h.</p>
+    </div>
+
+    <div class="term-card reveal" style="--term-color: var(--accent-indy)">
+      <div class="term-category">IndyCar Terms</div>
+      <div class="term-name">Rolling Start</div>
+      <p class="term-def">Unlike F1's standing starts, IndyCar races usually begin with the <strong>field already moving</strong> behind the pace car. When the pace car pulls into the pits, the leader controls the pace until the green flag waves. At the Indy 500 the 33 cars line up in eleven rows of three, a tradition unique to the race.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--accent-indy)">
+      <div class="term-category">IndyCar Terms</div>
+      <div class="term-name">Full-Course Caution</div>
+      <p class="term-def">When there is a crash or debris, IndyCar brings out the <strong>yellow flag for the whole track</strong> and sends out a pace car. The field bunches up behind it and the pit lane usually closes at first. Cautions reset the gaps between cars, which is why IndyCar races so often end with close finishes and dramatic strategy gambles.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: var(--accent-indy)">
+      <div class="term-category">IndyCar Terms</div>
+      <div class="term-name">Bump Day</div>
+      <p class="term-def">The Indy 500 has just <strong>33 starting spots</strong>. When more cars enter than that, the slowest qualifiers are "bumped" out of the race in a tense shootout now called Last Chance Qualifying. Even famous names have failed to make the field, including Fernando Alonso with McLaren in 2019.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: var(--accent-indy)">
+      <div class="term-category">IndyCar Terms</div>
+      <div class="term-name">Drinking the Milk</div>
+      <p class="term-def">The Indy 500 winner celebrates by <strong>drinking a bottle of milk</strong> in Victory Lane instead of spraying champagne. It began when Louis Meyer drank buttermilk after winning in 1936, and it became an official tradition in 1956. Before the race, each driver even tells the organisers whether they would like whole, 2% or skimmed milk.</p>
+    </div>
+
+    <div class="term-card reveal" style="--term-color: var(--accent-indy)">
+      <div class="term-category">IndyCar Terms</div>
+      <div class="term-name">Triple Crown of Motorsport</div>
+      <p class="term-def">The unofficial title for winning the <strong>Monaco Grand Prix, the Indianapolis 500 and the 24 Hours of Le Mans</strong> during a career. Only Graham Hill has ever achieved it. Fernando Alonso has won Monaco and Le Mans and went to Indianapolis several times to try to complete the set.</p>
+    </div>
+
+    <!-- CAR CLASSES -->
+    <div class="term-card reveal" style="--term-color: var(--gold)">
+      <div class="term-category">Car Classes</div>
+      <div class="term-name">GT1 Class</div>
+      <p class="term-def">The <strong>top class</strong> of GT racing in the late 1990s. Cars had to be based on a road-going production vehicle but are heavily modified for racing. GT1 cars produced 600+ horsepower and were the fastest GT cars of their era — think McLaren F1 GTR, Mercedes CLK GTR, Porsche 911 GT1.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--gold)">
+      <div class="term-category">Car Classes</div>
+      <div class="term-name">GTP Class</div>
+      <p class="term-def"><strong>Grand Touring Prototype</strong> — IMSA's top class through the 1980s and early 90s. Unlike GT classes, GTP cars were purpose-built racing prototypes not derived from road cars. The Porsche 962 and Jaguar XJR-9 are famous GTP cars. They dominated IMSA the way F1 cars dominate their own world.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: var(--gold)">
+      <div class="term-category">Car Classes</div>
+      <div class="term-name">LMP1 / LMP2</div>
+      <p class="term-def"><strong>Le Mans Prototype</strong> classes. LMP1 was the absolute top class — the fastest, most technologically advanced racing cars in the world during the hybrid era (Audi R18, Porsche 919, Toyota TS050). LMP2 is a spec prototype class one step below, used as a stepping stone for professional drivers.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: var(--gold)">
+      <div class="term-category">Car Classes</div>
+      <div class="term-name">Hypercar Class</div>
+      <p class="term-def">The top class in WEC since 2021, replacing LMP1. Designed to bring more manufacturers back to the top of endurance racing with lower costs and Balance of Performance. Cars are either Le Mans Hypercars (LMH) or LMDh prototypes that can also race in IMSA. Ferrari, Porsche, Toyota, Cadillac, BMW and Peugeot all compete. Think of it as the new era of factory warfare.</p>
+    </div>
+
+    <div class="term-card reveal" style="--term-color: #16a34a">
+      <div class="term-category">Car Classes</div>
+      <div class="term-name">GT3 Class</div>
+      <p class="term-def">The <strong>customer racing</strong> class introduced in 2006. GT3 cars are production-based supercars (Porsche 911, Ferrari 488, Audi R8, Mercedes-AMG GT3) modified for racing and sold to private teams. All GT3 cars are balanced through BoP (Balance of Performance) to ensure close racing regardless of manufacturer. GT3 is the most popular GT class worldwide.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: #16a34a">
+      <div class="term-category">Car Classes</div>
+      <div class="term-name">GT4 Class</div>
+      <p class="term-def">A <strong>more affordable</strong> customer racing class below GT3, introduced in 2007. GT4 cars have less power (around 400hp) and fewer modifications than GT3, making them perfect for amateur racers and developing drivers. Think of GT4 as the entry point to professional GT racing.</p>
+    </div>
+
+    <!-- GT3 TECHNICAL TERMS -->
+    <div class="term-card reveal reveal-delay-2" style="--term-color: #16a34a">
+      <div class="term-category">GT3 Terms</div>
+      <div class="term-name">Balance of Performance (BoP)</div>
+      <p class="term-def">The <strong>equalization system</strong> that keeps all GT3 manufacturers competitive. Race organizers adjust each car's weight, engine power, fuel capacity, and aerodynamics to ensure no single manufacturer has an unfair advantage. BoP is updated throughout the season based on race results, creating the closest racing in motorsport.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: #16a34a">
+      <div class="term-category">GT3 Terms</div>
+      <div class="term-name">Pro-Am / Silver Cup</div>
+      <p class="term-def">A <strong>driver category system</strong> in GT3 racing. Professional factory drivers are rated Platinum or Gold. Amateur gentlemen racers are rated Silver or Bronze. Pro-Am classes require one professional and one amateur per car, creating opportunities for wealthy privateers to race alongside the world's best drivers.</p>
+    </div>
+
+    <div class="term-card reveal" style="--term-color: #16a34a">
+      <div class="term-category">GT3 Terms</div>
+      <div class="term-name">Gentleman Driver</div>
+      <p class="term-def">A <strong>wealthy amateur racer</strong> who purchases a GT3 car and hires professional drivers as teammates. Gentleman drivers fund their own racing programs and compete in Pro-Am classes. Some are genuinely fast (despite their amateur rating), while others simply love racing and have the budget to live the dream.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: #16a34a">
+      <div class="term-category">GT3 Terms</div>
+      <div class="term-name">24h Series / GT World Challenge</div>
+      <p class="term-def">The major <strong>GT3 championship series</strong> worldwide. The GT World Challenge (formerly Blancpain GT Series) crowns European, Asian, and American champions. The 24H Series runs endurance races at circuits like Spa, Nurburgring, and Dubai. These championships are where GT3's best drivers and teams compete for glory.</p>
+    </div>
+
+    <!-- RACE FORMATS -->
+    <div class="term-card reveal" style="--term-color: var(--green2)">
+      <div class="term-category">Race Formats</div>
+      <div class="term-name">Sprint Race</div>
+      <p class="term-def">A <strong>short-distance race</strong> typically lasting 60-90 minutes, where outright speed matters more than tyre management or fuel strategy. F1 races are sprint format — drivers push flat-out for the entire duration. Opposite of endurance racing.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--green2)">
+      <div class="term-category">Race Formats</div>
+      <div class="term-name">Endurance Racing</div>
+      <p class="term-def">Races measured in <strong>hours rather than laps</strong>. The winner is the car that covers the most distance within the time limit. Drivers must manage tyre wear, fuel consumption and mechanical stress over an entire day (or night). Strategy, reliability and driver changes are just as important as outright speed.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: var(--green2)">
+      <div class="term-category">Race Formats</div>
+      <div class="term-name">Multi-Class Racing</div>
+      <p class="term-def">When <strong>different categories of cars race simultaneously</strong> on the same track. At Le Mans, LMP1 prototypes, LMP2 prototypes and GT cars all race at the same time. Each class has its own winner, but all cars share the same asphalt, which means a slower GT car and a much faster prototype must navigate around each other safely.</p>
+    </div>
+
+    <!-- TECHNICAL TERMS -->
+    <div class="term-card reveal" style="--term-color: var(--accent-wec)">
+      <div class="term-category">Technical Terms</div>
+      <div class="term-name">Downforce</div>
+      <p class="term-def">Aerodynamic force that <strong>pushes the car downward</strong> onto the track, generated by wings, splitters and the car's underbody. More downforce = more grip through corners = faster cornering speeds. The trade-off is drag, which reduces top speed on straights. Racing cars spend enormous effort finding the right balance between the two.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--accent-wec)">
+      <div class="term-category">Technical Terms</div>
+      <div class="term-name">Homologation</div>
+      <p class="term-def">The official <strong>approval process</strong> that makes a racing car legal to compete. For GT1, a manufacturer had to build a minimum number of road-going versions of the car before the race version was approved. This is why the McLaren F1 GTR, CLK GTR and Porsche 911 GT1 all have road car counterparts — they had to exist to satisfy homologation rules.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: var(--accent-wec)">
+      <div class="term-category">Technical Terms</div>
+      <div class="term-name">Hybrid Power</div>
+      <p class="term-def">A system where a car uses <strong>both a traditional combustion engine and an electric motor</strong>. In LMP1 racing, cars like the Porsche 919 and Toyota TS050 used hybrid systems that recovered energy under braking and deployed it as extra power out of corners. These systems produced over 1,000 combined horsepower and made the cars devastatingly fast.</p>
+    </div>
+
+    <!-- FAMOUS CIRCUITS -->
+    <div class="term-card reveal" style="--term-color: var(--red2)">
+      <div class="term-category">Famous Circuits</div>
+      <div class="term-name">Monaco</div>
+      <p class="term-def">The <strong>Monaco Grand Prix</strong> — F1's most prestigious and glamorous race, held on the tight, narrow streets of Monte Carlo. Overtaking is nearly impossible, making qualifying crucial. Winning Monaco is considered the ultimate achievement in F1. Ayrton Senna won here six times, more than any other driver.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--red2)">
+      <div class="term-category">Famous Circuits</div>
+      <div class="term-name">Spa-Francorchamps</div>
+      <p class="term-def">The legendary <strong>Circuit de Spa-Francorchamps</strong> in Belgium — one of the most challenging and revered tracks in motorsport. Famous for Eau Rouge, a high-speed uphill corner that tests driver bravery. At 7km long, Spa rewards commitment, car balance, and fearlessness.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: var(--red2)">
+      <div class="term-category">Famous Circuits</div>
+      <div class="term-name">La Sarthe</div>
+      <p class="term-def">The official name of the <strong>Le Mans circuit</strong> — Circuit de la Sarthe is named after the Sarthe departement (region) in northwest France where it's located. It's a semi-permanent circuit, meaning most of it uses public roads that are closed off for race week, with only a small purpose-built section. It measures 13.626 km per lap.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: var(--red2)">
+      <div class="term-category">Famous Circuits</div>
+      <div class="term-name">The Brickyard</div>
+      <p class="term-def">The nickname of the <strong>Indianapolis Motor Speedway</strong>. In 1909 the original track was paved with 3.2 million bricks. Today it is asphalt apart from a one-yard strip of the original bricks at the start/finish line, called the "Yard of Bricks". Winning drivers traditionally kneel down and kiss it. The 4.023 km oval is the world's highest-capacity sporting venue.</p>
+    </div>
+
+    <div class="term-card reveal" style="--term-color: #7c3aed">
+      <div class="term-category">Timing & Sectors</div>
+      <div class="term-name">Purple Sector</div>
+      <p class="term-def">A <strong>purple sector time</strong> means that lap segment is the fastest anyone has set all session — the absolute best time across every driver. You'll see it on timing screens and TV overlays. Only one driver can hold the purple at any given moment, making it the benchmark everyone is chasing.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: #dc2626">
+      <div class="term-category">Timing & Sectors</div>
+      <div class="term-name">Red Sector</div>
+      <p class="term-def">A <strong>red sector</strong> means the lap or sector time has been <em>invalidated</em> — most commonly because the driver exceeded track limits by going beyond the white lines at a corner. Any lap with a red sector is deleted from the timing sheets and does not count toward qualifying or fastest lap records.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: #16a34a">
+      <div class="term-category">Timing & Sectors</div>
+      <div class="term-name">Green Sector</div>
+      <p class="term-def">A <strong>green sector</strong> means the driver has beaten their own personal best time through that section of the lap. It doesn't mean they're the fastest overall (that's purple), but they are improving on themselves — a good sign they're extracting more from the car or conditions are getting better.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: #d97706">
+      <div class="term-category">Timing & Sectors</div>
+      <div class="term-name">Yellow Sector</div>
+      <p class="term-def">A <strong>yellow sector</strong> means the driver's time through that part of the lap is <em>slower</em> than their own personal best for that sector. It's a sign they lost time there compared to their reference lap — whether from a mistake, traffic, tyre degradation, or a cautious approach through a corner.</p>
+    </div>
+
+    <div class="term-card reveal" style="--term-color: #f8fafc">
+      <div class="term-category">Racing Flags</div>
+      <div class="term-name">🏁 Chequered Flag</div>
+      <p class="term-def">The most iconic flag in motorsport. <strong>Waved at the finish line</strong> to signal the end of a race, qualifying session, or practice. When the leader sees the chequered flag, the race is over. All other drivers complete their current lap and the results are declared official.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: #facc15">
+      <div class="term-category">Racing Flags</div>
+      <div class="term-name">🟡 Yellow Flag</div>
+      <p class="term-def">Signals <strong>danger ahead</strong> — usually a stopped car, debris, or an incident on track. Drivers must slow down and are strictly forbidden from overtaking under yellow. A double yellow (two flags waved together) means be prepared to stop. Ignoring a yellow flag results in a time penalty or disqualification.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: #dc2626">
+      <div class="term-category">Racing Flags</div>
+      <div class="term-name">🔴 Red Flag</div>
+      <p class="term-def">The <strong>session is stopped immediately</strong>. All drivers must slow down and return to the pit lane. Red flags are shown when conditions are too dangerous to continue — a serious accident, heavy rain making the track undriveable, or debris that requires clearing. Races can be restarted once the issue is resolved.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: #3b82f6">
+      <div class="term-category">Racing Flags</div>
+      <div class="term-name">🔵 Blue Flag</div>
+      <p class="term-def">Shown to a <strong>driver about to be lapped</strong> by a faster car. It's a warning to let the leading car past without impeding it. In F1, a driver shown three blue flags without moving aside faces a penalty. Blue flags are one of the most debated topics in motorsport — especially when backmarkers hold up title contenders.</p>
+    </div>
+
+    <div class="term-card reveal" style="--term-color: #16a34a">
+      <div class="term-category">Racing Flags</div>
+      <div class="term-name">🟢 Green Flag</div>
+      <p class="term-def">Signals that the <strong>track is clear and racing can resume</strong> — typically shown after a yellow flag period, safety car, or at the start of a session. When drivers see the green flag, full racing speed and overtaking are permitted again. At race starts it's also used to release cars from the pit lane.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: #f97316">
+      <div class="term-category">Racing Flags</div>
+      <div class="term-name">🟠 Orange Flag (Meatball)</div>
+      <p class="term-def">Also known as the <strong>meatball flag</strong> — a black flag with an orange disc in the centre. It's shown alongside a car number to tell that specific driver they have a <strong>mechanical problem</strong> and must pit immediately for repairs. The name comes from the circular orange shape resembling a meatball.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: #1e293b">
+      <div class="term-category">Racing Flags</div>
+      <div class="term-name">⬛ Black Flag</div>
+      <p class="term-def">The most severe flag shown to an individual driver — it means <strong>disqualification</strong>. Shown alongside the car number, it orders that driver to return to the pits immediately and retire from the race. Reasons include dangerous driving, ignoring penalties, or a serious rules violation. Once black-flagged, the result stands and cannot be appealed on the day.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: #94a3b8">
+      <div class="term-category">Racing Flags</div>
+      <div class="term-name">⬜ White Flag</div>
+      <p class="term-def">The white flag has two different meanings depending on the series. In <strong>Formula 1</strong>, it warns drivers that a <strong>slow-moving staff or medical vehicle is on track</strong> — drivers must be alert and prepared to avoid it. In <strong>IMSA and other endurance/sportscar series</strong>, it signals the <strong>final lap of the race</strong>, letting drivers know the leader has crossed the line to begin their last tour of the circuit.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<div class="back-to-top-wrap">
+  <a href="#top" class="back-to-top">&#8593; Back to Top</a>
+</div>
+
+<footer>
+  <div class="footer-logo">The Racing Manual</div>
+  <p class="footer-text">
+    A tribute to IMSA, Formula 1, IndyCar, FIA WEC, GT3 and the golden age of GT1 racing, from 1950 to the present.
+    Made by @kuzeyfiratracing on Instagram.<br>
+    The greatest cars, the bravest drivers, the most legendary races.<br><br>
+    <span style="color:var(--text3);font-size:0.72rem">Historical content compiled from motorsport records. Photos and track maps from Wikimedia Commons under Creative Commons licenses or public domain; flags from flagcdn.com.</span>
+  </p>
+</footer>
+
+<script>
+// Reveal on scroll animation
+const revealElements = document.querySelectorAll('.reveal');
+const timelineItems = document.querySelectorAll('.timeline-item');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+revealElements.forEach(el => observer.observe(el));
+timelineItems.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
+
+
+
+
+
