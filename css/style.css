@@ -1466,3 +1466,6 @@
     .page-nav { grid-template-columns: 1fr; padding: 1rem 1.25rem 3rem; }
     .page-nav .next { grid-column: 1; }
   }
+
+  /* Slim top bar: logo, Contents and theme switch only */
+  nav { min-height: 58px; }
