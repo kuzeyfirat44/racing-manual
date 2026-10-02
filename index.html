@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>The Racing Manual</title>
+<meta name="description" content="The history, legendary drivers, iconic cars and circuits of IMSA, Formula 1, IndyCar, WEC, GT3, GT1, NASCAR, Super GT and DTM, plus a plain-English guide to racing terms.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Racing Manual">
+<meta property="og:description" content="Your complete guide to motorsport: history, drivers, cars, circuits and racing terms across nine championships.">
+<meta property="og:url" content="https://kuzeyfirat44.github.io/racing-manual/">
+<meta property="og:image" content="https://kuzeyfirat44.github.io/racing-manual/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
@@ -31,6 +44,9 @@
     --accent-indy: #3b82f6;
     --accent-wec: #8e44ad;
     --accent-gt1: #c0392b;
+    --accent-nascar: #facc15;
+    --accent-supergt: #14b8a6;
+    --accent-dtm: #f472b6;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -175,6 +191,9 @@
   .badge-indy { border-color: var(--accent-indy); color: var(--accent-indy); }
   .badge-wec { border-color: var(--accent-wec); color: var(--accent-wec); }
   .badge-gt3 { border-color: #16a34a; color: #16a34a; }
+  .badge-nascar { border-color: var(--accent-nascar); color: var(--accent-nascar); }
+  .badge-supergt { border-color: var(--accent-supergt); color: var(--accent-supergt); }
+  .badge-dtm { border-color: var(--accent-dtm); color: var(--accent-dtm); }
   .badge-gt1 { border-color: var(--accent-gt1); color: var(--accent-gt1); }
   .badge:hover { transform: translateY(-2px); }
 
@@ -250,6 +269,7 @@
     font-weight: 500;
   }
   nav a:hover { color: var(--text); border-bottom-color: var(--gold); }
+  nav a.active { color: var(--gold2); border-bottom-color: var(--gold); }
 
   /* SECTIONS */
   section {
@@ -343,6 +363,15 @@
   .timeline-indy::before { background: linear-gradient(to bottom, var(--accent-indy), transparent); }
   .timeline-indy .timeline-item::before { background: var(--accent-indy); box-shadow: 0 0 12px var(--accent-indy); }
   .timeline-indy .timeline-year { color: var(--accent-indy); }
+  .timeline-nascar::before { background: linear-gradient(to bottom, var(--accent-nascar), transparent); }
+  .timeline-nascar .timeline-item::before { background: var(--accent-nascar); box-shadow: 0 0 12px var(--accent-nascar); }
+  .timeline-nascar .timeline-year { color: var(--accent-nascar); }
+  .timeline-supergt::before { background: linear-gradient(to bottom, var(--accent-supergt), transparent); }
+  .timeline-supergt .timeline-item::before { background: var(--accent-supergt); box-shadow: 0 0 12px var(--accent-supergt); }
+  .timeline-supergt .timeline-year { color: var(--accent-supergt); }
+  .timeline-dtm::before { background: linear-gradient(to bottom, var(--accent-dtm), transparent); }
+  .timeline-dtm .timeline-item::before { background: var(--accent-dtm); box-shadow: 0 0 12px var(--accent-dtm); }
+  .timeline-dtm .timeline-year { color: var(--accent-dtm); }
 
   .timeline-detail {
     font-size: 0.875rem;
@@ -418,6 +447,16 @@
     object-fit: cover;
     border: 3px solid var(--border2);
     flex-shrink: 0;
+  }
+
+  .driver-photo-initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg3);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.9rem;
+    letter-spacing: 0.04em;
   }
 
   .driver-number {
@@ -759,6 +798,103 @@
     line-height: 1.7;
   }
 
+  /* TERM FILTERS */
+  .term-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .term-search {
+    width: 100%;
+    max-width: 420px;
+    padding: 0.75rem 1rem;
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.9rem;
+  }
+  .term-search:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip {
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--border2);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--text2);
+    font: inherit;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .chip:hover { color: var(--text); border-color: var(--gold); }
+  .chip[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: #111; }
+  .term-count { font-size: 0.75rem; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; }
+  .term-card[hidden] { display: none; }
+
+  /* COMPARE TABLE */
+  .compare-tools { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.25rem; }
+  .compare-tools label { font-size: 0.75rem; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; }
+  .compare-select {
+    padding: 0.55rem 0.9rem;
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.85rem;
+  }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; }
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 640px; }
+  .compare-table th, .compare-table td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .compare-table td.num, .compare-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .compare-table thead th { background: var(--bg3); position: sticky; top: 0; }
+  .compare-table th button {
+    background: none; border: 0; color: var(--text3); font: inherit; font-size: 0.68rem;
+    letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; cursor: pointer; padding: 0;
+  }
+  .compare-table th button:hover, .compare-table th button.sorted { color: var(--gold2); }
+  .compare-table tbody tr { background: var(--card); transition: background 0.15s; }
+  .compare-table tbody tr:hover { background: var(--bg3); }
+  .compare-table td:first-child { font-weight: 600; }
+  .series-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; vertical-align: 1px; }
+  .compare-note { font-size: 0.75rem; color: var(--text3); margin-top: 0.75rem; }
+
+  /* QUIZ */
+  .quiz-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 720px;
+  }
+  .quiz-progress { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 0.75rem; }
+  .quiz-bar { height: 3px; background: var(--bg4); border-radius: 3px; margin-bottom: 1.5rem; overflow: hidden; }
+  .quiz-bar span { display: block; height: 100%; background: var(--gold); transition: width 0.3s; }
+  .quiz-question { font-size: 1.2rem; font-weight: 600; margin-bottom: 1.25rem; line-height: 1.45; }
+  .quiz-options { display: grid; gap: 0.6rem; }
+  .quiz-option {
+    text-align: left; padding: 0.9rem 1.1rem; background: var(--bg3); border: 1px solid var(--border2);
+    border-radius: 10px; color: var(--text); font: inherit; font-size: 0.95rem; cursor: pointer; transition: all 0.15s;
+  }
+  .quiz-option:hover:not(:disabled) { border-color: var(--gold); }
+  .quiz-option:disabled { cursor: default; }
+  .quiz-option.correct { border-color: var(--green2); background: rgba(39,174,96,0.15); }
+  .quiz-option.wrong { border-color: var(--red2); background: rgba(231,76,60,0.15); }
+  .quiz-feedback { margin-top: 1.1rem; font-size: 0.9rem; color: var(--text2); line-height: 1.6; min-height: 1.5em; }
+  .quiz-next {
+    margin-top: 1.25rem; padding: 0.7rem 1.6rem; border-radius: 100px; border: 1px solid var(--gold);
+    background: var(--gold); color: #111; font: inherit; font-weight: 700; font-size: 0.8rem;
+    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+  }
+  .quiz-next[hidden] { display: none; }
+  .quiz-score { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     .driver-grid { grid-template-columns: 1fr; }
@@ -790,6 +926,8 @@
     .term-grid, .stat-grid, .car-grid, .driver-grid { gap: 1px; }
     .car-specs { grid-template-columns: 1fr 1fr; gap: 0.4rem; }
 
+    .quiz-card { padding: 1.4rem; }
+    .quiz-question { font-size: 1.05rem; }
     .footer-logo { font-size: 1.4rem; }
     .footer-text { font-size: 0.85rem; padding: 0 1rem; }
   }
@@ -813,6 +951,19 @@
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Content stays visible if JavaScript is off or fails */
+  html:not(.js) .reveal,
+  html:not(.js) .timeline-item { opacity: 1; transform: none; }
+
+  /* Respect the "reduce motion" accessibility setting */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal, .timeline-item { opacity: 1 !important; transform: none !important; }
+    .hero-eyebrow, .hero-title, .hero-sub, .hero-badges, .scroll-hint { opacity: 1 !important; }
+    .speed-lines { display: none; }
+  }
 
   /* ── RACE NUMBER DECORATION ── */
   .bg-number {
@@ -854,7 +1005,7 @@
   <h1 class="hero-title">
     The <span class="gold">Racing</span> Manual
   </h1>
-  <p class="hero-sub">Your complete guide to motorsport — covering the history, cars, drivers and championships of <span style="color:var(--accent-imsa)">IMSA</span>, <span style="color:var(--accent-f1)">Formula 1</span>, <span style="color:var(--accent-indy)">IndyCar</span>, <span style="color:var(--accent-wec)">FIA WEC</span>, <span style="color:var(--accent-gt1)">GT1</span> and <span style="color:#16a34a">GT3</span>. From race terminology and flag meanings to legendary drivers and iconic circuits, everything you need to understand and love racing is right here.</p>
+  <p class="hero-sub">Your complete guide to motorsport — covering the history, cars, drivers and championships of <span style="color:var(--accent-imsa)">IMSA</span>, <span style="color:var(--accent-f1)">Formula 1</span>, <span style="color:var(--accent-indy)">IndyCar</span>, <span style="color:var(--accent-wec)">FIA WEC</span>, <span style="color:var(--accent-gt1)">GT1</span>, <span style="color:#16a34a">GT3</span>, <span style="color:var(--accent-nascar)">NASCAR</span>, <span style="color:var(--accent-supergt)">Super GT</span> and <span style="color:var(--accent-dtm)">DTM</span>. From race terminology and flag meanings to legendary drivers and iconic circuits, everything you need to understand and love racing is right here.</p>
 
   <div class="hero-badges">
     <a href="#imsa" class="badge badge-imsa">IMSA WeatherTech</a>
@@ -863,6 +1014,9 @@
     <a href="#wec" class="badge badge-wec">FIA WEC</a>
     <a href="#gt3" class="badge badge-gt3">GT3 Racing</a>
     <a href="#gt1" class="badge badge-gt1">BPR / GT1 Class</a>
+    <a href="#nascar" class="badge badge-nascar">NASCAR Cup</a>
+    <a href="#supergt" class="badge badge-supergt">Super GT</a>
+    <a href="#dtm" class="badge badge-dtm">DTM</a>
   </div>
 
   <div class="scroll-hint">
@@ -880,8 +1034,13 @@
   <a href="#wec">WEC</a>
   <a href="#gt3">GT3</a>
   <a href="#gt1">GT1 Era</a>
+  <a href="#nascar">NASCAR</a>
+  <a href="#supergt">Super GT</a>
+  <a href="#dtm">DTM</a>
   <a href="#circuits">Circuits</a>
+  <a href="#compare">Compare</a>
   <a href="#terms">Racing Terms</a>
+  <a href="#quiz">Quiz</a>
 </nav>
 
 <!-- ══ IMSA ══ -->
@@ -956,11 +1115,11 @@
     <!-- Hurley Haywood -->
     <div class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
-        <img src="images/img22.webp" alt="Hurley Haywood" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img22.webp" alt="Hurley Haywood" class="driver-photo">
         <div class="driver-number" style="color:var(--accent-imsa)">5×</div>
         <div class="driver-info">
           <div class="driver-name">Hurley Haywood</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/us.png" alt=""> United States</div>
           <span class="driver-tag" style="background:rgba(230,126,34,0.15);color:var(--accent-imsa)">Endurance Icon</span>
         </div>
       </div>
@@ -978,11 +1137,11 @@
     <!-- Scott Pruett -->
     <div class="driver-card reveal reveal-delay-2">
       <div class="driver-header">
-        <img src="images/img23.webp" alt="Scott Pruett" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img23.webp" alt="Scott Pruett" class="driver-photo">
         <div class="driver-number" style="color:#f59e0b">5×</div>
         <div class="driver-info">
           <div class="driver-name">Scott Pruett</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/us.png" alt=""> United States</div>
           <span class="driver-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b">Daytona Master</span>
         </div>
       </div>
@@ -997,6 +1156,28 @@
       </div>
     </div>
 
+
+    <!-- Al Holbert -->
+    <div class="driver-card reveal reveal-delay-3">
+      <div class="driver-header">
+        <div class="driver-photo driver-photo-initials" style="color:#fb923c" role="img" aria-label="Al Holbert">AH</div>
+        <div class="driver-number" style="color:#fb923c">5×</div>
+        <div class="driver-info">
+          <div class="driver-name">Al Holbert</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <span class="driver-tag" style="background:rgba(251,146,60,0.15);color:#fb923c">Porsche Ace</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">The driver who defined IMSA's GTP golden age. Al Holbert won five IMSA GT championships, three of them in the GTP era, and once held the record for most IMSA race wins with 50. He also won Le Mans three times and the Daytona 24 Hours twice with Porsche, and ran Porsche's North American motorsport division. He died in a plane crash in 1988, aged 41.</p>
+        <div class="driver-achievements">
+          <div class="achievement">5× IMSA GT Champion (incl. GTP 1983, 1985, 1986)</div>
+          <div class="achievement">3× Le Mans winner (1983, 1986, 1987)</div>
+          <div class="achievement">2× Daytona 24 Hours winner (1986, 1987)</div>
+          <div class="achievement">2× Sebring 12 Hours winner (1976, 1981)</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">Prototype Icons</h3>
@@ -1006,7 +1187,7 @@
     <!-- Porsche 962 -->
     <div class="car-card reveal reveal-delay-1">
       <div class="car-visual">
-        <img src="images/img27.webp" alt="Porsche 962">
+        <img loading="lazy" decoding="async" src="images/img27.webp" alt="Porsche 962">
       </div>
       <div class="car-body">
         <div class="car-make">Porsche</div>
@@ -1036,7 +1217,7 @@
     <!-- Jaguar XJR-9 -->
     <div class="car-card reveal reveal-delay-2">
       <div class="car-visual">
-        <img src="images/img28.webp" alt="Jaguar XJR-9">
+        <img loading="lazy" decoding="async" src="images/img28.webp" alt="Jaguar XJR-9">
       </div>
       <div class="car-body">
         <div class="car-make">Jaguar / TWR</div>
@@ -1066,7 +1247,7 @@
     <!-- Cadillac DPi-V.R -->
     <div class="car-card reveal reveal-delay-3">
       <div class="car-visual">
-        <img src="images/img29.webp" alt="Cadillac DPi-V.R">
+        <img loading="lazy" decoding="async" src="images/img29.webp" alt="Cadillac DPi-V.R">
       </div>
       <div class="car-body">
         <div class="car-make">Cadillac</div>
@@ -1136,11 +1317,11 @@
     <!-- Lewis Hamilton -->
     <div class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
-        <img src="images/img01.webp" alt="Lewis Hamilton" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img01.webp" alt="Lewis Hamilton" class="driver-photo">
         <div class="driver-number" style="color:var(--accent-f1)">7×</div>
         <div class="driver-info">
           <div class="driver-name">Lewis Hamilton</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/gb.png" alt=""> United Kingdom</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/gb.png" alt=""> United Kingdom</div>
           <span class="driver-tag" style="background:rgba(225,6,0,0.15);color:var(--accent-f1)">Modern Legend</span>
         </div>
       </div>
@@ -1158,11 +1339,11 @@
     <!-- Michael Schumacher -->
     <div class="driver-card reveal reveal-delay-2">
       <div class="driver-header">
-        <img src="images/img02.webp" alt="Michael Schumacher" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img02.webp" alt="Michael Schumacher" class="driver-photo">
         <div class="driver-number" style="color:#dc0000">7×</div>
         <div class="driver-info">
           <div class="driver-name">Michael Schumacher</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/de.png" alt=""> Germany</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/de.png" alt=""> Germany</div>
           <span class="driver-tag" style="background:rgba(220,0,0,0.15);color:#dc0000">Record Breaker</span>
         </div>
       </div>
@@ -1180,11 +1361,11 @@
     <!-- Ayrton Senna -->
     <div class="driver-card reveal reveal-delay-3">
       <div class="driver-header">
-        <img src="images/img03.webp" alt="Ayrton Senna" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img03.webp" alt="Ayrton Senna" class="driver-photo">
         <div class="driver-number" style="color:var(--gold)">3×</div>
         <div class="driver-info">
           <div class="driver-name">Ayrton Senna</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/br.png" alt=""> Brazil</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/br.png" alt=""> Brazil</div>
           <span class="driver-tag" style="background:rgba(212,160,23,0.15);color:var(--gold)">Immortal</span>
         </div>
       </div>
@@ -1202,11 +1383,11 @@
     <!-- Fernando Alonso -->
     <div class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
-        <img src="images/img04.webp" alt="Fernando Alonso" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img04.webp" alt="Fernando Alonso" class="driver-photo">
         <div class="driver-number" style="color:#0090D0">2×</div>
         <div class="driver-info">
           <div class="driver-name">Fernando Alonso</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/es.png" alt=""> Spain</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/es.png" alt=""> Spain</div>
           <span class="driver-tag" style="background:rgba(0,144,208,0.15);color:#0090D0">El Matador</span>
         </div>
       </div>
@@ -1230,7 +1411,7 @@
     <!-- Mercedes W11 -->
     <div class="car-card reveal reveal-delay-1">
       <div class="car-visual">
-        <img src="images/img05.webp" alt="Mercedes-AMG F1 W11 EQ Performance">
+        <img loading="lazy" decoding="async" src="images/img05.webp" alt="Mercedes-AMG F1 W11 EQ Performance">
       </div>
       <div class="car-body">
         <div class="car-make">Mercedes-AMG Petronas</div>
@@ -1260,7 +1441,7 @@
     <!-- Ferrari F2004 -->
     <div class="car-card reveal reveal-delay-2">
       <div class="car-visual">
-        <img src="images/img06.webp" alt="Ferrari F2004">
+        <img loading="lazy" decoding="async" src="images/img06.webp" alt="Ferrari F2004">
       </div>
       <div class="car-body">
         <div class="car-make">Scuderia Ferrari</div>
@@ -1290,7 +1471,7 @@
     <!-- McLaren MP4/4 -->
     <div class="car-card reveal reveal-delay-3">
       <div class="car-visual">
-        <img src="images/img07.webp" alt="McLaren MP4/4">
+        <img loading="lazy" decoding="async" src="images/img07.webp" alt="McLaren MP4/4">
       </div>
       <div class="car-body">
         <div class="car-make">McLaren Honda</div>
@@ -1320,7 +1501,7 @@
     <!-- Renault R25 -->
     <div class="car-card reveal reveal-delay-1">
       <div class="car-visual">
-        <img src="images/img08.webp" alt="Renault R25">
+        <img loading="lazy" decoding="async" src="images/img08.webp" alt="Renault R25">
       </div>
       <div class="car-body">
         <div class="car-make">Renault F1 Team</div>
@@ -1435,11 +1616,11 @@
     <!-- A.J. Foyt -->
     <div class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
-        <img src="images/img17.webp" alt="A.J. Foyt" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img17.webp" alt="A.J. Foyt" class="driver-photo">
         <div class="driver-number" style="color:var(--accent-indy)">7×</div>
         <div class="driver-info">
           <div class="driver-name">A.J. Foyt</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/us.png" alt=""> United States</div>
           <span class="driver-tag" style="background:rgba(59,130,246,0.15);color:var(--accent-indy)">Super Tex</span>
         </div>
       </div>
@@ -1457,11 +1638,11 @@
     <!-- Mario Andretti -->
     <div class="driver-card reveal reveal-delay-2">
       <div class="driver-header">
-        <img src="images/img18.webp" alt="Mario Andretti" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img18.webp" alt="Mario Andretti" class="driver-photo">
         <div class="driver-number" style="color:#60a5fa">4×</div>
         <div class="driver-info">
           <div class="driver-name">Mario Andretti</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/us.png" alt=""> United States</div>
           <span class="driver-tag" style="background:rgba(96,165,250,0.15);color:#60a5fa">The Complete Racer</span>
         </div>
       </div>
@@ -1479,11 +1660,11 @@
     <!-- Scott Dixon -->
     <div class="driver-card reveal reveal-delay-3">
       <div class="driver-header">
-        <img src="images/img19.webp" alt="Scott Dixon" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img19.webp" alt="Scott Dixon" class="driver-photo">
         <div class="driver-number" style="color:var(--gold)">6×</div>
         <div class="driver-info">
           <div class="driver-name">Scott Dixon</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/nz.png" alt=""> New Zealand</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/nz.png" alt=""> New Zealand</div>
           <span class="driver-tag" style="background:rgba(212,160,23,0.15);color:var(--gold)">The Iceman</span>
         </div>
       </div>
@@ -1501,11 +1682,11 @@
     <!-- Alex Palou -->
     <div class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
-        <img src="images/img20.webp" alt="Alex Palou" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img20.webp" alt="Alex Palou" class="driver-photo">
         <div class="driver-number" style="color:#facc15">4×</div>
         <div class="driver-info">
           <div class="driver-name">&Aacute;lex Palou</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/es.png" alt=""> Spain</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/es.png" alt=""> Spain</div>
           <span class="driver-tag" style="background:rgba(250,204,21,0.15);color:#facc15">Modern Dominator</span>
         </div>
       </div>
@@ -1637,11 +1818,11 @@
     <!-- Tom Kristensen -->
     <div class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
-        <img src="images/img24.webp" alt="Tom Kristensen" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img24.webp" alt="Tom Kristensen" class="driver-photo">
         <div class="driver-number" style="color:var(--accent-wec)">9×</div>
         <div class="driver-info">
           <div class="driver-name">Tom Kristensen</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/dk.png" alt=""> Denmark</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/dk.png" alt=""> Denmark</div>
           <span class="driver-tag" style="background:rgba(142,68,173,0.15);color:var(--accent-wec)">Mr. Le Mans</span>
         </div>
       </div>
@@ -1659,11 +1840,11 @@
     <!-- Jacky Ickx -->
     <div class="driver-card reveal reveal-delay-2">
       <div class="driver-header">
-        <img src="images/img25.webp" alt="Jacky Ickx" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img25.webp" alt="Jacky Ickx" class="driver-photo">
         <div class="driver-number" style="color:var(--gold)">6×</div>
         <div class="driver-info">
           <div class="driver-name">Jacky Ickx</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/be.png" alt=""> Belgium</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/be.png" alt=""> Belgium</div>
           <span class="driver-tag" style="background:rgba(212,160,23,0.15);color:var(--gold)">The Rain Master</span>
         </div>
       </div>
@@ -1681,11 +1862,11 @@
     <!-- Sébastien Buemi -->
     <div class="driver-card reveal reveal-delay-3">
       <div class="driver-header">
-        <img src="images/img26.webp" alt="Sébastien Buemi" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img26.webp" alt="Sébastien Buemi" class="driver-photo">
         <div class="driver-number" style="color:#e74c3c">4×</div>
         <div class="driver-info">
           <div class="driver-name">Sébastien Buemi</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/ch.png" alt=""> Switzerland</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/ch.png" alt=""> Switzerland</div>
           <span class="driver-tag" style="background:rgba(231,76,60,0.15);color:#e74c3c">Toyota Loyalist</span>
         </div>
       </div>
@@ -1709,7 +1890,7 @@
     <!-- Porsche 917K -->
     <div class="car-card reveal reveal-delay-1">
       <div class="car-visual">
-        <img src="images/img30.webp" alt="Porsche 917K">
+        <img loading="lazy" decoding="async" src="images/img30.webp" alt="Porsche 917K">
       </div>
       <div class="car-body">
         <div class="car-make">Porsche</div>
@@ -1739,7 +1920,7 @@
     <!-- Audi R10 TDI -->
     <div class="car-card reveal reveal-delay-2">
       <div class="car-visual">
-        <img src="images/img31.webp" alt="Audi R10 TDI">
+        <img loading="lazy" decoding="async" src="images/img31.webp" alt="Audi R10 TDI">
       </div>
       <div class="car-body">
         <div class="car-make">Audi Sport</div>
@@ -1769,7 +1950,7 @@
     <!-- Porsche 919 Hybrid -->
     <div class="car-card reveal reveal-delay-3">
       <div class="car-visual">
-        <img src="images/img32.webp" alt="Porsche 919 Hybrid">
+        <img loading="lazy" decoding="async" src="images/img32.webp" alt="Porsche 919 Hybrid">
       </div>
       <div class="car-body">
         <div class="car-make">Porsche</div>
@@ -1852,11 +2033,11 @@
     <!-- Laurens Vanthoor -->
     <div class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
-        <img src="images/img09.webp" alt="Laurens Vanthoor" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img09.webp" alt="Laurens Vanthoor" class="driver-photo">
         <div class="driver-number" style="color:#16a34a">54</div>
         <div class="driver-info">
           <div class="driver-name">Laurens Vanthoor</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/be.png" alt=""> Belgium</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/be.png" alt=""> Belgium</div>
           <span class="driver-tag" style="background:rgba(22,163,74,0.15);color:#16a34a">Porsche Ace</span>
         </div>
       </div>
@@ -1874,11 +2055,11 @@
     <!-- Augusto Farfus -->
     <div class="driver-card reveal reveal-delay-2">
       <div class="driver-header">
-        <img src="images/img10.webp" alt="Augusto Farfus" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img10.webp" alt="Augusto Farfus" class="driver-photo">
         <div class="driver-number" style="color:#0066b1">18</div>
         <div class="driver-info">
           <div class="driver-name">Augusto Farfus</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/br.png" alt=""> Brazil</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/br.png" alt=""> Brazil</div>
           <span class="driver-tag" style="background:rgba(0,102,177,0.15);color:#0066b1">BMW Legend</span>
         </div>
       </div>
@@ -1896,11 +2077,11 @@
     <!-- Christopher Mies -->
     <div class="driver-card reveal reveal-delay-3">
       <div class="driver-header">
-        <img src="images/img11.webp" alt="Christopher Mies" class="driver-photo">
+        <img loading="lazy" decoding="async" src="images/img11.webp" alt="Christopher Mies" class="driver-photo">
         <div class="driver-number" style="color:#bb0a30">1</div>
         <div class="driver-info">
           <div class="driver-name">Christopher Mies</div>
-          <div class="driver-nat"><img class="flag" src="images/flags/de.png" alt=""> Germany</div>
+          <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/de.png" alt=""> Germany</div>
           <span class="driver-tag" style="background:rgba(187,10,48,0.15);color:#bb0a30">Audi Master</span>
         </div>
       </div>
@@ -1924,7 +2105,7 @@
     <!-- Porsche 911 GT3 R -->
     <div class="car-card reveal reveal-delay-1">
       <div class="car-visual">
-        <img src="images/img12.webp" alt="Porsche 911 GT3 R">
+        <img loading="lazy" decoding="async" src="images/img12.webp" alt="Porsche 911 GT3 R">
       </div>
       <div class="car-body">
         <div class="car-make">Porsche Motorsport</div>
@@ -1954,7 +2135,7 @@
     <!-- BMW Z4 GT3 -->
     <div class="car-card reveal reveal-delay-2">
       <div class="car-visual">
-        <img src="images/img13.webp" alt="BMW Z4 GT3">
+        <img loading="lazy" decoding="async" src="images/img13.webp" alt="BMW Z4 GT3">
       </div>
       <div class="car-body">
         <div class="car-make">BMW Motorsport</div>
@@ -1984,7 +2165,7 @@
     <!-- Audi R8 LMS -->
     <div class="car-card reveal reveal-delay-3">
       <div class="car-visual">
-        <img src="images/img14.webp" alt="Audi R8 LMS">
+        <img loading="lazy" decoding="async" src="images/img14.webp" alt="Audi R8 LMS">
       </div>
       <div class="car-body">
         <div class="car-make">Audi Sport</div>
@@ -2089,7 +2270,7 @@
     <!-- McLaren F1 GTR -->
     <div class="car-card reveal reveal-delay-1">
       <div class="car-visual">
-        <img src="images/img33.webp" alt="McLaren F1 GTR">
+        <img loading="lazy" decoding="async" src="images/img33.webp" alt="McLaren F1 GTR">
       </div>
       <div class="car-body">
         <div class="car-make">McLaren</div>
@@ -2119,7 +2300,7 @@
     <!-- Mercedes-Benz CLK GTR -->
     <div class="car-card reveal reveal-delay-2">
       <div class="car-visual">
-        <img src="images/img34.webp" alt="Mercedes-Benz CLK GTR">
+        <img loading="lazy" decoding="async" src="images/img34.webp" alt="Mercedes-Benz CLK GTR">
       </div>
       <div class="car-body">
         <div class="car-make">AMG-Mercedes</div>
@@ -2149,7 +2330,7 @@
     <!-- Porsche 911 GT1 -->
     <div class="car-card reveal reveal-delay-3">
       <div class="car-visual">
-        <img src="images/img35.webp" alt="Porsche 911 GT1">
+        <img loading="lazy" decoding="async" src="images/img35.webp" alt="Porsche 911 GT1">
       </div>
       <div class="car-body">
         <div class="car-make">Porsche</div>
@@ -2186,6 +2367,738 @@
 
 <hr class="divider">
 
+<!-- ══ NASCAR ══ -->
+<div class="section-strip">
+<section id="nascar">
+  <div class="section-header reveal">
+    <p class="section-eyebrow" style="color:var(--accent-nascar)">NASCAR Cup Series</p>
+    <h2 class="section-title">America's<br>Stock Car Spectacle</h2>
+    <p class="section-desc">Born on the beaches of Daytona, NASCAR is America's most-watched form of motorsport. Forty heavy, powerful stock cars race inches apart on banked ovals, superspeedways and road courses, where drafting, strategy and nerve decide the winner.</p>
+  </div>
+
+  <div class="stat-grid reveal reveal-delay-1">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-nascar)">1948</div>
+      <div class="stat-label">Founded</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-nascar)">7</div>
+      <div class="stat-label">Record Titles (3 Drivers)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-nascar)">200</div>
+      <div class="stat-label">Richard Petty Wins</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-nascar)">36</div>
+      <div class="stat-label">Races Per Season</div>
+    </div>
+  </div>
+
+  <div class="timeline timeline-nascar reveal reveal-delay-2">
+    <div class="timeline-item">
+      <div class="timeline-year">1948&ndash;1949</div>
+      <div class="timeline-event">NASCAR Is Born</div>
+      <div class="timeline-detail">Bill France Sr. founds the National Association for Stock Car Auto Racing in Daytona Beach. In 1949 the first "Strictly Stock" race runs at Charlotte, the start of what is now the NASCAR Cup Series.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1959</div>
+      <div class="timeline-event">Daytona & The First Daytona 500</div>
+      <div class="timeline-detail">Daytona International Speedway opens with its high-banked 2.5-mile tri-oval. The first Daytona 500 ends in a photo finish, and Lee Petty, Richard Petty's father, is declared the winner days later.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1970</div>
+      <div class="timeline-event">The Winged Warriors</div>
+      <div class="timeline-detail">Dodge's Charger Daytona and Plymouth's Superbird bring nose cones and towering rear wings to stock car racing. Buddy Baker becomes the first driver to lap a closed course at over 200 mph. NASCAR restricts the winged cars from 1971.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1979</div>
+      <div class="timeline-event">The Fight That Made NASCAR</div>
+      <div class="timeline-detail">The Daytona 500 is shown live from start to finish on national TV for the first time. A last-lap crash between leaders Cale Yarborough and Donnie Allison turns into a fistfight on the infield, Richard Petty wins, and millions of new fans tune in.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1987&ndash;1988</div>
+      <div class="timeline-event">Too Fast: The Restrictor Plate Era</div>
+      <div class="timeline-detail">Bill Elliott qualifies at Talladega at 212.809 mph, still the fastest in NASCAR history. Days later, in the race itself, Bobby Allison's car rips into the catch fence. From 1988 NASCAR forces restrictor plates on cars at Daytona and Talladega to keep speeds down.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2001</div>
+      <div class="timeline-event">Losing Dale Earnhardt</div>
+      <div class="timeline-detail">Seven-time champion Dale Earnhardt dies in a last-lap crash at the Daytona 500. NASCAR makes the HANS head-and-neck restraint mandatory that year and starts installing SAFER energy-absorbing barriers, changes that have saved countless drivers since.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2004</div>
+      <div class="timeline-event">The Playoffs Arrive</div>
+      <div class="timeline-detail">NASCAR introduces "The Chase", a playoff format that decides the champion over the final races of the season. Jimmie Johnson masters it, winning five titles in a row from 2006 to 2010.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2022</div>
+      <div class="timeline-event">The Next Gen Car</div>
+      <div class="timeline-detail">The seventh-generation Cup car debuts at the Daytona 500. It brings a sequential gearbox, independent rear suspension and 18-inch single-lug wheels, the biggest technical change in NASCAR's history.</div>
+    </div>
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">The Kings of Stock Car</h3>
+
+  <div class="driver-grid">
+
+    <!-- Richard Petty -->
+    <div class="driver-card reveal reveal-delay-1">
+      <div class="driver-header">
+        <img src="images/img38.webp" alt="Richard Petty" class="driver-photo">
+        <div class="driver-number" style="color:var(--accent-nascar)">7×</div>
+        <div class="driver-info">
+          <div class="driver-name">Richard Petty</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <span class="driver-tag" style="background:rgba(250,204,21,0.15);color:var(--accent-nascar)">The King</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">Nobody will ever catch "The King". Richard Petty won 200 Cup races, almost twice as many as anyone else, and a record seven Daytona 500s. In 1967 alone he won 27 races, including ten in a row. With his No. 43, cowboy hat and sunglasses, he became the face of NASCAR for generations.</p>
+        <div class="driver-achievements">
+          <div class="achievement">7× Cup Series Champion (1964, 1967, 1971, 1972, 1974, 1975, 1979)</div>
+          <div class="achievement">200 Cup wins, the all-time record</div>
+          <div class="achievement">Record 7× Daytona 500 winner</div>
+          <div class="achievement">27 wins in 1967, including 10 in a row</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dale Earnhardt -->
+    <div class="driver-card reveal reveal-delay-2">
+      <div class="driver-header">
+        <img src="images/img39.webp" alt="Dale Earnhardt" class="driver-photo">
+        <div class="driver-number" style="color:#ef4444">7×</div>
+        <div class="driver-info">
+          <div class="driver-name">Dale Earnhardt</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <span class="driver-tag" style="background:rgba(239,68,68,0.15);color:#ef4444">The Intimidator</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">The most feared driver NASCAR has ever seen. In his black No. 3 Chevrolet for Richard Childress Racing, Dale Earnhardt won seven titles with an aggressive style that earned him the nickname "The Intimidator". He finally won the Daytona 500 in 1998 on his 20th attempt. His death on the last lap of the 2001 Daytona 500 changed the sport's approach to safety forever.</p>
+        <div class="driver-achievements">
+          <div class="achievement">7× Cup Series Champion (1980, 1986, 1987, 1990, 1991, 1993, 1994)</div>
+          <div class="achievement">76 Cup wins</div>
+          <div class="achievement">1998 Daytona 500 winner, on his 20th try</div>
+          <div class="achievement">His death led to the mandatory HANS device</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jimmie Johnson -->
+    <div class="driver-card reveal reveal-delay-3">
+      <div class="driver-header">
+        <img src="images/img40.webp" alt="Jimmie Johnson" class="driver-photo">
+        <div class="driver-number" style="color:#60a5fa">7×</div>
+        <div class="driver-info">
+          <div class="driver-name">Jimmie Johnson</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/us.png" alt=""> United States</div>
+          <span class="driver-tag" style="background:rgba(96,165,250,0.15);color:#60a5fa">Five-Time</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">The most dominant driver of the modern era. With Hendrick Motorsports and crew chief Chad Knaus, Jimmie Johnson won five championships in a row from 2006 to 2010, something no one else has done, and added two more to tie Petty and Earnhardt's record. He later raced in IndyCar and at Le Mans.</p>
+        <div class="driver-achievements">
+          <div class="achievement">7× Cup Series Champion (2006&ndash;2010, 2013, 2016)</div>
+          <div class="achievement">Record 5 consecutive championships</div>
+          <div class="achievement">83 Cup wins</div>
+          <div class="achievement">2× Daytona 500 winner (2006, 2013)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">Legendary Stock Cars</h3>
+
+  <div class="car-grid">
+
+    <!-- Plymouth Superbird -->
+    <div class="car-card reveal reveal-delay-1">
+      <div class="car-visual">
+        <img src="images/img41.webp" alt="Plymouth Superbird">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Plymouth</div>
+        <h4 class="car-name">Superbird</h4>
+        <p class="car-desc">The car that brought Richard Petty back to Plymouth. With its pointed nose cone and huge rear wing, the Superbird was built for one thing: speed on NASCAR's superspeedways. Petty won 18 races in 1970, many of them in the Superbird. It was so effective that NASCAR restricted the winged cars from 1971.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">426 Hemi</div>
+            <div class="spec-key">V8</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1970</div>
+            <div class="spec-key">Season</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">18</div>
+            <div class="spec-key">Petty Wins in 1970</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1971</div>
+            <div class="spec-key">Restricted</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bill Elliott's 1987 Ford Thunderbird -->
+    <div class="car-card reveal reveal-delay-2">
+      <div class="car-visual">
+        <img src="images/img42.webp" alt="Bill Elliott's 1987 Ford Thunderbird">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Ford</div>
+        <h4 class="car-name">Thunderbird (1987)</h4>
+        <p class="car-desc">The fastest car NASCAR has ever seen. "Awesome Bill from Dawsonville" qualified his Thunderbird at Talladega at 212.809 mph in 1987, with an engine built by his brother Ernie. Restrictor plates arrived the next year, so the record will probably never be broken.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">212.809</div>
+            <div class="spec-key">mph Qualifying Record</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1987</div>
+            <div class="spec-key">Talladega</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">358 ci</div>
+            <div class="spec-key">V8</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">Never</div>
+            <div class="spec-key">Beaten</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NASCAR Next Gen Cup car -->
+    <div class="car-card reveal reveal-delay-3">
+      <div class="car-visual">
+        <img src="images/img43.webp" alt="NASCAR Next Gen Cup car">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Chevrolet · Ford · Toyota</div>
+        <h4 class="car-name">Next Gen</h4>
+        <p class="car-desc">NASCAR's modern race car. The Next Gen brought a five-speed sequential gearbox, independent rear suspension and 18-inch wheels with a single centre lug nut, much closer to sports car technology. Chevrolet Camaro, Ford Mustang and Toyota Camry bodies share many standard parts to keep racing close.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">670 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">5.86L</div>
+            <div class="spec-key">V8</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">5-Speed</div>
+            <div class="spec-key">Sequential</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2022</div>
+            <div class="spec-key">Debut</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="quote-block reveal reveal-delay-3" style="margin-top:3rem;border-left-color:var(--accent-nascar);background:rgba(250,204,21,0.04);">
+    <p class="quote-text">Seven drivers' titles is the record in NASCAR's top series, and three drivers share it: Richard Petty, Dale Earnhardt and Jimmie Johnson.</p>
+    <p class="quote-attr">Record Book</p>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ══ SUPER GT ══ -->
+<section id="supergt">
+  <div class="section-header reveal">
+    <p class="section-eyebrow" style="color:var(--accent-supergt)">Super GT · Japan</p>
+    <h2 class="section-title">Japan's<br>GT Battleground</h2>
+    <p class="section-desc">Super GT is Japan's biggest motor race series. GT500 cars from Toyota, Nissan and Honda share the track with a huge GT300 field, and success ballast keeps the title fights close. The Fuji round in May regularly draws the biggest crowd of the season.</p>
+  </div>
+
+  <div class="stat-grid reveal reveal-delay-1">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-supergt)">1993</div>
+      <div class="stat-label">Founded (as JGTC)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-supergt)">2</div>
+      <div class="stat-label">Classes: GT500 & GT300</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-supergt)">3</div>
+      <div class="stat-label">GT500 Manufacturers</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-supergt)">91K</div>
+      <div class="stat-label">Fuji Crowd, 2019</div>
+    </div>
+  </div>
+
+  <div class="timeline timeline-supergt reveal reveal-delay-2">
+    <div class="timeline-item">
+      <div class="timeline-year">1993</div>
+      <div class="timeline-event">The JGTC Is Born</div>
+      <div class="timeline-detail">The All Japan Grand Touring Car Championship starts with two classes racing together, today called GT500 and GT300. Nissan's Skyline GT-R, Toyota's Supra and later Honda's NSX begin a manufacturer rivalry that still drives the series.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2000</div>
+      <div class="timeline-event">Honda's First Title</div>
+      <div class="timeline-detail">Ryo Michigami wins the GT500 title in the Mugen NSX, Honda's first championship in the series, without winning a single race. Four second places are enough.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2005</div>
+      <div class="timeline-event">Super GT</div>
+      <div class="timeline-detail">The JGTC is renamed Super GT as it grows its international ambitions. Fans love the format: two classes, close racing, and success ballast that adds weight to the cars that score the most points.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2008</div>
+      <div class="timeline-event">The GT-R Arrives</div>
+      <div class="timeline-detail">Nissan's new R35 GT-R wins seven of its first nine races and takes the title with Satoshi Motoyama and Benoît Tréluyer. It goes on to win 41 GT500 races, more than any other model.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2014</div>
+      <div class="timeline-event">Turbo Four-Cylinders & Shared Rules</div>
+      <div class="timeline-detail">GT500 switches to 2.0-litre turbocharged four-cylinder engines and rules shared with Germany's DTM. The rules became fully identical as "Class One" in 2020, and in 2019 the two series raced each other in a Dream Race at Fuji.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2018</div>
+      <div class="timeline-event">An F1 Champion Wins in Japan</div>
+      <div class="timeline-detail">2009 Formula 1 World Champion Jenson Button wins the GT500 title alongside Naoki Yamamoto in the Honda NSX-GT.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2023&ndash;2025</div>
+      <div class="timeline-event">TOM'S Makes History</div>
+      <div class="timeline-detail">Toyota's TOM'S team becomes the first in GT500 history to win three championships in a row. Sho Tsuboi's 2025 title is his fourth, equalling Ronnie Quintarelli's record.</div>
+    </div>
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">GT500 Champions</h3>
+
+  <div class="driver-grid">
+
+    <!-- Ronnie Quintarelli -->
+    <div class="driver-card reveal reveal-delay-1">
+      <div class="driver-header">
+        <img src="images/img44.webp" alt="Ronnie Quintarelli" class="driver-photo">
+        <div class="driver-number" style="color:var(--accent-supergt)">4×</div>
+        <div class="driver-info">
+          <div class="driver-name">Ronnie Quintarelli</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/it.png" alt=""> Italy</div>
+          <span class="driver-tag" style="background:rgba(20,184,166,0.15);color:var(--accent-supergt)">Nissan Legend</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">An Italian who became a superstar in Japan. Ronnie Quintarelli moved to Japanese racing early in his career and became Nissan's GT500 spearhead. He won back-to-back titles with Masataka Yanagida in 2011 and 2012, then two more with Tsugio Matsuda in 2014 and 2015, all in the GT-R.</p>
+        <div class="driver-achievements">
+          <div class="achievement">4× GT500 Champion (2011, 2012, 2014, 2015)</div>
+          <div class="achievement">Joint record for most GT500 titles</div>
+          <div class="achievement">18 GT500 race wins</div>
+          <div class="achievement">NISMO factory driver for over a decade</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sho Tsuboi -->
+    <div class="driver-card reveal reveal-delay-2">
+      <div class="driver-header">
+        <img src="images/img45.webp" alt="Sho Tsuboi" class="driver-photo">
+        <div class="driver-number" style="color:#f97316">4×</div>
+        <div class="driver-info">
+          <div class="driver-name">Sho Tsuboi</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/jp.png" alt=""> Japan</div>
+          <span class="driver-tag" style="background:rgba(249,115,22,0.15);color:#f97316">Modern Dominator</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">The man of the moment in Super GT. Sho Tsuboi won the GT500 title with TOM'S Toyota in 2021, 2023, 2024 and 2025, and helped TOM'S become the first team to win three in a row. He added the 2024 Super Formula title, making him one of the best all-round drivers in Japan today.</p>
+        <div class="driver-achievements">
+          <div class="achievement">4× GT500 Champion (2021, 2023, 2024, 2025)</div>
+          <div class="achievement">Joint record for most GT500 titles</div>
+          <div class="achievement">First team to win 3 in a row (TOM'S)</div>
+          <div class="achievement">2024 Super Formula Champion</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Satoshi Motoyama -->
+    <div class="driver-card reveal reveal-delay-3">
+      <div class="driver-header">
+        <img src="images/img46.webp" alt="Satoshi Motoyama" class="driver-photo">
+        <div class="driver-number" style="color:#ef4444">3×</div>
+        <div class="driver-info">
+          <div class="driver-name">Satoshi Motoyama</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/jp.png" alt=""> Japan</div>
+          <span class="driver-tag" style="background:rgba(239,68,68,0.15);color:#ef4444">Mr. Nissan</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">Japan's racing hero of the 2000s. Satoshi Motoyama spent almost his entire GT500 career with Nissan and won three titles, including the GT-R's first season in 2008. He also won four Formula Nippon single-seater championships and tested an F1 car for Jordan and Renault.</p>
+        <div class="driver-achievements">
+          <div class="achievement">3× GT500 Champion (2003, 2004, 2008)</div>
+          <div class="achievement">4× Formula Nippon Champion</div>
+          <div class="achievement">16 GT500 race wins</div>
+          <div class="achievement">Won both Japanese titles in the same year (2003)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">GT500 Machines</h3>
+
+  <div class="car-grid">
+
+    <!-- Nissan GT-R NISMO GT500 -->
+    <div class="car-card reveal reveal-delay-1">
+      <div class="car-visual">
+        <img src="images/img47.webp" alt="Nissan GT-R NISMO GT500">
+      </div>
+      <div class="car-body">
+        <div class="car-make">NISMO</div>
+        <h4 class="car-name">GT-R GT500</h4>
+        <p class="car-desc">The most successful car in GT500 history. The R35 GT-R won seven of its first nine races in 2008 and claimed five drivers' titles. Its 41 wins are a GT500 record. From 2014 it used a 2.0-litre turbo four-cylinder producing about 640hp.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">641 hp</div>
+            <div class="spec-key">Power (2014+)</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2.0L</div>
+            <div class="spec-key">I4 Turbo</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">5</div>
+            <div class="spec-key">Drivers' Titles</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">41</div>
+            <div class="spec-key">GT500 Wins</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toyota GR Supra GT500 (TOM'S) -->
+    <div class="car-card reveal reveal-delay-2">
+      <div class="car-visual">
+        <img src="images/img48.webp" alt="Toyota GR Supra GT500 (TOM'S)">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Toyota Gazoo Racing</div>
+        <h4 class="car-name">GR Supra GT500</h4>
+        <p class="car-desc">The car of the modern era. The GR Supra replaced the Lexus LC in 2020, bringing the famous Supra name back to GT500. In the hands of TOM'S and Sho Tsuboi it won the title in 2021 and then three years in a row from 2023 to 2025.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">2.0L</div>
+            <div class="spec-key">I4 Turbo</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2020</div>
+            <div class="spec-key">Debut</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">4</div>
+            <div class="spec-key">Titles 2021&ndash;25</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">3</div>
+            <div class="spec-key">In a Row</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Honda NSX-GT -->
+    <div class="car-card reveal reveal-delay-3">
+      <div class="car-visual">
+        <img src="images/img49.webp" alt="Honda NSX-GT">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Honda</div>
+        <h4 class="car-name">NSX-GT</h4>
+        <p class="car-desc">Honda's mid-engined GT500 weapon. The NSX-GT carried Jenson Button and Naoki Yamamoto to the 2018 title, and Yamamoto won again in 2020. After 2023 it was replaced by the Civic Type R-GT.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">2.0L</div>
+            <div class="spec-key">I4 Turbo</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">Mid</div>
+            <div class="spec-key">Engine</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2018</div>
+            <div class="spec-key">Title (Button)</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2020</div>
+            <div class="spec-key">Title</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="quote-block reveal reveal-delay-3" style="margin-top:3rem;border-left-color:var(--accent-supergt);background:rgba(20,184,166,0.04);">
+    <p class="quote-text">In Super GT, the more points a car scores, the more ballast weight it carries. That keeps the championship close until the very last round.</p>
+    <p class="quote-attr">Success Ballast</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ DTM ══ -->
+<div class="section-strip">
+<section id="dtm">
+  <div class="section-header reveal">
+    <p class="section-eyebrow" style="color:var(--accent-dtm)">Deutsche Tourenwagen Masters</p>
+    <h2 class="section-title">Germany's<br>Touring Car Titans</h2>
+    <p class="section-desc">The DTM is Germany's home of touring car and GT racing. From the boxy homologation specials of the 1980s to today's GT3 cars, it has always been a battleground for Mercedes, BMW and Audi, fought out in front of huge crowds at the Nürburgring, Hockenheim and Norisring.</p>
+  </div>
+
+  <div class="stat-grid reveal reveal-delay-1">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-dtm)">1984</div>
+      <div class="stat-label">Founded</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-dtm)">5</div>
+      <div class="stat-label">Bernd Schneider Titles</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-dtm)">43</div>
+      <div class="stat-label">Schneider Wins (Record)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent-dtm)">2021</div>
+      <div class="stat-label">GT3 Era Begins</div>
+    </div>
+  </div>
+
+  <div class="timeline timeline-dtm reveal reveal-delay-2">
+    <div class="timeline-item">
+      <div class="timeline-year">1984&ndash;1986</div>
+      <div class="timeline-event">From Production Cars to DTM</div>
+      <div class="timeline-detail">Germany's touring car championship starts in 1984 as the Deutsche Produktionswagen-Meisterschaft and is renamed DTM in 1986. Factory-backed BMW M3s, Mercedes 190Es and Ford Sierras soon battle in front of huge crowds.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1988&ndash;1992</div>
+      <div class="timeline-event">The Homologation Specials</div>
+      <div class="timeline-detail">Manufacturers build road-going "evolution" models to race. Klaus Ludwig wins the 1988 title in a Ford Sierra RS500 and the 1992 title in the winged Mercedes 190E Evo II, as Mercedes takes a 1-2-3 in the standings.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1993</div>
+      <div class="timeline-event">Class 1 & The Alfa Invasion</div>
+      <div class="timeline-detail">New Class 1 rules allow far more freedom. Alfa Romeo arrives with the four-wheel-drive 155 V6 TI and Nicola Larini wins the title in its first season, winning 11 of 22 races.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1995&ndash;1996</div>
+      <div class="timeline-event">ITC & Collapse</div>
+      <div class="timeline-detail">The series goes international as the ITC, but the technology and costs explode. Alfa Romeo and Opel pull out after 1996 and the championship collapses.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2000</div>
+      <div class="timeline-event">Reborn as the Masters</div>
+      <div class="timeline-detail">The DTM returns as the Deutsche Tourenwagen Masters with V8 silhouette racers from Mercedes, Opel and Audi. Bernd Schneider wins the first two titles of the new era.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2019</div>
+      <div class="timeline-event">Class One Turbo Era</div>
+      <div class="timeline-detail">DTM switches to 2.0-litre turbocharged four-cylinder engines under "Class One" rules shared with Japan's Super GT. René Rast wins back-to-back titles in 2019 and 2020 for Audi.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2021&ndash;2023</div>
+      <div class="timeline-event">GT3 & A New Owner</div>
+      <div class="timeline-detail">With manufacturers leaving, DTM switches to GT3 cars in 2021, opening the grid to Mercedes-AMG, BMW, Porsche, Ferrari, Lamborghini and more. In 2023 the German motoring club ADAC takes over the series.</div>
+    </div>
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">DTM Kings</h3>
+
+  <div class="driver-grid">
+
+    <!-- Bernd Schneider -->
+    <div class="driver-card reveal reveal-delay-1">
+      <div class="driver-header">
+        <img src="images/img50.webp" alt="Bernd Schneider" class="driver-photo">
+        <div class="driver-number" style="color:var(--accent-dtm)">5×</div>
+        <div class="driver-info">
+          <div class="driver-name">Bernd Schneider</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/de.png" alt=""> Germany</div>
+          <span class="driver-tag" style="background:rgba(244,114,182,0.15);color:var(--accent-dtm)">Mr. DTM</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">The most successful DTM driver ever. Bernd Schneider won the 1995 title in the original DTM, then four more after its revival, all with Mercedes. His 43 wins are still the series record, and in 1997 he also won the FIA GT Championship in the CLK GTR.</p>
+        <div class="driver-achievements">
+          <div class="achievement">5× DTM Champion (1995, 2000, 2001, 2003, 2006)</div>
+          <div class="achievement">43 DTM wins, the all-time record</div>
+          <div class="achievement">1995 ITC Champion</div>
+          <div class="achievement">1997 FIA GT Champion (Mercedes CLK GTR)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Klaus Ludwig -->
+    <div class="driver-card reveal reveal-delay-2">
+      <div class="driver-header">
+        <img src="images/img51.webp" alt="Klaus Ludwig" class="driver-photo">
+        <div class="driver-number" style="color:#e5e7eb">3×</div>
+        <div class="driver-info">
+          <div class="driver-name">Klaus Ludwig</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/de.png" alt=""> Germany</div>
+          <span class="driver-tag" style="background:rgba(229,231,235,0.15);color:#e5e7eb">König Ludwig</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">"King Ludwig" won almost everything in German motorsport. He took DTM titles with Ford and twice with Mercedes, won Le Mans three times with Porsche, and was crowned FIA GT champion in 1998. He came back to the DTM in 2000 at the age of 50.</p>
+        <div class="driver-achievements">
+          <div class="achievement">3× DTM Champion (1988, 1992, 1994)</div>
+          <div class="achievement">37 DTM wins, second all-time</div>
+          <div class="achievement">3× Le Mans winner (1979, 1984, 1985)</div>
+          <div class="achievement">1998 FIA GT Champion</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- René Rast -->
+    <div class="driver-card reveal reveal-delay-3">
+      <div class="driver-header">
+        <img src="images/img52.webp" alt="René Rast" class="driver-photo">
+        <div class="driver-number" style="color:#a78bfa">3×</div>
+        <div class="driver-info">
+          <div class="driver-name">René Rast</div>
+          <div class="driver-nat"><img class="flag" src="images/flags/de.png" alt=""> Germany</div>
+          <span class="driver-tag" style="background:rgba(167,139,250,0.15);color:#a78bfa">Title Machine</span>
+        </div>
+      </div>
+      <div class="driver-body">
+        <p class="driver-bio">The best of the modern era. René Rast won the DTM title in 2017, his first full season, in an Audi RS 5. He won twice more in 2019 and 2020 in the Class One turbo era, and retired from the series in 2025 with 31 wins, third on the all-time list.</p>
+        <div class="driver-achievements">
+          <div class="achievement">3× DTM Champion (2017, 2019, 2020)</div>
+          <div class="achievement">Title in his first full season</div>
+          <div class="achievement">31 DTM wins, third all-time</div>
+          <div class="achievement">2× Spa 24 Hours winner (2012, 2014)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">Iconic DTM Cars</h3>
+
+  <div class="car-grid">
+
+    <!-- Mercedes-Benz 190E 2.5-16 Evolution II -->
+    <div class="car-card reveal reveal-delay-1">
+      <div class="car-visual">
+        <img src="images/img53.webp" alt="Mercedes-Benz 190E 2.5-16 Evolution II">
+      </div>
+      <div class="car-body">
+        <div class="car-make">AMG-Mercedes</div>
+        <h4 class="car-name">190E Evo II</h4>
+        <p class="car-desc">The winged legend. Mercedes built 502 road cars of the Evolution II so it could race, complete with its giant rear wing. In 1992 the Evo II won 16 of 24 DTM races and Mercedes drivers finished 1-2-3, with Klaus Ludwig the champion.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">~370 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2.5L</div>
+            <div class="spec-key">I4</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">16/24</div>
+            <div class="spec-key">1992 Wins</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">1992</div>
+            <div class="spec-key">Title (Ludwig)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alfa Romeo 155 V6 TI -->
+    <div class="car-card reveal reveal-delay-2">
+      <div class="car-visual">
+        <img src="images/img54.webp" alt="Alfa Romeo 155 V6 TI">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Alfa Corse</div>
+        <h4 class="car-name">155 V6 TI</h4>
+        <p class="car-desc">The Italian invader. A high-revving V6 and four-wheel drive made the 155 V6 TI almost unbeatable in its debut season. Nicola Larini won 11 of 22 races in 1993 to claim the title, beating Mercedes on home ground.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">420 hp</div>
+            <div class="spec-key">Power</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2.5L</div>
+            <div class="spec-key">V6</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">4WD</div>
+            <div class="spec-key">Drive</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">11/22</div>
+            <div class="spec-key">1993 Larini Wins</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audi RS 5 DTM -->
+    <div class="car-card reveal reveal-delay-3">
+      <div class="car-visual">
+        <img src="images/img55.webp" alt="Audi RS 5 DTM">
+      </div>
+      <div class="car-body">
+        <div class="car-make">Audi Sport</div>
+        <h4 class="car-name">RS 5 DTM</h4>
+        <p class="car-desc">Audi's championship machine of the 2010s. Mike Rockenfeller won the title in its debut season in 2013. René Rast won in 2017 with the V8 version, then twice more in 2019 and 2020 after the switch to a 2.0-litre turbo four-cylinder under Class One rules.</p>
+        <div class="car-specs">
+          <div class="spec">
+            <div class="spec-val">4.0L</div>
+            <div class="spec-key">V8 (to 2018)</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2.0L</div>
+            <div class="spec-key">I4 Turbo (2019&ndash;20)</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">4</div>
+            <div class="spec-key">Drivers' Titles</div>
+          </div>
+          <div class="spec">
+            <div class="spec-val">2013</div>
+            <div class="spec-key">Debut</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="quote-block reveal reveal-delay-3" style="margin-top:3rem;border-left-color:var(--accent-dtm);background:rgba(244,114,182,0.04);">
+    <p class="quote-text">Bernd Schneider's five titles and 43 wins make him the most successful driver in DTM history.</p>
+    <p class="quote-attr">Record Book</p>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
 <!-- ══ ICONIC CIRCUITS ══ -->
 <div class="section-strip">
 <section id="circuits">
@@ -2198,7 +3111,7 @@
   <div class="circuit-wrapper reveal">
     <div class="circuit-label">Circuit de Monaco and Monte Carlo</div>
     <div style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
-      <img src="images/img15.webp" alt="Monaco Circuit de Monte Carlo track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <img loading="lazy" decoding="async" src="images/img15.webp" alt="Monaco Circuit de Monte Carlo track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
       <div style="display:flex;padding:0 1rem 1rem;">
         <div class="circuit-pills">
           <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(225,6,0,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(225,6,0,0.3);">
@@ -2226,7 +3139,7 @@
   <div class="circuit-wrapper reveal reveal-delay-2" style="margin-top:3rem;">
     <div class="circuit-label">Circuit de Spa-Francorchamps in Belgium</div>
     <div style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
-      <img src="images/img16.webp" alt="Spa-Francorchamps Circuit track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <img loading="lazy" decoding="async" src="images/img16.webp" alt="Spa-Francorchamps Circuit track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
       <div style="display:flex;padding:0 1rem 1rem;">
         <div class="circuit-pills">
           <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(22,163,74,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(22,163,74,0.3);">
@@ -2254,7 +3167,7 @@
   <div class="circuit-wrapper reveal reveal-delay-2" style="margin-top:3rem;">
     <div class="circuit-label">Indianapolis Motor Speedway in the USA</div>
     <div style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
-      <img src="images/img21.webp" alt="Indianapolis Motor Speedway oval track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <img loading="lazy" decoding="async" src="images/img21.webp" alt="Indianapolis Motor Speedway oval track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
       <div style="display:flex;padding:0 1rem 1rem;">
         <div class="circuit-pills">
           <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(59,130,246,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(59,130,246,0.3);">
@@ -2282,7 +3195,7 @@
   <div class="circuit-wrapper reveal reveal-delay-2" style="margin-top:3rem;">
     <div class="circuit-label">Circuit de la Sarthe in Le Mans, France</div>
     <div style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
-      <img src="images/img36.webp" alt="Circuit de la Sarthe Le Mans track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <img loading="lazy" decoding="async" src="images/img36.webp" alt="Circuit de la Sarthe Le Mans track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
       <div style="display:flex;padding:0 1rem 1rem;">
         <div class="circuit-pills">
           <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(142,68,173,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(142,68,173,0.3);">
@@ -2305,7 +3218,7 @@
   <div class="circuit-wrapper reveal reveal-delay-3" style="margin-top:3rem;">
     <div class="circuit-label">Daytona International Speedway in Florida, USA</div>
     <div style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
-      <img src="images/img37.webp" alt="Daytona International Speedway road course track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <img loading="lazy" decoding="async" src="images/img37.webp" alt="Daytona International Speedway road course track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
       <div style="display:flex;padding:0 1rem 1rem;">
         <div class="circuit-pills">
           <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(230,126,34,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(230,126,34,0.3);">
@@ -2329,6 +3242,41 @@
 
 <hr class="divider">
 
+<!-- ══ COMPARE ══ -->
+<section id="compare">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gold">Head to Head</p>
+    <h2 class="section-title">Compare<br>The Cars</h2>
+    <p class="section-desc">Every car on this page side by side. Filter by championship, or click a column heading to sort by power, weight or year.</p>
+  </div>
+
+  <div class="compare-tools reveal">
+    <label for="compare-filter">Championship</label>
+    <select id="compare-filter" class="compare-select">
+      <option value="all">All championships</option>
+    </select>
+  </div>
+
+  <div class="table-wrap reveal">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th scope="col"><button type="button" data-sort="name">Car</button></th>
+          <th scope="col"><button type="button" data-sort="series">Series</button></th>
+          <th scope="col" class="num"><button type="button" data-sort="year">Year</button></th>
+          <th scope="col"><button type="button" data-sort="engine">Engine</button></th>
+          <th scope="col" class="num"><button type="button" data-sort="hp">Power</button></th>
+          <th scope="col" class="num"><button type="button" data-sort="kg">Weight</button></th>
+        </tr>
+      </thead>
+      <tbody id="compare-body"></tbody>
+    </table>
+  </div>
+  <p class="compare-note">Power and weight are approximate and vary with rules, tracks and seasons. A dash means no reliable figure.</p>
+</section>
+
+<hr class="divider">
+
 <!-- ══ TERMS ══ -->
 <section id="terms">
   <div class="section-header reveal">
@@ -2340,6 +3288,12 @@
   <div class="terms-intro reveal reveal-delay-1">
     <div class="terms-intro-icon"></div>
     <p>Motorsport vocabulary can feel overwhelming at first. These definitions cover the classes, regulations, car types, and race formats mentioned across this site, grouped by category so you can find what you need quickly.</p>
+  </div>
+
+  <div class="term-tools reveal">
+    <input type="search" id="term-search" class="term-search" placeholder="Search terms, e.g. &quot;pole&quot; or &quot;flag&quot;" aria-label="Search racing terms">
+    <div class="chip-row" id="term-chips" role="group" aria-label="Filter terms by category"></div>
+    <div class="term-count" id="term-count" aria-live="polite"></div>
   </div>
 
   <div class="terms-grid">
@@ -2676,8 +3630,90 @@
       <p class="term-def">The white flag has two different meanings depending on the series. In <strong>Formula 1</strong>, it warns drivers that a <strong>slow-moving staff or medical vehicle is on track</strong> — drivers must be alert and prepared to avoid it. In <strong>IMSA and other endurance/sportscar series</strong>, it signals the <strong>final lap of the race</strong>, letting drivers know the leader has crossed the line to begin their last tour of the circuit.</p>
     </div>
 
+    <div class="term-card reveal" style="--term-color: var(--accent-nascar)">
+      <div class="term-category">Series & Championships</div>
+      <div class="term-name">NASCAR</div>
+      <p class="term-def">The <strong>National Association for Stock Car Auto Racing</strong>, founded in 1948. Its top division, the Cup Series, races heavy, powerful "stock cars" mostly on oval tracks, and it is the most-watched form of motorsport in the United States.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--accent-supergt)">
+      <div class="term-category">Series & Championships</div>
+      <div class="term-name">Super GT</div>
+      <p class="term-def">Japan's top <strong>grand touring championship</strong>, founded in 1993 as the JGTC. Two classes race together: GT500 factory cars from Toyota, Nissan and Honda, and the large GT300 class for GT3 and Japanese-built cars.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: var(--accent-dtm)">
+      <div class="term-category">Series & Championships</div>
+      <div class="term-name">DTM</div>
+      <p class="term-def">The <strong>Deutsche Tourenwagen Masters</strong>, Germany's famous touring car series. It began in 1984 with modified production cars, later raced its own high-tech silhouette cars, and has used GT3 cars since 2021.</p>
+    </div>
+
+    <div class="term-card reveal" style="--term-color: var(--accent-nascar)">
+      <div class="term-category">NASCAR Terms</div>
+      <div class="term-name">Superspeedway</div>
+      <p class="term-def">An oval track <strong>two miles or longer</strong>, like Daytona and Talladega. Cars run flat out in huge packs, and NASCAR limits engine power there for safety, first with restrictor plates from 1988 and later with tapered spacers.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--accent-nascar)">
+      <div class="term-category">NASCAR Terms</div>
+      <div class="term-name">Drafting</div>
+      <p class="term-def">Driving <strong>right behind another car</strong> to use its slipstream. Two cars nose-to-tail are faster than one alone, so drivers team up in lines, then try to slingshot past at the end. On superspeedways, drafting decides almost every race.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-2" style="--term-color: var(--accent-nascar)">
+      <div class="term-category">NASCAR Terms</div>
+      <div class="term-name">The Big One</div>
+      <p class="term-def">The nickname for the <strong>huge multi-car crash</strong> that often happens at Daytona and Talladega. With 40 cars running inches apart at around 200 mph, one small mistake can collect a dozen cars or more.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-3" style="--term-color: var(--accent-nascar)">
+      <div class="term-category">NASCAR Terms</div>
+      <div class="term-name">Stage Racing</div>
+      <p class="term-def">Since 2017, most Cup races are split into <strong>three stages</strong>. The top ten at the end of the first two stages earn bonus points, which rewards drivers for racing hard all day, not only at the finish.</p>
+    </div>
+
+    <div class="term-card reveal" style="--term-color: var(--accent-supergt)">
+      <div class="term-category">Super GT Terms</div>
+      <div class="term-name">GT500 / GT300</div>
+      <p class="term-def">Super GT's <strong>two classes</strong>. GT500 is the top class of factory-built cars with about 600+ horsepower. GT300 is a bigger, more varied class including GT3 cars. Both race at the same time, so GT500 drivers must constantly lap GT300 traffic.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--accent-supergt)">
+      <div class="term-category">Super GT Terms</div>
+      <div class="term-name">Success Ballast</div>
+      <p class="term-def">Extra <strong>weight added to cars that score points</strong>, to stop one team from running away with the title. The more you score, the heavier your car becomes, until the ballast is removed for the final round.</p>
+    </div>
+
+    <div class="term-card reveal" style="--term-color: var(--accent-dtm)">
+      <div class="term-category">DTM Terms</div>
+      <div class="term-name">Class One</div>
+      <p class="term-def">A set of <strong>shared technical rules</strong> created by the DTM and Super GT so their cars could race each other. It used 2.0-litre turbocharged four-cylinder engines and was fully adopted by both series by 2020.</p>
+    </div>
+
+    <div class="term-card reveal reveal-delay-1" style="--term-color: var(--accent-dtm)">
+      <div class="term-category">DTM Terms</div>
+      <div class="term-name">Touring Car</div>
+      <p class="term-def">A racing car <strong>based on a road-going saloon or coupé</strong>, like the Mercedes 190E or Alfa Romeo 155. Touring car racing is famous for close, contact-heavy battles because the cars look like what fans drive every day.</p>
+    </div>
+
   </div>
 </section>
+
+<hr class="divider">
+
+<!-- ══ QUIZ ══ -->
+<div class="section-strip">
+<section id="quiz">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gold">Test Yourself</p>
+    <h2 class="section-title">Did You<br>Know?</h2>
+    <p class="section-desc">Ten questions, all answered somewhere on this page. How much did you learn?</p>
+  </div>
+  <div class="quiz-card reveal" id="quiz-card" aria-live="polite">
+    <noscript><p>The quiz needs JavaScript to run.</p></noscript>
+  </div>
+</section>
+</div>
 
 <!-- ══ FOOTER ══ -->
 <div class="back-to-top-wrap">
@@ -2687,7 +3723,7 @@
 <footer>
   <div class="footer-logo">The Racing Manual</div>
   <p class="footer-text">
-    A tribute to IMSA, Formula 1, IndyCar, FIA WEC, GT3 and the golden age of GT1 racing, from 1950 to the present.
+    A tribute to IMSA, Formula 1, IndyCar, FIA WEC, GT3, the golden age of GT1, NASCAR, Super GT and DTM, from 1911 to the present.
     Made by @kuzeyfiratracing on Instagram.<br>
     The greatest cars, the bravest drivers, the most legendary races.<br><br>
     <span style="color:var(--text3);font-size:0.72rem">Historical content compiled from motorsport records. Photos and track maps from Wikimedia Commons under Creative Commons licenses or public domain; flags from flagcdn.com.</span>
@@ -2711,6 +3747,187 @@ const observer = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => observer.observe(el));
 timelineItems.forEach(el => observer.observe(el));
+
+// ── Active section highlight in nav ──
+(() => {
+  const links = [...document.querySelectorAll('nav a[href^="#"]')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const sections = [...map.keys()].map(id => document.getElementById(id)).filter(Boolean);
+  const setActive = id => {
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    const a = map.get(id);
+    if (a) {
+      const nav = a.parentElement;
+      const left = a.offsetLeft - nav.clientWidth / 2 + a.clientWidth / 2;
+      nav.scrollTo({ left, behavior: 'auto' });
+    }
+  };
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(sec => spy.observe(sec));
+})();
+
+// ── Racing terms: search + category filter ──
+(() => {
+  const cards = [...document.querySelectorAll('.term-card')];
+  const chips = document.getElementById('term-chips');
+  const search = document.getElementById('term-search');
+  const count = document.getElementById('term-count');
+  if (!chips || !search) return;
+  const catOf = c => c.querySelector('.term-category').textContent.trim();
+  const cats = ['All', ...new Set(cards.map(catOf))];
+  let active = 'All';
+  cats.forEach(cat => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = cat;
+    b.setAttribute('aria-pressed', cat === 'All');
+    b.addEventListener('click', () => {
+      active = cat;
+      chips.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === b));
+      apply();
+    });
+    chips.appendChild(b);
+  });
+  function apply() {
+    const q = search.value.trim().toLowerCase();
+    let shown = 0;
+    cards.forEach(c => {
+      const ok = (active === 'All' || catOf(c) === active) && (!q || c.textContent.toLowerCase().includes(q));
+      c.hidden = !ok;
+      if (ok) { shown++; c.classList.add('visible'); }
+    });
+    count.textContent = shown === cards.length ? cards.length + ' terms' : shown + ' of ' + cards.length + ' terms';
+  }
+  search.addEventListener('input', apply);
+  apply();
+})();
+
+// ── Car comparison table ──
+(() => {
+  const S = {
+    'IMSA': 'var(--accent-imsa)', 'Formula 1': 'var(--accent-f1)', 'WEC / Le Mans': 'var(--accent-wec)',
+    'GT3': '#16a34a', 'GT1': 'var(--accent-gt1)', 'NASCAR': 'var(--accent-nascar)',
+    'Super GT': 'var(--accent-supergt)', 'DTM': 'var(--accent-dtm)'
+  };
+  // [name, series, year, engine, hp (number or null), hpLabel, kg (number or null)]
+  const cars = [
+    ['Mercedes W11', 'Formula 1', 2020, '1.6L V6 turbo hybrid', 1000, '1,000+ hp', null],
+    ['Ferrari F2004', 'Formula 1', 2004, '3.0L V10', 900, '~900 hp', null],
+    ['McLaren MP4/4', 'Formula 1', 1988, '1.5L V6 turbo', 685, '~685 hp', null],
+    ['Renault R25', 'Formula 1', 2005, '3.0L V10', 900, '~900 hp', null],
+    ['Porsche 962', 'IMSA', 1984, 'Turbo flat-6', 700, '~700 hp', null],
+    ['Jaguar XJR-9', 'IMSA', 1988, '6.0L V12', 750, '750 hp', 880],
+    ['Cadillac DPi-V.R', 'IMSA', 2017, '5.5L V8', 600, '~600 hp', 930],
+    ['Porsche 917K', 'WEC / Le Mans', 1970, '5.0L flat-12', 630, '~630 hp', 820],
+    ['Audi R10 TDI', 'WEC / Le Mans', 2006, '5.5L V12 diesel', 641, '~640 hp', 925],
+    ['Porsche 919 Hybrid', 'WEC / Le Mans', 2015, '2.0L V4 turbo hybrid', 900, '~900 hp', 875],
+    ['Porsche 911 GT3 R', 'GT3', 2019, '4.0L flat-6', 550, '550 hp', 1220],
+    ['BMW Z4 GT3', 'GT3', 2010, '4.4L V8', 515, '~515 hp', 1190],
+    ['Audi R8 LMS Evo II', 'GT3', 2022, '5.2L V10', 585, '585 hp', 1230],
+    ['McLaren F1 GTR', 'GT1', 1995, '6.1L BMW V12', 600, '~600 hp', null],
+    ['Mercedes CLK GTR', 'GT1', 1997, '6.0L V12', 592, '~590 hp', null],
+    ['Porsche 911 GT1', 'GT1', 1996, '3.2L twin-turbo flat-6', 592, '~590 hp', null],
+    ['Plymouth Superbird', 'NASCAR', 1970, '7.0L (426) Hemi V8', null, '—', null],
+    ['Ford Thunderbird (Elliott)', 'NASCAR', 1987, '5.86L (358 ci) V8', null, '—', null],
+    ['NASCAR Next Gen', 'NASCAR', 2022, '5.86L V8', 670, '670 hp', 1451],
+    ['Nissan GT-R GT500', 'Super GT', 2014, '2.0L I4 turbo', 641, '~640 hp', null],
+    ['Toyota GR Supra GT500', 'Super GT', 2020, '2.0L I4 turbo', null, '—', null],
+    ['Honda NSX-GT', 'Super GT', 2014, '2.0L I4 turbo', null, '—', null],
+    ['Mercedes 190E Evo II', 'DTM', 1992, '2.5L I4', 370, '~370 hp', null],
+    ['Alfa Romeo 155 V6 TI', 'DTM', 1993, '2.5L V6', 420, '420 hp', null],
+    ['Audi RS 5 DTM', 'DTM', 2013, '4.0L V8 / 2.0L I4 turbo', null, '—', null],
+  ];
+  const body = document.getElementById('compare-body');
+  const filter = document.getElementById('compare-filter');
+  if (!body || !filter) return;
+  Object.keys(S).forEach(k => { const o = document.createElement('option'); o.value = k; o.textContent = k; filter.appendChild(o); });
+  const idx = { name: 0, series: 1, year: 2, engine: 3, hp: 4, kg: 6 };
+  let sortKey = 'hp', dir = -1;
+  function render() {
+    const rows = cars.filter(c => filter.value === 'all' || c[1] === filter.value).slice();
+    const i = idx[sortKey];
+    rows.sort((a, b) => {
+      const x = a[i], y = b[i];
+      if (x === null && y === null) return 0;
+      if (x === null) return 1;
+      if (y === null) return -1;
+      return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y))) * dir;
+    });
+    body.innerHTML = rows.map(c =>
+      `<tr><td>${c[0]}</td><td><span class="series-dot" style="background:${S[c[1]]}"></span>${c[1]}</td>` +
+      `<td class="num">${c[2]}</td><td>${c[3]}</td><td class="num">${c[5]}</td>` +
+      `<td class="num">${c[6] ? c[6].toLocaleString('en-US') + ' kg' : '—'}</td></tr>`).join('');
+    document.querySelectorAll('.compare-table th button').forEach(b => {
+      const on = b.dataset.sort === sortKey;
+      b.classList.toggle('sorted', on);
+      b.parentElement.setAttribute('aria-sort', on ? (dir === 1 ? 'ascending' : 'descending') : 'none');
+    });
+  }
+  document.querySelectorAll('.compare-table th button').forEach(b => b.addEventListener('click', () => {
+    const k = b.dataset.sort;
+    if (k === sortKey) dir = -dir; else { sortKey = k; dir = (k === 'hp' || k === 'kg' || k === 'year') ? -1 : 1; }
+    render();
+  }));
+  filter.addEventListener('change', render);
+  render();
+})();
+
+// ── Quiz ──
+(() => {
+  const card = document.getElementById('quiz-card');
+  if (!card) return;
+  const Q = [
+    ['How many times did Tom Kristensen win the 24 Hours of Le Mans?', ['6', '7', '9', '11'], 2, 'Nine wins earned him the nickname "Mr. Le Mans", including six in a row from 2000 to 2005.'],
+    ['Which car was the first diesel to win Le Mans?', ['Peugeot 908 HDi FAP', 'Audi R10 TDI', 'Audi R8', 'Porsche 919 Hybrid'], 1, 'The Audi R10 TDI won in 2006, only 200 days after it was unveiled.'],
+    ['What does the Indianapolis 500 winner drink in Victory Lane?', ['Champagne', 'Orange juice', 'Milk', 'Water'], 2, 'The tradition started when Louis Meyer drank buttermilk after winning in 1936.'],
+    ['Who holds the record of 200 NASCAR Cup Series wins?', ['Dale Earnhardt', 'Jimmie Johnson', 'Jeff Gordon', 'Richard Petty'], 3, '"The King" Richard Petty won 200 races, almost twice as many as anyone else.'],
+    ['Which race is NOT part of motorsport\'s Triple Crown?', ['Monaco Grand Prix', 'Daytona 500', 'Indianapolis 500', '24 Hours of Le Mans'], 1, 'The Triple Crown is Monaco, Indianapolis and Le Mans. Only Graham Hill has won all three.'],
+    ['On a timing screen, what does a purple sector mean?', ['The driver was slower than their best', 'The lap was deleted', 'The fastest time of anyone in the session', 'The driver must pit'], 2, 'Purple is the overall fastest. Green is a personal best, yellow is slower, and red means invalidated.'],
+    ['How fast was Bill Elliott\'s 1987 Talladega qualifying lap, still a NASCAR record?', ['199.5 mph', '205.3 mph', '212.809 mph', '221.4 mph'], 2, 'Restrictor plates arrived the next year, so the record will probably never be broken.'],
+    ['In which year did the DTM switch to GT3 cars?', ['2012', '2019', '2021', '2024'], 2, 'GT3 cars replaced the Class One machines in 2021.'],
+    ['Who is the only driver to win the Indy 500, the Daytona 500 and the F1 World Championship?', ['A.J. Foyt', 'Mario Andretti', 'Jimmie Johnson', 'Nigel Mansell'], 1, 'Mario Andretti won Daytona in 1967, Indianapolis in 1969 and the F1 title in 1978.'],
+    ['Which GT car won Le Mans outright in 1995, beating the prototypes?', ['Ferrari F40', 'Porsche 911 GT1', 'McLaren F1 GTR', 'Mercedes CLK GTR'], 2, 'The McLaren F1 GTR won on its first attempt, in a race with around 17 hours of rain.'],
+  ];
+  let i = 0, score = 0;
+  function show() {
+    if (i >= Q.length) return finish();
+    const [q, opts, ans, why] = Q[i];
+    card.innerHTML = `<div class="quiz-progress">Question ${i + 1} of ${Q.length}</div>
+      <div class="quiz-bar"><span style="width:${(i / Q.length) * 100}%"></span></div>
+      <div class="quiz-question">${q}</div>
+      <div class="quiz-options">${opts.map((o, k) => `<button type="button" class="quiz-option" data-k="${k}">${o}</button>`).join('')}</div>
+      <div class="quiz-feedback"></div>
+      <button type="button" class="quiz-next" hidden>${i === Q.length - 1 ? 'See my score' : 'Next question'}</button>`;
+    const fb = card.querySelector('.quiz-feedback');
+    const next = card.querySelector('.quiz-next');
+    card.querySelectorAll('.quiz-option').forEach(b => b.addEventListener('click', () => {
+      const k = +b.dataset.k;
+      card.querySelectorAll('.quiz-option').forEach(x => {
+        x.disabled = true;
+        if (+x.dataset.k === ans) x.classList.add('correct');
+      });
+      if (k === ans) { score++; fb.textContent = 'Correct! ' + why; }
+      else { b.classList.add('wrong'); fb.textContent = 'Not quite. ' + why; }
+      next.hidden = false;
+      next.focus();
+    }));
+    next.addEventListener('click', () => { i++; show(); });
+  }
+  function finish() {
+    const msg = score === Q.length ? 'Perfect score, you could run this website!' :
+      score >= 7 ? 'Great result, you clearly know your racing.' :
+      score >= 4 ? 'Not bad! Scroll back up and try again.' : 'Time for another lap of the page!';
+    card.innerHTML = `<div class="quiz-progress">Your result</div>
+      <div class="quiz-score">${score} / ${Q.length}</div>
+      <p class="quiz-feedback">${msg}</p>
+      <button type="button" class="quiz-next">Play again</button>`;
+    card.querySelector('.quiz-next').addEventListener('click', () => { i = 0; score = 0; show(); });
+  }
+  show();
+})();
 </script>
 
 </body>
