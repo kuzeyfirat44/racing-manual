@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kuzeyfirat44.github.io/racing-manual/sitemap.xml

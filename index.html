@@ -14,7 +14,9 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://kuzeyfirat44.github.io/racing-manual/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "The Racing Manual", "url": "https://kuzeyfirat44.github.io/racing-manual/", "description": "The history, legendary drivers, iconic cars and circuits of IMSA, Formula 1, IndyCar, WEC, GT3, GT1, NASCAR, Super GT and DTM, plus a plain-English guide to racing terms.", "inLanguage": "en", "dateModified": "2026-10-02", "author": {"@type": "Person", "name": "kuzeyfiratracing", "url": "https://www.instagram.com/kuzeyfiratracing/"}}</script>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('rm-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1248,6 +1250,63 @@
     .hero-collage img:nth-child(n+7) { display: none; }
   }
 
+
+  /* Track map labels: larger, brighter, readable on the dark panel */
+  .circuit-pills > div {
+    background: rgba(255,255,255,0.07) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+    padding: 0.55rem 1.1rem !important;
+  }
+  .circuit-pills span {
+    font-size: 0.82rem !important;
+    color: #f0ede8 !important;
+  }
+
+  /* Circuit facts under the new tracks */
+  .circuit-fact {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text2);
+    line-height: 1.7;
+    max-width: 820px;
+  }
+
+  /* Race weekend guide */
+  .weekend-flow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0 3rem;
+    counter-reset: step;
+  }
+  .weekend-step {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+    border-radius: 12px;
+    padding: 1.4rem 1.3rem 1.3rem;
+  }
+  .weekend-step::before {
+    counter-increment: step;
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    top: 0.9rem;
+    right: 1.1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: var(--border2);
+  }
+  .weekend-step h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.03em; margin-bottom: 0.5rem; }
+  .weekend-step p { font-size: 0.88rem; color: var(--text2); line-height: 1.65; }
+  .weekend-table { min-width: 860px; }
+  .weekend-table th, .weekend-table td { white-space: normal; vertical-align: top; line-height: 1.55; }
+  .weekend-table tbody th { text-align: left; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); font-weight: 600; width: 130px; background: var(--card); }
+  .weekend-table thead th { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .weekend-table td { color: var(--text2); }
+  .penalty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     .driver-grid { grid-template-columns: 1fr; }
@@ -1408,6 +1467,7 @@
   <a href="#dtm">DTM</a>
   <a href="#circuits">Circuits</a>
   <a href="#compare">Compare</a>
+  <a href="#weekend">Race Weekend</a>
   <a href="#terms">Racing Terms</a>
   <a href="#quiz">Quiz</a>
   <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
@@ -1436,6 +1496,7 @@
     <ul class="contents-list">
         <li><a href="#circuits"><span class="dot" style="background:var(--gold)"></span>Legendary Circuits</a></li>
         <li><a href="#compare"><span class="dot" style="background:var(--gold)"></span>Compare the Cars</a></li>
+        <li><a href="#weekend"><span class="dot" style="background:var(--gold)"></span>How a Race Weekend Works</a></li>
         <li><a href="#terms"><span class="dot" style="background:var(--gold)"></span>Racing Terms</a></li>
         <li><a href="#quiz"><span class="dot" style="background:var(--gold)"></span>Did You Know? Quiz</a></li>
         <li><a href="#sources"><span class="dot" style="background:var(--gold)"></span>Sources &amp; Credits</a></li>
@@ -1740,10 +1801,10 @@
         </div>
       </div>
       <div class="driver-body">
-        <p class="driver-bio">Seven world championships, a shared record, and a record 105 Grand Prix wins. Lewis Hamilton redefined what it means to dominate Formula 1. From his title-winning breakthrough with McLaren to his long Mercedes era, he combines raw pace with tactical brilliance and tireless consistency. His 2020 title matched Michael Schumacher's record of seven, and in 2025 he joined Ferrari.</p>
+        <p class="driver-bio">Seven world championships, a shared record, and a record 106 Grand Prix wins. Lewis Hamilton redefined what it means to dominate Formula 1. From his title-winning breakthrough with McLaren to his long Mercedes era, he combines raw pace with tactical brilliance and tireless consistency. His 2020 title matched Michael Schumacher's record of seven. He joined Ferrari in 2025 and won his first race for them in Barcelona in 2026, aged 41.</p>
         <div class="driver-achievements">
           <div class="achievement">7× F1 World Champion (2008, 2014, 2015, 2017, 2018, 2019, 2020)</div>
-          <div class="achievement">105 Grand Prix wins through 2025, the all-time record</div>
+          <div class="achievement">106 Grand Prix wins, the all-time record (as of October 2026)</div>
           <div class="achievement">Most pole positions in F1 history</div>
           <div class="achievement">Six titles with Mercedes, including the dominant W11 in 2020</div>
         </div>
@@ -2104,7 +2165,7 @@
     <div class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
         <img loading="lazy" decoding="async" src="images/img20.webp" alt="Alex Palou" class="driver-photo">
-        <div class="driver-number" style="color:#facc15">4×</div>
+        <div class="driver-number" style="color:#facc15">5×</div>
         <div class="driver-info">
           <div class="driver-name">&Aacute;lex Palou</div>
           <div class="driver-nat"><img loading="lazy" decoding="async" class="flag" src="images/flags/es.png" alt=""> Spain</div>
@@ -2112,11 +2173,11 @@
         </div>
       </div>
       <div class="driver-body">
-        <p class="driver-bio">IndyCar's modern benchmark. Álex Palou joined Chip Ganassi Racing in 2021 and won the title in his first season with the team. He then won three championships in a row from 2023 to 2025. His 2025 season was one of the most dominant in series history, and his Indianapolis 500 win made him the first Spaniard to drink the milk.</p>
+        <p class="driver-bio">IndyCar's modern benchmark. Álex Palou joined Chip Ganassi Racing in 2021 and won the title in his first season with the team. He then won four championships in a row from 2023 to 2026. His 2025 season was one of the most dominant in series history, and his Indianapolis 500 win made him the first Spaniard to drink the milk.</p>
         <div class="driver-achievements">
-          <div class="achievement">4× IndyCar Champion (2021, 2023, 2024, 2025)</div>
+          <div class="achievement">5× IndyCar Champion (2021, 2023, 2024, 2025, 2026)</div>
           <div class="achievement">2025 Indianapolis 500 winner</div>
-          <div class="achievement">8 race wins in 2025 alone</div>
+          <div class="achievement">4 titles in a row (2023&ndash;2026)</div>
           <div class="achievement">First Spanish IndyCar Champion</div>
         </div>
       </div>
@@ -2143,7 +2204,7 @@
       <h3 class="era-title">Unser Jr. vs Goodyear</h3>
       <span class="era-years">1992 Indy 500</span>
     </div>
-    <p class="era-desc">In one of the coldest Indy 500s ever, crashes eliminate many of the favourites. Al Unser Jr. holds off Scott Goodyear, who started last, by just 0.043 seconds, still the closest finish in Indianapolis 500 history. An emotional Unser Jr. tells the crowd: "You just don't know what Indy means."</p>
+    <p class="era-desc">In one of the coldest Indy 500s ever, crashes eliminate many of the favourites. Al Unser Jr. holds off Scott Goodyear, who started last, by just 0.043 seconds, which stood as the closest finish in Indianapolis 500 history for 34 years. An emotional Unser Jr. tells the crowd: "You just don't know what Indy means."</p>
   </div>
 
   <div class="era-block reveal reveal-delay-3">
@@ -2164,6 +2225,16 @@
       <span class="era-years">2011 Indy 500</span>
     </div>
     <p class="era-desc">At the 100th anniversary race, rookie J.R. Hildebrand leads into the very last corner and then hits the wall while passing a slower car. Dan Wheldon, driving a part-time entry, steers around the wreck to win the Indy 500 for the second time. It is one of the most dramatic finishes the Speedway has ever seen, and it became even more poignant when Wheldon was killed at Las Vegas five months later.</p>
+  </div>
+
+  <div class="era-block reveal reveal-delay-3">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--accent-indy), transparent)"></div>
+    <div class="bg-number">0.0233</div>
+    <div class="era-header">
+      <h3 class="era-title">Rosenqvist by a Nose</h3>
+      <span class="era-years">2026 Indy 500</span>
+    </div>
+    <p class="era-desc">The 110th Indianapolis 500 set a record of 70 lead changes, 26 of them between Álex Palou and Scott Dixon alone. In the end, Felix Rosenqvist of Meyer Shank Racing beat David Malukas to the line by 0.0233 seconds to win his first Indy 500. It is the closest finish in the race's history, beating the 1992 record.</p>
   </div>
 
   <div class="quote-block reveal" style="margin-top:3rem;border-left-color:var(--accent-indy);background:rgba(59,130,246,0.04);">
@@ -2884,6 +2955,11 @@
       <div class="timeline-year">2022</div>
       <div class="timeline-event">The Next Gen Car</div>
       <div class="timeline-detail">The seventh-generation Cup car debuts at the Daytona 500. It brings a sequential gearbox, independent rear suspension and 18-inch single-lug wheels, the biggest technical change in NASCAR's history.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2026</div>
+      <div class="timeline-event">The Chase Returns</div>
+      <div class="timeline-detail">NASCAR drops the knockout playoff format it had used since 2014 and brings back the Chase. The top 16 drivers in the points battle it out over the final 10 races with no eliminations, and a race win is now worth 55 points.</div>
     </div>
   </div>
 
@@ -3700,6 +3776,102 @@
       </div>
     </div>
   </div>
+
+  <div class="circuit-wrapper reveal reveal-delay-1" style="margin-top:3rem;">
+    <div class="circuit-label">Suzuka Circuit in Japan</div>
+    <div class="track-panel" style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
+      <img loading="lazy" decoding="async" class="track-glow" src="images/tracks/suzuka.webp" alt="Suzuka Circuit figure-eight track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <div style="display:flex;padding:0 1rem 1rem;">
+        <div class="circuit-pills">
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(20,184,166,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(20,184,166,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-supergt);border-radius:50%;box-shadow:0 0 8px var(--accent-supergt);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-supergt);font-weight:600;letter-spacing:0.1em;">5.807 KM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(20,184,166,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(20,184,166,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-supergt);border-radius:50%;box-shadow:0 0 8px var(--accent-supergt);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-supergt);font-weight:600;letter-spacing:0.1em;">18 TURNS</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(20,184,166,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(20,184,166,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-supergt);border-radius:50%;box-shadow:0 0 8px var(--accent-supergt);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-supergt);font-weight:600;letter-spacing:0.1em;">FIGURE-EIGHT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="circuit-fact">Suzuka is the only Grade 1 circuit in the world laid out as a figure-eight, with the back straight crossing over the front section on a bridge. Opened by Honda in 1962, its S Curves, Degner, Spoon and the flat-out 130R make it a favourite of F1 and Super GT drivers, and many F1 titles have been decided here.</p>
+  </div>
+
+  <div class="circuit-wrapper reveal reveal-delay-2" style="margin-top:3rem;">
+    <div class="circuit-label">Nürburgring Nordschleife in Germany</div>
+    <div class="track-panel" style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
+      <img loading="lazy" decoding="async" class="track-glow" src="images/tracks/nords.webp" alt="Nürburgring Nordschleife track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <div style="display:flex;padding:0 1rem 1rem;">
+        <div class="circuit-pills">
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(244,114,182,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(244,114,182,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-dtm);border-radius:50%;box-shadow:0 0 8px var(--accent-dtm);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-dtm);font-weight:600;letter-spacing:0.1em;">20.832 KM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(244,114,182,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(244,114,182,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-dtm);border-radius:50%;box-shadow:0 0 8px var(--accent-dtm);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-dtm);font-weight:600;letter-spacing:0.1em;">300 M+ ELEVATION</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(244,114,182,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(244,114,182,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-dtm);border-radius:50%;box-shadow:0 0 8px var(--accent-dtm);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-dtm);font-weight:600;letter-spacing:0.1em;">GREEN HELL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="circuit-fact">Jackie Stewart named it the "Green Hell" after winning there in rain and fog in 1968. Opened in 1927, the 20.8 km loop through the Eifel forest was dropped from F1 after Niki Lauda's fiery crash in 1976, but it still hosts the Nürburgring 24 Hours. The fastest lap ever, 5:19.546, was set by Timo Bernhard in the Porsche 919 Hybrid Evo in 2018.</p>
+  </div>
+
+  <div class="circuit-wrapper reveal reveal-delay-3" style="margin-top:3rem;">
+    <div class="circuit-label">Sebring International Raceway in Florida, USA</div>
+    <div class="track-panel" style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
+      <img loading="lazy" decoding="async" class="track-glow" src="images/tracks/sebring.webp" alt="Sebring International Raceway track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <div style="display:flex;padding:0 1rem 1rem;">
+        <div class="circuit-pills">
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(230,126,34,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(230,126,34,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-imsa);border-radius:50%;box-shadow:0 0 8px var(--accent-imsa);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-imsa);font-weight:600;letter-spacing:0.1em;">6.019 KM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(230,126,34,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(230,126,34,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-imsa);border-radius:50%;box-shadow:0 0 8px var(--accent-imsa);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-imsa);font-weight:600;letter-spacing:0.1em;">17 TURNS</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(230,126,34,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(230,126,34,0.3);">
+            <div style="width:8px;height:8px;background:var(--accent-imsa);border-radius:50%;box-shadow:0 0 8px var(--accent-imsa);"></div>
+            <span style="font-size:0.75rem;color:var(--accent-imsa);font-weight:600;letter-spacing:0.1em;">12 HOURS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="circuit-fact">Sebring was built on a World War II airfield, and parts of the track still use the old concrete runways. Their bumps and seams send sparks flying from the cars and make the 12 Hours of Sebring, first held in 1952, one of the hardest tests in endurance racing. It also hosted the first United States Grand Prix in 1959.</p>
+  </div>
+
+  <div class="circuit-wrapper reveal reveal-delay-2" style="margin-top:3rem;">
+    <div class="circuit-label">Mount Panorama in Bathurst, Australia</div>
+    <div class="track-panel" style="position:relative;border-radius:8px;overflow:hidden;background:#0a0a0a;">
+      <img loading="lazy" decoding="async" class="track-glow" src="images/tracks/bathurst.webp" alt="Mount Panorama Circuit Bathurst track map" style="width:100%;display:block;max-height:340px;object-fit:contain;padding:2rem;box-sizing:border-box;"/>
+      <div style="display:flex;padding:0 1rem 1rem;">
+        <div class="circuit-pills">
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(212,160,23,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(212,160,23,0.3);">
+            <div style="width:8px;height:8px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px var(--gold);"></div>
+            <span style="font-size:0.75rem;color:var(--gold);font-weight:600;letter-spacing:0.1em;">6.213 KM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(212,160,23,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(212,160,23,0.3);">
+            <div style="width:8px;height:8px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px var(--gold);"></div>
+            <span style="font-size:0.75rem;color:var(--gold);font-weight:600;letter-spacing:0.1em;">23 TURNS</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;background:rgba(212,160,23,0.15);backdrop-filter:blur(8px);padding:0.5rem 1rem;border-radius:100px;border:1px solid rgba(212,160,23,0.3);">
+            <div style="width:8px;height:8px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px var(--gold);"></div>
+            <span style="font-size:0.75rem;color:var(--gold);font-weight:600;letter-spacing:0.1em;">174 M CLIMB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="circuit-fact">When it isn't hosting races, Mount Panorama is a public road with a 60 km/h speed limit and houses along it. The track climbs 174 metres up the mountain and plunges back down through the Esses to Conrod Straight. The official lap record, 1:59.291, belongs to GT3 legend Christopher Mies in an Audi R8 LMS (2018).</p>
+  </div>
 </section>
 </div>
 
@@ -3736,6 +3908,85 @@
     </table>
   </div>
   <p class="compare-note">Power and weight are approximate and vary with rules, tracks and seasons. A dash means no reliable figure.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ══ RACE WEEKEND ══ -->
+<section id="weekend">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gold">Race Weekend Guide</p>
+    <h2 class="section-title">How a Race<br>Weekend Works</h2>
+    <p class="section-desc">Every championship follows the same basic rhythm: practise, qualify, race. The details are very different, though, and they change how each series is won.</p>
+  </div>
+
+  <div class="weekend-flow reveal">
+    <div class="weekend-step">
+      <h3>Practice</h3>
+      <p>Teams test their setup, tyres and fuel use. Drivers learn the track and find the limit. Lap times often look confusing, because every team runs a different plan.</p>
+    </div>
+    <div class="weekend-step">
+      <h3>Qualifying</h3>
+      <p>A battle against the clock that sets the starting grid. The fastest driver takes <em>pole position</em>. In F1, cars then enter <em>parc fermé</em>, so their setup is locked until the race.</p>
+    </div>
+    <div class="weekend-step">
+      <h3>The Race</h3>
+      <p>Strategy takes over: pit stops, tyres, fuel, and how teams react to <em>yellow flags</em>, safety cars and cautions. In endurance racing, drivers also take turns in the same car.</p>
+    </div>
+    <div class="weekend-step">
+      <h3>After the Flag</h3>
+      <p>Cars are checked by the officials, penalties can still change the results, and points are awarded towards the championship.</p>
+    </div>
+  </div>
+
+  <div class="table-wrap reveal">
+    <table class="compare-table weekend-table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col" style="color:var(--accent-f1)">Formula 1</th>
+          <th scope="col" style="color:var(--accent-indy)">IndyCar</th>
+          <th scope="col" style="color:var(--accent-nascar)">NASCAR Cup</th>
+          <th scope="col" style="color:var(--accent-wec)">WEC / Le Mans</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Practice</th><td>Three one-hour sessions (only one on sprint weekends).</td><td>One to three sessions, depending on the event.</td><td>Usually one short session.</td><td>Several sessions over two days, and even more at Le Mans.</td></tr>
+        <tr><th scope="row">Qualifying</th><td>Three knockout rounds: all 22 cars in Q1, 16 in Q2, the fastest 10 in Q3 fight for pole.</td><td>Road and street courses: two groups, then the Fast 12 and the Firestone Fast Six. Ovals: each car runs alone and its average speed counts.</td><td>Cars mostly run alone against the clock, and the fastest takes pole.</td><td>Qualifying by class, then <em>Hyperpole</em>: a final shootout between the fastest cars in each class.</td></tr>
+        <tr><th scope="row">The start</th><td>Standing start from the grid.</td><td>Rolling start behind the pace car.</td><td>Rolling start behind the pace car.</td><td>Rolling start behind the safety car.</td></tr>
+        <tr><th scope="row">Race length</th><td>About 305 km, roughly 90 minutes (Monaco is shorter).</td><td>Mostly around two hours. The Indy 500 runs 500 miles.</td><td>Usually three to four hours, split into three stages.</td><td>Six to ten hours at most rounds. Le Mans runs for 24 hours.</td></tr>
+        <tr><th scope="row">Pit stops</th><td>In the dry, every driver must use at least two different tyre compounds, so at least one stop.</td><td>Fuel and tyres. On road and street courses, both tyre types must be used.</td><td>Fuel and tyres, often timed to make use of caution periods.</td><td>Fuel, tyres and driver changes. Each driver must complete a minimum driving time.</td></tr>
+        <tr><th scope="row">Points for a win</th><td>25. The top ten all score.</td><td>50, plus small bonuses for pole and leading laps.</td><td>55 (from 2026), plus stage points for the top ten in each of the first two stages.</td><td>Longer races are worth more points, and Le Mans pays the most.</td></tr>
+        <tr><th scope="row">Champion</th><td>Most points over the season of about 24 races.</td><td>Most points over the season.</td><td>The Chase: the top 16 drivers battle over the final 10 races (2026 format).</td><td>Most points over the eight-round season.</td></tr>
+        <tr><th scope="row">Special rule</th><td>From 2026, active aerodynamics and an electric overtake boost replace DRS.</td><td><em>Push-to-Pass</em> gives a limited power boost on road and street courses.</td><td>Stage breaks during the race award bonus points and bunch up the field.</td><td>Several classes race at once, and Balance of Performance keeps the Hypercars close.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="compare-note">Formats as of the 2026 season. Rules change often, so details can differ from event to event.</p>
+
+  <h3 class="section-title" style="margin-top:3.5rem;margin-bottom:0.5rem;font-size:2.2rem">Penalties Explained</h3>
+  <div class="penalty-grid reveal">
+    <div class="term-card" style="--term-color: var(--gold)">
+      <div class="term-category">Most common</div>
+      <div class="term-name">Time Penalty</div>
+      <p class="term-def">Usually <strong>5 or 10 seconds</strong> added to a driver's time, or served at their next pit stop before the crew can touch the car. Given for things like causing a collision or repeatedly breaking track limits.</p>
+    </div>
+    <div class="term-card" style="--term-color: var(--red2)">
+      <div class="term-category">More serious</div>
+      <div class="term-name">Drive-Through / Stop-and-Go</div>
+      <p class="term-def">The driver must <strong>drive through the pit lane</strong> at the speed limit, or stop in their pit box for a set time, losing a lot of ground. Used for bigger offences, like speeding in the pit lane or unsafe driving.</p>
+    </div>
+    <div class="term-card" style="--term-color: var(--accent-wec)">
+      <div class="term-category">Before the race</div>
+      <div class="term-name">Grid Penalty</div>
+      <p class="term-def">The driver <strong>starts further back</strong> than they qualified. In F1, the most common reason is using more engine or gearbox parts than the rules allow for the season.</p>
+    </div>
+    <div class="term-card" style="--term-color: #94a3b8">
+      <div class="term-category">Ovals &amp; NASCAR</div>
+      <div class="term-name">Pass Through / Back of the Field</div>
+      <p class="term-def">On ovals, penalties are often served by <strong>driving through the pits</strong> under green, or by being sent to the <strong>back of the field</strong> at the next restart under caution.</p>
+    </div>
+  </div>
 </section>
 
 <hr class="divider">
@@ -4185,7 +4436,7 @@
   <div class="section-header reveal">
     <p class="section-eyebrow eyebrow-gold">Behind the Manual</p>
     <h2 class="section-title">Sources &amp;<br>Credits</h2>
-    <p class="section-desc">The facts on this page were checked against the references below. If you spot something out of date, it's most likely a record that has been broken since.</p>
+    <p class="section-desc">The facts on this page were checked against the references below. Records were last checked in October 2026, when the F1, NASCAR, WEC, IMSA, Super GT and DTM seasons were still running. If you spot something out of date, it's most likely a record that has been broken since.</p>
   </div>
 
   <div class="sources-grid reveal">
@@ -4285,12 +4536,45 @@
         <li><a href="https://sportscardigest.com/1992-dtm-season-mercedes-benz/" target="_blank" rel="noopener">Sports Car Digest: 1992 DTM season</a></li>
       </ul>
     </div>
+    <div class="sources-block">
+      <h3>2026 Season</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/2026_IndyCar_Series" target="_blank" rel="noopener">2026 IndyCar Series</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/2026_Indianapolis_500" target="_blank" rel="noopener">2026 Indianapolis 500</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/2026_24_Hours_of_Le_Mans" target="_blank" rel="noopener">2026 24 Hours of Le Mans</a></li>
+        <li><a href="https://www.formula1.com/en/latest/article/hamilton-claims-stellar-maiden-grand-prix-victory-for-ferrari-in-barcelona-as-antonelli-suffers-shock-retirement.4yCXiPLHUdcnl2BwNpqUIa" target="_blank" rel="noopener">Formula1.com: Hamilton's first Ferrari win</a></li>
+        <li><a href="https://bleacherreport.com/articles/25496017-nascar-playoff-2026-rules-format-schedule-prize-money-and-predictions" target="_blank" rel="noopener">Bleacher Report: 2026 NASCAR Chase format</a></li>
+      </ul>
+    </div>
+    <div class="sources-block">
+      <h3>Circuits</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Suzuka_International_Racing_Course" target="_blank" rel="noopener">Suzuka International Racing Course</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Nürburgring" target="_blank" rel="noopener">Nürburgring</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Sebring_International_Raceway" target="_blank" rel="noopener">Sebring International Raceway</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Mount_Panorama_Circuit" target="_blank" rel="noopener">Mount Panorama Circuit</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Indianapolis_Motor_Speedway" target="_blank" rel="noopener">Indianapolis Motor Speedway</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Circuit_de_la_Sarthe" target="_blank" rel="noopener">Circuit de la Sarthe</a></li>
+      </ul>
+    </div>
+    <div class="sources-block">
+      <h3>Race Weekend</h3>
+      <ul>
+        <li><a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_05_-_2026-02-27.pdf" target="_blank" rel="noopener">FIA 2026 F1 Sporting Regulations</a></li>
+        <li><a href="https://www.indycar.com/Fan-Info/INDYCAR-101/On-Track-Competition/Qualfiying-Procedures" target="_blank" rel="noopener">IndyCar: Qualifying procedures</a></li>
+        <li><a href="https://www.motorsport.com/wec/news/wec-to-adopt-hyperpole-qualifying-format-at-all-rounds-from-2024/10534645/" target="_blank" rel="noopener">Motorsport.com: WEC Hyperpole format</a></li>
+      </ul>
+    </div>
   </div>
 
   <details class="credits reveal">
-    <summary>Photo &amp; map credits (45 images)</summary>
+    <summary>Photo &amp; map credits (49 images)</summary>
     <p>These images come from Wikimedia Commons under Creative Commons licences or the public domain. Click a licence to see the original file. Track maps were recoloured for this site, and those adaptations are shared under the same licences. Flags are from flagcdn.com. Photos not listed here were supplied by the site author.</p>
     <ul class="credits-list">
+        <li><b>Suzuka track map (recoloured)</b> · Will Pittenger · <a href="https://commons.wikimedia.org/wiki/File:Suzuka_circuit_map--2005.svg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+        <li><b>Nordschleife track map (recoloured)</b> · Pitlane02 · <a href="https://commons.wikimedia.org/wiki/File:Circuit_N%C3%BCrburgring-2013-Nordschleife.svg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+        <li><b>Sebring track map (recoloured)</b> · Will Pittenger · <a href="https://commons.wikimedia.org/wiki/File:Sebring_International_Raceway.svg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+        <li><b>Mount Panorama track map (recoloured)</b> · Will Pittenger · <a href="https://commons.wikimedia.org/wiki/File:Mount_Panorama_street_racing_circuit_in_Australia.svg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
         <li><b>A.J. Foyt</b> · Sarah Stierch · <a href="https://commons.wikimedia.org/wiki/File:AJ_Foyt_at_Foyt_Wine_Vault_-_2015_-_Sarah_Stierch_2.jpg" target="_blank" rel="noopener">CC BY 4.0</a></li>
         <li><b>Alfa Romeo 155 V6 TI</b> · MrWalkr · <a href="https://commons.wikimedia.org/wiki/File:1993_Alfa_Romeo_155_V6_TI_DTM_ARM.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
         <li><b>Audi R10 TDI</b> · Joachim Köhler · <a href="https://commons.wikimedia.org/wiki/File:Neckarsulm-AudiForum-Audi-R10-TDI.jpg" target="_blank" rel="noopener">CC BY 3.0</a></li>
