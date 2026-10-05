@@ -11,7 +11,8 @@
 <meta property="og:title" content="WEC &amp; Le Mans · The Racing Manual">
 <meta property="og:description" content="The FIA World Endurance Championship represents the pinnacle of international sports car racing, with the 24 Hours of Le Mans as its jewel. Since its modern…">
 <meta property="og:url" content="https://kuzeyfirat44.github.io/racing-manual/wec.html">
-<meta property="og:image" content="https://kuzeyfirat44.github.io/racing-manual/og-image.png">
+<meta property="og:image" content="https://kuzeyfirat44.github.io/racing-manual/images/og/wec.jpg">
+<meta property="og:image:alt" content="The Racing Manual">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -31,6 +32,10 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
     Contents
   </button>
+  <button type="button" class="search-btn" id="search-btn" aria-label="Search the manual" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <span>Search</span><kbd>/</kbd>
+  </button>
   <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
     <span>Light</span>
@@ -45,7 +50,7 @@
         <li><a href="f1.html"><span class="dot" style="background:var(--accent-f1)"></span>Formula 1</a></li>
         <li><a href="indycar.html"><span class="dot" style="background:var(--accent-indy)"></span>IndyCar</a></li>
         <li><a href="wec.html"><span class="dot" style="background:var(--accent-wec)"></span>WEC &amp; Le Mans</a></li>
-        <li><a href="gt3.html"><span class="dot" style="background:#16a34a"></span>GT3</a></li>
+        <li><a href="gt3.html"><span class="dot" style="background:var(--accent-gt3)"></span>GT3</a></li>
         <li><a href="gt1.html"><span class="dot" style="background:var(--accent-gt1)"></span>GT1 Era</a></li>
         <li><a href="nascar.html"><span class="dot" style="background:var(--accent-nascar)"></span>NASCAR</a></li>
         <li><a href="super-gt.html"><span class="dot" style="background:var(--accent-supergt)"></span>Super GT</a></li>
@@ -104,7 +109,7 @@
     </div>
   </div>
 
-  <div class="era-block reveal reveal-delay-2">
+  <div id="story-the-original-world-championship" class="era-block reveal reveal-delay-2">
     <div class="era-accent" style="background: linear-gradient(to bottom, var(--accent-wec), transparent)"></div>
     <div class="bg-number">24</div>
     <div class="era-header">
@@ -114,7 +119,7 @@
     <p class="era-desc">The World Sportscar Championship ran under various names from 1953, with legendary battles between Ferrari, Jaguar, Mercedes-Benz, Maserati, Porsche and Aston Martin. Its golden years included the Porsche 917 versus Ferrari 512 fights of 1970&ndash;71 and the Group C era of the 1980s. Rising costs from the 3.5-litre engine rules made manufacturers leave, and the championship ended after 1992.</p>
   </div>
 
-  <div class="era-block reveal reveal-delay-3">
+  <div id="story-the-le-mans-series-era" class="era-block reveal reveal-delay-3">
     <div class="era-accent" style="background: linear-gradient(to bottom, var(--gold), transparent)"></div>
     <div class="bg-number">LM</div>
     <div class="era-header">
@@ -124,7 +129,7 @@
     <p class="era-desc">The Le Mans Series keeps endurance racing alive in Europe while the American Le Mans Series carries the flag in the USA. Audi dominates with the R8 and then the R10 TDI, which in 2006 becomes the first diesel car to win Le Mans. Peugeot strikes back with the 908 HDi FAP, starting a diesel war that wins Peugeot Le Mans in 2009.</p>
   </div>
 
-  <div class="era-block reveal reveal-delay-2">
+  <div id="story-the-modern-wec-hypercar-era" class="era-block reveal reveal-delay-2">
     <div class="era-accent" style="background: linear-gradient(to bottom, #e74c3c, transparent)"></div>
     <div class="bg-number">LMP</div>
     <div class="era-header">
@@ -139,7 +144,7 @@
   <div class="driver-grid">
 
     <!-- Tom Kristensen -->
-    <div class="driver-card reveal reveal-delay-1">
+    <div id="driver-tom-kristensen" class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
         <img loading="lazy" decoding="async" src="images/img24.webp" alt="Tom Kristensen" class="driver-photo">
         <div class="driver-number" style="color:var(--accent-wec)">2</div>
@@ -161,7 +166,7 @@
     </div>
 
     <!-- Jacky Ickx -->
-    <div class="driver-card reveal reveal-delay-2">
+    <div id="driver-jacky-ickx" class="driver-card reveal reveal-delay-2">
       <div class="driver-header">
         <img loading="lazy" decoding="async" src="images/img25.webp" alt="Jacky Ickx" class="driver-photo">
         <div class="driver-number" style="color:var(--gold)">6</div>
@@ -183,7 +188,7 @@
     </div>
 
     <!-- Sébastien Buemi -->
-    <div class="driver-card reveal reveal-delay-3">
+    <div id="driver-sebastien-buemi" class="driver-card reveal reveal-delay-3">
       <div class="driver-header">
         <img loading="lazy" decoding="async" src="images/img26.webp" alt="Sébastien Buemi" class="driver-photo">
         <div class="driver-number" style="color:#e74c3c">8</div>
@@ -211,7 +216,7 @@
   <div class="car-grid">
 
     <!-- Porsche 917K -->
-    <div class="car-card reveal reveal-delay-1">
+    <div id="car-917k" class="car-card reveal reveal-delay-1">
       <div class="car-visual">
         <img loading="lazy" decoding="async" src="images/img30.webp" alt="Porsche 917K">
       </div>
@@ -241,7 +246,7 @@
     </div>
 
     <!-- Audi R10 TDI -->
-    <div class="car-card reveal reveal-delay-2">
+    <div id="car-r10-tdi" class="car-card reveal reveal-delay-2">
       <div class="car-visual">
         <img loading="lazy" decoding="async" src="images/img31.webp" alt="Audi R10 TDI">
       </div>
@@ -271,7 +276,7 @@
     </div>
 
     <!-- Porsche 919 Hybrid -->
-    <div class="car-card reveal reveal-delay-3">
+    <div id="car-919-hybrid" class="car-card reveal reveal-delay-3">
       <div class="car-visual">
         <img loading="lazy" decoding="async" src="images/img32.webp" alt="Porsche 919 Hybrid">
       </div>
@@ -337,6 +342,18 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 <div class="tip-pop" id="tip-pop" role="tooltip" hidden></div>
+
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-box" role="dialog" aria-modal="true" aria-label="Search the manual">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="search-input" placeholder="Search drivers, cars, races, circuits, terms…" autocomplete="off" aria-controls="search-results">
+      <button type="button" class="search-close" id="search-close" aria-label="Close search">Esc</button>
+    </div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-hint" id="search-hint">Try “Senna”, “Le Mans”, “BoP” or “Daytona”.</p>
+  </div>
+</div>
 
 <script src="js/terms-data.js"></script>
 <script src="js/main.js"></script>

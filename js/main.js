@@ -56,7 +56,7 @@ timelineItems.forEach(el => observer.observe(el));
 (() => {
   const S = {
     'IMSA': 'var(--accent-imsa)', 'Formula 1': 'var(--accent-f1)', 'WEC / Le Mans': 'var(--accent-wec)',
-    'GT3': '#16a34a', 'GT1': 'var(--accent-gt1)', 'NASCAR': 'var(--accent-nascar)',
+    'GT3': 'var(--accent-gt3)', 'GT1': 'var(--accent-gt1)', 'NASCAR': 'var(--accent-nascar)',
     'Super GT': 'var(--accent-supergt)', 'DTM': 'var(--accent-dtm)'
   };
   // [name, series, year, engine, hp (number or null), hpLabel, kg (number or null)]
@@ -359,4 +359,127 @@ timelineItems.forEach(el => observer.observe(el));
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
   window.addEventListener('scroll', () => { if (!pop.hidden) hide(); }, { passive: true });
+})();
+
+// ── Site-wide search ──
+(() => {
+  const btn = document.getElementById('search-btn');
+  const overlay = document.getElementById('search-overlay');
+  const input = document.getElementById('search-input');
+  const list = document.getElementById('search-results');
+  const hint = document.getElementById('search-hint');
+  const closeBtn = document.getElementById('search-close');
+  if (!btn || !overlay) return;
+  const HINT = 'Try “Senna”, “Le Mans”, “BoP” or “Daytona”.';
+  let data = null, results = [], active = -1, lastFocus = null;
+  const norm = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const esc = t => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const load = () => new Promise(res => {
+    if (window.RM_SEARCH) return res(window.RM_SEARCH);
+    const s = document.createElement('script');
+    s.src = 'js/search-index.js';
+    s.onload = () => res(window.RM_SEARCH || []);
+    s.onerror = () => res([]);
+    document.head.appendChild(s);
+  });
+  const mark = (text, terms) => {
+    let out = esc(text);
+    terms.forEach(t => {
+      if (t.length < 2) return;
+      // highlight only where a word starts with the search term
+      const rx = new RegExp('(^|[^\\p{L}\\p{N}])(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'igu');
+      out = out.replace(rx, '$1<mark>$2</mark>');
+    });
+    return out;
+  };
+  const snippet = (x, terms) => {
+    const n = norm(x);
+    let i = -1;
+    for (const t of terms) { i = n.indexOf(t); if (i >= 0) break; }
+    if (i < 0) return x.slice(0, 120) + (x.length > 120 ? '…' : '');
+    const start = Math.max(0, i - 40);
+    return (start ? '…' : '') + x.slice(start, start + 140) + (start + 140 < x.length ? '…' : '');
+  };
+  function search(q) {
+    const terms = norm(q).split(/\s+/).filter(Boolean);
+    if (!terms.length || !data) { results = []; render(terms); return; }
+    results = data.map(d => {
+      const t = norm(d.t), x = norm(d.x), s = norm(d.s);
+      let score = 0;
+      for (const term of terms) {
+        if (t.includes(term)) score += t.startsWith(term) ? 60 : 40;
+        else if (s.includes(term)) score += 15;
+        else if (x.includes(term)) score += 8;
+        else return null;
+      }
+      if (d.k === 'Page') score += 12;
+      if (d.k === 'Driver' || d.k === 'Circuit') score += 4;
+      return { d, score };
+    }).filter(Boolean).sort((a, b) => b.score - a.score).slice(0, 30);
+    render(terms);
+  }
+  function render(terms) {
+    active = results.length ? 0 : -1;
+    list.innerHTML = results.map((r, i) => {
+      const d = r.d, href = d.p + (d.h ? '#' + d.h : '');
+      return '<li role="option"><a href="' + href + '" data-i="' + i + '"' + (i === 0 ? ' class="active"' : '') + '>' +
+        '<span class="sr-top"><span class="sr-dot" style="background:' + d.c + '"></span><span class="sr-title">' + mark(d.t, terms) +
+        '</span><span class="sr-meta">' + esc(d.k) + ' · ' + esc(d.s) + '</span></span>' +
+        '<span class="sr-snip">' + mark(snippet(d.x, terms), terms) + '</span></a></li>';
+    }).join('');
+    const q = input.value.trim();
+    hint.textContent = !q ? HINT :
+      results.length ? results.length + ' result' + (results.length === 1 ? '' : 's') + ' · ↑↓ to move, Enter to open'
+                     : 'No results for “' + q + '”.';
+  }
+  const setActive = i => {
+    const links = list.querySelectorAll('a');
+    if (!links.length) return;
+    active = (i + links.length) % links.length;
+    links.forEach((a, k) => a.classList.toggle('active', k === active));
+    links[active].scrollIntoView({ block: 'nearest' });
+  };
+  async function open() {
+    lastFocus = document.activeElement;
+    overlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    input.focus();
+    data = await load();
+    if (input.value) search(input.value);
+  }
+  function close() {
+    overlay.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+  btn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  input.addEventListener('input', () => search(input.value));
+  input.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); setActive(active + 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
+    else if (e.key === 'Enter') {
+      const a = list.querySelectorAll('a')[active];
+      if (a) { e.preventDefault(); a.click(); }
+    }
+  });
+  list.addEventListener('click', e => { if (e.target.closest('a')) close(); });
+  document.addEventListener('keydown', e => {
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+    if (e.key === 'Escape' && !overlay.hidden) { close(); return; }
+    if (overlay.hidden && ((e.key === '/' && !typing) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'))) {
+      e.preventDefault(); open();
+    }
+  });
+  // flash the item you jumped to
+  const flash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const el = id && document.getElementById(id);
+    if (!el || el.tagName === 'SECTION') return;
+    el.classList.add('visible');
+    el.classList.remove('search-hit'); void el.offsetWidth; el.classList.add('search-hit');
+  };
+  window.addEventListener('hashchange', flash);
+  flash();
 })();

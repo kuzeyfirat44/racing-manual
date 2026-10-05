@@ -11,7 +11,8 @@
 <meta property="og:title" content="IndyCar · The Racing Manual">
 <meta property="og:description" content="IndyCar is North America&#x27;s premier single-seater series and the only championship that races on ovals, street circuits and road courses in a single season.…">
 <meta property="og:url" content="https://kuzeyfirat44.github.io/racing-manual/indycar.html">
-<meta property="og:image" content="https://kuzeyfirat44.github.io/racing-manual/og-image.png">
+<meta property="og:image" content="https://kuzeyfirat44.github.io/racing-manual/images/og/indycar.jpg">
+<meta property="og:image:alt" content="The Racing Manual">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -31,6 +32,10 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
     Contents
   </button>
+  <button type="button" class="search-btn" id="search-btn" aria-label="Search the manual" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <span>Search</span><kbd>/</kbd>
+  </button>
   <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
     <span>Light</span>
@@ -45,7 +50,7 @@
         <li><a href="f1.html"><span class="dot" style="background:var(--accent-f1)"></span>Formula 1</a></li>
         <li><a href="indycar.html"><span class="dot" style="background:var(--accent-indy)"></span>IndyCar</a></li>
         <li><a href="wec.html"><span class="dot" style="background:var(--accent-wec)"></span>WEC &amp; Le Mans</a></li>
-        <li><a href="gt3.html"><span class="dot" style="background:#16a34a"></span>GT3</a></li>
+        <li><a href="gt3.html"><span class="dot" style="background:var(--accent-gt3)"></span>GT3</a></li>
         <li><a href="gt1.html"><span class="dot" style="background:var(--accent-gt1)"></span>GT1 Era</a></li>
         <li><a href="nascar.html"><span class="dot" style="background:var(--accent-nascar)"></span>NASCAR</a></li>
         <li><a href="super-gt.html"><span class="dot" style="background:var(--accent-supergt)"></span>Super GT</a></li>
@@ -104,42 +109,42 @@
   </div>
 
   <div class="timeline timeline-indy reveal reveal-delay-2">
-    <div class="timeline-item">
+    <div id="event-the-brickyard-opens-the-first-indy-500" class="timeline-item">
       <div class="timeline-year">1909&ndash;1911</div>
       <div class="timeline-event">The Brickyard Opens & The First Indy 500</div>
       <div class="timeline-detail">Carl Fisher builds the Indianapolis Motor Speedway in 1909 and resurfaces it with 3.2 million paving bricks, which gives the track its nickname. On 30 May 1911 Ray Harroun wins the first Indianapolis 500 in the Marmon Wasp, driving solo with a rear-view mirror instead of a riding mechanic.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-usac-takes-control" class="timeline-item">
       <div class="timeline-year">1956</div>
       <div class="timeline-event">USAC Takes Control</div>
       <div class="timeline-detail">After AAA withdraws from motorsport, the United States Auto Club (USAC) takes over the American national championship. The front-engine roadster era follows, with legends like A.J. Foyt and Parnelli Jones.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-the-rear-engine-revolution" class="timeline-item">
       <div class="timeline-year">1965</div>
       <div class="timeline-event">The Rear-Engine Revolution</div>
       <div class="timeline-detail">Jim Clark wins the Indy 500 in the rear-engined Lotus 38, the first rear-engined car to win the race. European F1 technology takes over and the front-engine roadster disappears almost overnight.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-cart-is-born" class="timeline-item">
       <div class="timeline-year">1979</div>
       <div class="timeline-event">CART Is Born</div>
       <div class="timeline-detail">Team owners led by Roger Penske, Pat Patrick and Dan Gurney break away from USAC to form Championship Auto Racing Teams (CART). Through the 1980s and early 90s CART becomes a global rival to F1, attracting stars like Nigel Mansell, who wins the 1993 title as the reigning F1 World Champion.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-the-split" class="timeline-item">
       <div class="timeline-year">1996&ndash;2007</div>
       <div class="timeline-event">The Split</div>
       <div class="timeline-detail">Speedway owner Tony George founds the rival Indy Racing League (IRL), built around the Indy 500. American open-wheel racing is divided into two series (CART, later Champ Car, and the IRL). The split drains sponsors, fans and TV audiences for more than a decade, while NASCAR's popularity booms.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-reunification" class="timeline-item">
       <div class="timeline-year">2008</div>
       <div class="timeline-event">Reunification</div>
       <div class="timeline-detail">Champ Car is absorbed into the IRL and the two series finally become one again, later branded the IndyCar Series. For the first time in twelve years, every top American open-wheel team races for the same championship.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-the-dallara-dw12" class="timeline-item">
       <div class="timeline-year">2012</div>
       <div class="timeline-event">The Dallara DW12</div>
       <div class="timeline-detail">A new spec chassis debuts, named in honour of Dan Wheldon, the two-time Indy 500 winner who tested it before losing his life at Las Vegas in 2011. Chevrolet and Honda supply turbocharged V6 engines, a rivalry that continues today.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-the-penske-era-aeroscreen-hybrid-power" class="timeline-item">
       <div class="timeline-year">2020&ndash;2024</div>
       <div class="timeline-event">The Penske Era, Aeroscreen & Hybrid Power</div>
       <div class="timeline-detail">Roger Penske buys IndyCar and the Indianapolis Motor Speedway. The Aeroscreen cockpit protection is introduced in 2020, and in July 2024 hybrid energy recovery arrives, adding a driver-deployed electric boost to the V6 engines.</div>
@@ -151,7 +156,7 @@
   <div class="driver-grid grid-2x2">
 
     <!-- A.J. Foyt -->
-    <div class="driver-card reveal reveal-delay-1">
+    <div id="driver-a-j-foyt" class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
         <img loading="lazy" decoding="async" src="images/img17.webp" alt="A.J. Foyt" class="driver-photo">
         <div class="driver-number" style="color:var(--accent-indy)">14</div>
@@ -173,7 +178,7 @@
     </div>
 
     <!-- Mario Andretti -->
-    <div class="driver-card reveal reveal-delay-2">
+    <div id="driver-mario-andretti" class="driver-card reveal reveal-delay-2">
       <div class="driver-header">
         <img loading="lazy" decoding="async" src="images/img18.webp" alt="Mario Andretti" class="driver-photo">
         <div class="driver-number" style="color:#60a5fa">2</div>
@@ -195,7 +200,7 @@
     </div>
 
     <!-- Scott Dixon -->
-    <div class="driver-card reveal reveal-delay-3">
+    <div id="driver-scott-dixon" class="driver-card reveal reveal-delay-3">
       <div class="driver-header">
         <img loading="lazy" decoding="async" src="images/img19.webp" alt="Scott Dixon" class="driver-photo">
         <div class="driver-number" style="color:var(--gold)">9</div>
@@ -217,7 +222,7 @@
     </div>
 
     <!-- Alex Palou -->
-    <div class="driver-card reveal reveal-delay-1">
+    <div id="driver-alex-palou" class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
         <img loading="lazy" decoding="async" src="images/img20.webp" alt="Alex Palou" class="driver-photo">
         <div class="driver-number" style="color:#facc15">10</div>
@@ -242,7 +247,7 @@
 
   <h3 class="section-title" style="margin-top:4rem;margin-bottom:2rem;font-size:2.5rem">Iconic Races</h3>
 
-  <div class="era-block reveal reveal-delay-1">
+  <div id="story-the-first-indianapolis-500" class="era-block reveal reveal-delay-1">
     <div class="era-accent" style="background: linear-gradient(to bottom, var(--accent-indy), transparent)"></div>
     <div class="bg-number">1911</div>
     <div class="era-header">
@@ -252,7 +257,7 @@
     <p class="era-desc">Forty cars take the start of the International 500-Mile Sweepstakes on the brand-new brick surface. Ray Harroun's Marmon Wasp is the only single-seater in the field. Instead of carrying a riding mechanic to watch for traffic, Harroun fits a mirror, one of the first used on a car. He averages 74.6 mph and wins in just under seven hours, starting a tradition that is now more than a century old.</p>
   </div>
 
-  <div class="era-block reveal reveal-delay-2">
+  <div id="story-unser-jr-vs-goodyear" class="era-block reveal reveal-delay-2">
     <div class="era-accent" style="background: linear-gradient(to bottom, var(--gold), transparent)"></div>
     <div class="bg-number">0.043</div>
     <div class="era-header">
@@ -262,7 +267,7 @@
     <p class="era-desc">In one of the coldest Indy 500s ever, crashes eliminate many of the favourites. Al Unser Jr. holds off Scott Goodyear, who started last, by just 0.043 seconds, which stood as the closest finish in Indianapolis 500 history for 34 years. An emotional Unser Jr. tells the crowd: "You just don't know what Indy means."</p>
   </div>
 
-  <div class="era-block reveal reveal-delay-3">
+  <div id="story-hornish-snatches-it-at-the-line" class="era-block reveal reveal-delay-3">
     <div class="era-accent" style="background: linear-gradient(to bottom, #60a5fa, transparent)"></div>
     <div class="bg-number">2006</div>
     <div class="era-header">
@@ -272,7 +277,7 @@
     <p class="era-desc">19-year-old rookie Marco Andretti, grandson of Mario, looks certain to win after passing his own father Michael in the closing laps. On the final straight Sam Hornish Jr. slingshots out of his slipstream and wins by 0.0635 seconds. It is the first last-lap pass for the win in Indy 500 history, and the family's famous "Andretti Curse" at Indianapolis strikes again.</p>
   </div>
 
-  <div class="era-block reveal reveal-delay-2">
+  <div id="story-wheldon-s-final-victory" class="era-block reveal reveal-delay-2">
     <div class="era-accent" style="background: linear-gradient(to bottom, #e74c3c, transparent)"></div>
     <div class="bg-number">100</div>
     <div class="era-header">
@@ -282,7 +287,7 @@
     <p class="era-desc">At the 100th anniversary race, rookie J.R. Hildebrand leads into the very last corner and then hits the wall while passing a slower car. Dan Wheldon, driving a part-time entry, steers around the wreck to win the Indy 500 for the second time. It is one of the most dramatic finishes the Speedway has ever seen, and it became even more poignant when Wheldon was killed at Las Vegas five months later.</p>
   </div>
 
-  <div class="era-block reveal reveal-delay-3">
+  <div id="story-rosenqvist-by-a-nose" class="era-block reveal reveal-delay-3">
     <div class="era-accent" style="background: linear-gradient(to bottom, var(--accent-indy), transparent)"></div>
     <div class="bg-number">0.0233</div>
     <div class="era-header">
@@ -326,6 +331,18 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 <div class="tip-pop" id="tip-pop" role="tooltip" hidden></div>
+
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-box" role="dialog" aria-modal="true" aria-label="Search the manual">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="search-input" placeholder="Search drivers, cars, races, circuits, terms…" autocomplete="off" aria-controls="search-results">
+      <button type="button" class="search-close" id="search-close" aria-label="Close search">Esc</button>
+    </div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-hint" id="search-hint">Try “Senna”, “Le Mans”, “BoP” or “Daytona”.</p>
+  </div>
+</div>
 
 <script src="js/terms-data.js"></script>
 <script src="js/main.js"></script>

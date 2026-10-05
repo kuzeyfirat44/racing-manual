@@ -11,7 +11,8 @@
 <meta property="og:title" content="DTM · The Racing Manual">
 <meta property="og:description" content="The DTM is Germany&#x27;s home of touring car and GT racing. From the boxy homologation specials of the 1980s to today&#x27;s GT3 cars, it has always been a…">
 <meta property="og:url" content="https://kuzeyfirat44.github.io/racing-manual/dtm.html">
-<meta property="og:image" content="https://kuzeyfirat44.github.io/racing-manual/og-image.png">
+<meta property="og:image" content="https://kuzeyfirat44.github.io/racing-manual/images/og/dtm.jpg">
+<meta property="og:image:alt" content="The Racing Manual">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -31,6 +32,10 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
     Contents
   </button>
+  <button type="button" class="search-btn" id="search-btn" aria-label="Search the manual" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <span>Search</span><kbd>/</kbd>
+  </button>
   <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
     <span>Light</span>
@@ -45,7 +50,7 @@
         <li><a href="f1.html"><span class="dot" style="background:var(--accent-f1)"></span>Formula 1</a></li>
         <li><a href="indycar.html"><span class="dot" style="background:var(--accent-indy)"></span>IndyCar</a></li>
         <li><a href="wec.html"><span class="dot" style="background:var(--accent-wec)"></span>WEC &amp; Le Mans</a></li>
-        <li><a href="gt3.html"><span class="dot" style="background:#16a34a"></span>GT3</a></li>
+        <li><a href="gt3.html"><span class="dot" style="background:var(--accent-gt3)"></span>GT3</a></li>
         <li><a href="gt1.html"><span class="dot" style="background:var(--accent-gt1)"></span>GT1 Era</a></li>
         <li><a href="nascar.html"><span class="dot" style="background:var(--accent-nascar)"></span>NASCAR</a></li>
         <li><a href="super-gt.html"><span class="dot" style="background:var(--accent-supergt)"></span>Super GT</a></li>
@@ -105,37 +110,37 @@
   </div>
 
   <div class="timeline timeline-dtm reveal reveal-delay-2">
-    <div class="timeline-item">
+    <div id="event-from-production-cars-to-dtm" class="timeline-item">
       <div class="timeline-year">1984&ndash;1986</div>
       <div class="timeline-event">From Production Cars to DTM</div>
       <div class="timeline-detail">Germany's touring car championship starts in 1984 as the Deutsche Produktionswagen-Meisterschaft and is renamed DTM in 1986. Factory-backed BMW M3s, Mercedes 190Es and Ford Sierras soon battle in front of huge crowds.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-the-homologation-specials" class="timeline-item">
       <div class="timeline-year">1988&ndash;1992</div>
       <div class="timeline-event">The Homologation Specials</div>
       <div class="timeline-detail">Manufacturers build road-going "evolution" models to race. Klaus Ludwig wins the 1988 title in a Ford Sierra RS500 and the 1992 title in the winged Mercedes 190E Evo II, as Mercedes takes a 1-2-3 in the standings.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-class-1-the-alfa-invasion" class="timeline-item">
       <div class="timeline-year">1993</div>
       <div class="timeline-event">Class 1 & The Alfa Invasion</div>
       <div class="timeline-detail">New Class 1 rules allow far more freedom. Alfa Romeo arrives with the four-wheel-drive 155 V6 TI and Nicola Larini wins the title in its first season, winning 11 of 22 races.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-itc-collapse" class="timeline-item">
       <div class="timeline-year">1995&ndash;1996</div>
       <div class="timeline-event">ITC & Collapse</div>
       <div class="timeline-detail">The series goes international as the ITC, but the technology and costs explode. Alfa Romeo and Opel pull out after 1996 and the championship collapses.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-reborn-as-the-masters" class="timeline-item">
       <div class="timeline-year">2000</div>
       <div class="timeline-event">Reborn as the Masters</div>
       <div class="timeline-detail">The DTM returns as the Deutsche Tourenwagen Masters with V8 silhouette racers from Mercedes, Opel and Audi. Bernd Schneider wins the first two titles of the new era.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-class-one-turbo-era" class="timeline-item">
       <div class="timeline-year">2019</div>
       <div class="timeline-event">Class One Turbo Era</div>
       <div class="timeline-detail">DTM switches to 2.0-litre turbocharged four-cylinder engines under "Class One" rules shared with Japan's Super GT. René Rast wins back-to-back titles in 2019 and 2020 for Audi.</div>
     </div>
-    <div class="timeline-item">
+    <div id="event-gt3-a-new-owner" class="timeline-item">
       <div class="timeline-year">2021&ndash;2023</div>
       <div class="timeline-event">GT3 & A New Owner</div>
       <div class="timeline-detail">With manufacturers leaving, DTM switches to GT3 cars in 2021, opening the grid to Mercedes-AMG, BMW, Porsche, Ferrari, Lamborghini and more. In 2023 the German motoring club ADAC takes over the series.</div>
@@ -147,7 +152,7 @@
   <div class="driver-grid">
 
     <!-- Bernd Schneider -->
-    <div class="driver-card reveal reveal-delay-1">
+    <div id="driver-bernd-schneider" class="driver-card reveal reveal-delay-1">
       <div class="driver-header">
         <img src="images/img50.webp" alt="Bernd Schneider" class="driver-photo">
         <div class="driver-number" style="color:var(--accent-dtm)">1</div>
@@ -169,7 +174,7 @@
     </div>
 
     <!-- Klaus Ludwig -->
-    <div class="driver-card reveal reveal-delay-2">
+    <div id="driver-klaus-ludwig" class="driver-card reveal reveal-delay-2">
       <div class="driver-header">
         <img src="images/img51.webp" alt="Klaus Ludwig" class="driver-photo">
         <div class="driver-number" style="color:#e5e7eb">3</div>
@@ -191,7 +196,7 @@
     </div>
 
     <!-- René Rast -->
-    <div class="driver-card reveal reveal-delay-3">
+    <div id="driver-rene-rast" class="driver-card reveal reveal-delay-3">
       <div class="driver-header">
         <img src="images/img52.webp" alt="René Rast" class="driver-photo">
         <div class="driver-number" style="color:#a78bfa">33</div>
@@ -219,7 +224,7 @@
   <div class="car-grid">
 
     <!-- Mercedes-Benz 190E 2.5-16 Evolution II -->
-    <div class="car-card reveal reveal-delay-1">
+    <div id="car-190e-evo-ii" class="car-card reveal reveal-delay-1">
       <div class="car-visual">
         <img src="images/img53.webp" alt="Mercedes-Benz 190E 2.5-16 Evolution II">
       </div>
@@ -249,7 +254,7 @@
     </div>
 
     <!-- Alfa Romeo 155 V6 TI -->
-    <div class="car-card reveal reveal-delay-2">
+    <div id="car-155-v6-ti" class="car-card reveal reveal-delay-2">
       <div class="car-visual">
         <img src="images/img54.webp" alt="Alfa Romeo 155 V6 TI">
       </div>
@@ -279,7 +284,7 @@
     </div>
 
     <!-- Audi RS 5 DTM -->
-    <div class="car-card reveal reveal-delay-3">
+    <div id="car-rs-5-dtm" class="car-card reveal reveal-delay-3">
       <div class="car-visual">
         <img src="images/img55.webp" alt="Audi RS 5 DTM">
       </div>
@@ -345,6 +350,18 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 <div class="tip-pop" id="tip-pop" role="tooltip" hidden></div>
+
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-box" role="dialog" aria-modal="true" aria-label="Search the manual">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="search-input" placeholder="Search drivers, cars, races, circuits, terms…" autocomplete="off" aria-controls="search-results">
+      <button type="button" class="search-close" id="search-close" aria-label="Close search">Esc</button>
+    </div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-hint" id="search-hint">Try “Senna”, “Le Mans”, “BoP” or “Daytona”.</p>
+  </div>
+</div>
 
 <script src="js/terms-data.js"></script>
 <script src="js/main.js"></script>
