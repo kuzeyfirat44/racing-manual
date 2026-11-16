@@ -63,11 +63,21 @@ nav > a.nav-car.nav-rm:hover { background: rgba(212,160,23,0.14); color: #fff; b
 /* the four cars */
 .cm-car-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
 .cm-car {
+  --pad: 1.75rem;
   background: var(--card);
   border: 1px solid var(--border);
   border-top: 3px solid var(--car);
   border-radius: 12px;
-  padding: 1.75rem;
+  padding: var(--pad);
+  overflow: hidden;
+}
+.cm-car-photo {
+  display: block;
+  width: calc(100% + var(--pad) * 2);
+  margin: calc(var(--pad) * -1) calc(var(--pad) * -1) 1.25rem;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--bg3);
 }
 .cm-car-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; letter-spacing: 0.03em; line-height: 1.05; color: var(--car); font-weight: 400; }
 .cm-car-tag { font-size: 0.78rem; color: var(--text3); margin: 0.3rem 0 0.9rem; }
@@ -117,7 +127,7 @@ nav > a.nav-car.nav-rm:hover { background: rgba(212,160,23,0.14); color: #fff; b
 }
 @media (max-width: 700px) {
   .cm-car-grid, .cm-topic-grid, .cm-award-grid, .cm-extra-grid { grid-template-columns: 1fr; }
-  .cm-car { padding: 1.4rem; }
+  .cm-car { --pad: 1.4rem; }
   .cm-spec { grid-template-columns: 4.5rem 1fr; }
 }
 
@@ -125,3 +135,7 @@ nav > a.nav-car.nav-rm:hover { background: rgba(212,160,23,0.14); color: #fff; b
 .hero-corner.hero-corner-rm { border-color: #d4a017; color: #f0c040; background: rgba(7,10,15,0.55); }
 .hero-corner.hero-corner-rm:hover { background: rgba(212,160,23,0.18); color: #fff; }
 :root.car[data-theme="light"] .hero-corner.hero-corner-rm { border-color: #8b5e00; color: #7a5200; background: rgba(241,245,250,0.7); }
+
+/* hero photo collage: four cars in a 2x2 grid */
+.cm-collage { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); opacity: 0.26; }
+:root.car[data-theme="light"] .cm-collage { opacity: 0.2; }
