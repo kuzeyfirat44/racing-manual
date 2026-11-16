@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" class="car">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Car Manual · Learn How Cars Work</title>
+<meta name="description" content="Learn the basics and advanced ideas of how a car works, using the Subaru BRZ GT300, Lancer Evo III, Mazda MX-5 and Honda Civic Type R EK9, and find out which car is best at what.">
+<meta name="theme-color" content="#070a0f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Car Manual">
+<meta property="og:title" content="The Car Manual · Learn How Cars Work">
+<meta property="og:url" content="https://kuzeyfirat44.github.io/racing-manual/car-manual.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://kuzeyfirat44.github.io/racing-manual/car-manual.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('rm-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/car.css">
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <a class="hero-corner hero-corner-rm" href="index.html">The Racing Manual</a>
+  <div class="hero-track"></div>
+  <div class="speed-lines">
+    <div class="speed-line" style="--dur:3s;--delay:0s;--top:15%"></div>
+    <div class="speed-line" style="--dur:2.5s;--delay:0.5s;--top:30%"></div>
+    <div class="speed-line" style="--dur:4s;--delay:1s;--top:45%"></div>
+    <div class="speed-line" style="--dur:2.8s;--delay:1.8s;--top:60%"></div>
+    <div class="speed-line" style="--dur:3.5s;--delay:2.5s;--top:75%"></div>
+    <div class="speed-line" style="--dur:2.2s;--delay:0.8s;--top:88%"></div>
+  </div>
+  <p class="hero-eyebrow">How Cars Really Work</p>
+  <h1 class="hero-title">The <span class="gold">Car</span> Manual</h1>
+  <p class="hero-sub">Start with the basics of how a car moves, then go deeper into turbos, differentials and aero. Four cars teach it all: the <span style="color:var(--c-brz)">Subaru BRZ GT300</span>, <span style="color:var(--c-evo)">Mitsubishi Lancer Evo III</span>, <span style="color:var(--c-mx5)">Mazda MX-5</span> and <span style="color:var(--c-ek9)">Honda Civic Type R EK9</span>.</p>
+  <div class="hero-badges">
+    <a href="#cars" class="badge badge-brz">The Four Cars</a>
+    <a href="#basics" class="badge badge-evo">Car Basics</a>
+    <a href="#advanced" class="badge badge-mx5">Advanced</a>
+    <a href="#winners" class="badge badge-ek9">Best At What</a>
+    <a href="#more" class="badge badge-more">More Cars</a>
+  </div>
+  <div class="scroll-hint"><div class="scroll-dot"></div><span>Scroll to explore</span></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="car-manual.html">The Car Manual</a>
+  <button type="button" class="contents-btn" id="contents-btn" aria-expanded="false" aria-controls="contents-panel">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+    Contents
+  </button>
+  <button type="button" class="search-btn" id="search-btn" aria-label="Search the manual" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <span>Search</span><kbd>/</kbd>
+  </button>
+  <a class="nav-car nav-rm" href="index.html">The Racing Manual</a>
+  <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <span>Light</span>
+  </button>
+</nav>
+
+<div class="contents-panel" id="contents-panel" hidden>
+  <div class="contents-group">
+    <h3>The Car Manual</h3>
+    <ul class="contents-list">
+        <li><a href="#cars"><span class="dot" style="background:var(--c-brz)"></span>The Four Cars</a></li>
+        <li><a href="#basics"><span class="dot" style="background:var(--c-evo)"></span>Car Basics</a></li>
+        <li><a href="#advanced"><span class="dot" style="background:var(--c-mx5)"></span>Advanced Knowledge</a></li>
+        <li><a href="#winners"><span class="dot" style="background:var(--c-ek9)"></span>Best At What</a></li>
+        <li><a href="#more"><span class="dot" style="background:var(--gold)"></span>More Cars</a></li>
+    </ul>
+  </div>
+  <div class="contents-group">
+    <h3>The Racing Manual</h3>
+    <ul class="contents-list">
+        <li><a href="index.html"><span class="dot" style="background:var(--text3)"></span>Home</a></li>
+        <li><a href="super-gt.html"><span class="dot" style="background:var(--accent-supergt)"></span>Super GT</a></li>
+        <li><a href="gt3.html"><span class="dot" style="background:var(--accent-gt3)"></span>GT3</a></li>
+        <li><a href="compare.html"><span class="dot" style="background:#d4a017"></span>Compare the Race Cars</a></li>
+        <li><a href="terms.html"><span class="dot" style="background:#d4a017"></span>Racing Terms</a></li>
+    </ul>
+  </div>
+</div>
+
+<main class="page-main">
+
+<!-- FOUR CARS -->
+<div class="section-strip">
+<section id="cars">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gold">Four Teachers</p>
+    <h2 class="section-title">Meet the<br>Four Cars</h2>
+    <p class="section-desc">Each car teaches a different lesson about how cars work. Figures are approximate and vary by year and market.</p>
+  </div>
+  <div class="cm-car-grid">
+    <article id="car-brz" class="cm-car reveal reveal-delay-1" style="--car:var(--c-brz)">
+      <h3 class="cm-car-name">Subaru BRZ GT300</h3>
+      <p class="cm-car-tag">Super GT race car · rear-wheel drive</p>
+      <p class="cm-car-note">Often called the BRZ GT3. Strictly, it is a GT300-class car built to Japan&#x27;s own rules that races FIA GT3 cars under Balance of Performance.</p>
+      <dl class="cm-specs"><div class="cm-spec"><dt>Engine</dt><dd>3.0 L flat-six twin-turbo from 2026 (the EJ20 turbo flat-four before that)</dd></div><div class="cm-spec"><dt>Power</dt><dd>Set by BoP. The road BRZ makes about 228 hp</dd></div><div class="cm-spec"><dt>Weight</dt><dd>Set by BoP (1,225 kg at one 2022 round). Road BRZ about 1,300 kg</dd></div><div class="cm-spec"><dt>Drive</dt><dd>Rear-wheel drive</dd></div></dl>
+      <p class="cm-line"><b>What it teaches.</b> Low engine, low centre of gravity. The boxer engine sits low and behind the front axle, so the car turns in cleanly.</p>
+      <p class="cm-line"><b>Where it thrives.</b> Corner entry, balance and long races where tyre care matters.</p>
+    </article>
+    <article id="car-evo" class="cm-car reveal reveal-delay-2" style="--car:var(--c-evo)">
+      <h3 class="cm-car-name">Mitsubishi Lancer Evolution III</h3>
+      <p class="cm-car-tag">1995-96 · turbo all-wheel drive</p>
+      <p class="cm-car-note">The Evo III is the third step in the road-going rally homologation line that built the Evo name.</p>
+      <dl class="cm-specs"><div class="cm-spec"><dt>Engine</dt><dd>2.0 L turbo inline-four (4G63)</dd></div><div class="cm-spec"><dt>Power</dt><dd>270 PS, about 266 hp (Japan's informal cap)</dd></div><div class="cm-spec"><dt>Weight</dt><dd>About 1,200 kg</dd></div><div class="cm-spec"><dt>Drive</dt><dd>All-wheel drive, 5-speed manual</dd></div></dl>
+      <p class="cm-line"><b>What it teaches.</b> Boost plus traction. A turbo makes big power on demand, and four driven wheels put it down in almost any weather.</p>
+      <p class="cm-line"><b>Where it thrives.</b> Wet, gravel and low-grip roads, and hard launches out of slow corners.</p>
+    </article>
+    <article id="car-mx5" class="cm-car reveal reveal-delay-3" style="--car:var(--c-mx5)">
+      <h3 class="cm-car-name">Mazda MX-5 (ND)</h3>
+      <p class="cm-car-tag">2015 onward · rear-wheel drive roadster</p>
+      <p class="cm-car-note">The best-selling two-seat sports car in history, and the clearest example of &quot;light is right&quot;.</p>
+      <dl class="cm-specs"><div class="cm-spec"><dt>Engine</dt><dd>2.0 L naturally aspirated four (SKYACTIV-G)</dd></div><div class="cm-spec"><dt>Power</dt><dd>About 181 hp (varies by market)</dd></div><div class="cm-spec"><dt>Weight</dt><dd>About 1,050 kg</dd></div><div class="cm-spec"><dt>Drive</dt><dd>Rear-wheel drive, 6-speed manual</dd></div></dl>
+      <p class="cm-line"><b>What it teaches.</b> Light is right. Low weight and near 50/50 balance make every steering, brake and throttle input easy to feel.</p>
+      <p class="cm-line"><b>Where it thrives.</b> Learning car control, twisty roads and low running costs.</p>
+    </article>
+    <article id="car-ek9" class="cm-car reveal reveal-delay-1" style="--car:var(--c-ek9)">
+      <h3 class="cm-car-name">Honda Civic Type R (EK9)</h3>
+      <p class="cm-car-tag">1997-2000 · front-wheel drive hot hatch</p>
+      <p class="cm-car-note">Built by hand-finishing the engine, with a limited-slip differential and no sound deadening to save weight.</p>
+      <dl class="cm-specs"><div class="cm-spec"><dt>Engine</dt><dd>1.6 L naturally aspirated VTEC four (B16B)</dd></div><div class="cm-spec"><dt>Power</dt><dd>185 PS, about 182 hp, peaking at 8,200 rpm</dd></div><div class="cm-spec"><dt>Weight</dt><dd>About 1,050 kg</dd></div><div class="cm-spec"><dt>Drive</dt><dd>Front-wheel drive, 5-speed manual, helical LSD</dd></div></dl>
+      <p class="cm-line"><b>What it teaches.</b> Revs and gearing. A high-revving engine and short gears make speed from engine speed rather than boost.</p>
+      <p class="cm-line"><b>Where it thrives.</b> Mountain roads, track days and everyday use as a practical hatchback.</p>
+    </article>
+  </div>
+</section>
+</div>
+
+<!-- BASICS -->
+<div class="section-strip">
+<section id="basics">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gold">Start Here</p>
+    <h2 class="section-title">Car<br>Basics</h2>
+    <p class="section-desc">Seven ideas explain most of what a car does. Each one points back to one of the four cars so you can see it at work.</p>
+  </div>
+  <div class="cm-topic-grid">
+    <article class="cm-topic reveal reveal-delay-1">
+      <h3>Engine</h3>
+      <p>An engine burns fuel and air inside cylinders. Each burn pushes a piston, and the pistons turn the crankshaft. Displacement is the total cylinder volume, so a 2.0 L engine moves 2,000 cc of air per two crank turns, in theory. Burning more air and fuel per turn makes more power.</p>
+      <p class="cm-see"><b>See it in:</b> The MX-5 and EK9 both run this four-stroke cycle, but the EK9 spins it to 8,400 rpm.</p>
+    </article>
+    <article class="cm-topic reveal reveal-delay-2">
+      <h3>Naturally aspirated or turbo</h3>
+      <p>A naturally aspirated engine breathes at normal air pressure. A turbocharger uses exhaust gas to spin a compressor that forces extra air in, so the same engine burns more fuel and makes more power.</p>
+      <p class="cm-see"><b>See it in:</b> The Evo III is turbocharged. The MX-5 and EK9 are not.</p>
+    </article>
+    <article class="cm-topic reveal reveal-delay-3">
+      <h3>Power and torque</h3>
+      <p>Torque is twisting force at the crankshaft. Power is how quickly that work is done, which is torque multiplied by engine speed. Torque is the shove you feel pulling away; power decides how fast you can ultimately go.</p>
+      <p class="cm-see"><b>See it in:</b> High-revving cars like the EK9 make their power high in the rev range, so you work the gearbox more.</p>
+    </article>
+    <article class="cm-topic reveal reveal-delay-1">
+      <h3>Drivetrain</h3>
+      <p>Front-wheel drive sends power and steering through the same wheels. Rear-wheel drive splits the jobs: the front steers, the rear pushes. All-wheel drive spreads power across four tyres for traction.</p>
+      <p class="cm-see"><b>See it in:</b> EK9 is front-drive, BRZ and MX-5 are rear-drive, Evo III is all-wheel drive.</p>
+    </article>
+    <article class="cm-topic reveal reveal-delay-2">
+      <h3>Gearbox and clutch</h3>
+      <p>The clutch connects and disconnects the engine from the gearbox. The gearbox keeps the engine in its useful rev range. Short gear ratios give quick acceleration; tall ratios give relaxed cruising.</p>
+      <p class="cm-see"><b>See it in:</b> The EK9 uses short ratios so the engine stays up in its power band.</p>
+    </article>
+    <article class="cm-topic reveal reveal-delay-3">
+      <h3>Tyres and grip</h3>
+      <p>Four patches of rubber, each about the size of a hand, touch the road. Every force the car makes passes through them. Grip is shared: the more a tyre is braking or accelerating, the less it has left for cornering.</p>
+      <p class="cm-see"><b>See it in:</b> Race cars like the BRZ GT300 use wide slicks; road cars compromise for rain and longevity.</p>
+    </article>
+    <article class="cm-topic reveal reveal-delay-1">
+      <h3>Brakes and weight transfer</h3>
+      <p>Brakes turn motion into heat. Under braking, weight moves forward and loads the front tyres. Under power it moves back, and in a corner it moves to the outside. A lighter car has less to stop, turn and shift around.</p>
+      <p class="cm-see"><b>See it in:</b> The 1,050 kg MX-5 and EK9 feel agile partly because there is less mass to move.</p>
+    </article>
+  </div>
+</section>
+</div>
+
+<!-- ADVANCED -->
+<div class="section-strip">
+<section id="advanced">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gold">Go Deeper</p>
+    <h2 class="section-title">Advanced<br>Knowledge</h2>
+    <p class="section-desc">Once the basics click, these ideas explain why the four cars feel so different. Start with the numbers: they are surprisingly close.</p>
+  </div>
+  <div class="stat-grid reveal reveal-delay-1">
+    <div class="stat-card"><div class="stat-num" style="color:var(--c-evo)">222</div><div class="stat-label">Evo III hp per tonne</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--c-brz)">175</div><div class="stat-label">BRZ (road) hp per tonne</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--c-ek9)">173</div><div class="stat-label">EK9 hp per tonne</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--c-mx5)">172</div><div class="stat-label">MX-5 hp per tonne</div></div>
+  </div>
+  
+  <div class="era-block reveal reveal-delay-1">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--gold), transparent)"></div>
+    <div class="bg-number">VTEC</div>
+    <div class="era-header"><h3 class="era-title">VTEC and variable valve timing</h3></div>
+    <p class="era-desc">Honda's VTEC switches the camshaft to a more aggressive profile at high rpm. The engine is gentle at low revs and breathes deeply near the redline. In the EK9's B16B, the switch is why it feels like two engines in one.</p>
+  </div>
+  <div class="era-block reveal reveal-delay-2">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--gold), transparent)"></div>
+    <div class="bg-number">TURBO</div>
+    <div class="era-header"><h3 class="era-title">Boost, lag and the 4G63</h3></div>
+    <p class="era-desc">A turbo needs exhaust flow to spin up, so there is a delay before boost arrives. Engineers shorten it with smaller turbines, twin-scroll housings or anti-lag. The Evo III's 4G63 is a classic of making big power from two litres.</p>
+  </div>
+  <div class="era-block reveal reveal-delay-3">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--gold), transparent)"></div>
+    <div class="bg-number">LSD</div>
+    <div class="era-header"><h3 class="era-title">Differentials</h3></div>
+    <p class="era-desc">A differential lets the left and right wheels turn at different speeds in a corner. An open diff sends power to the wheel with the least grip. A limited-slip differential limits that, so the loaded wheel can still push. The EK9's helical LSD is why a front-wheel-drive car can pull out of corners. The Evo adds a centre differential to share power front to rear.</p>
+  </div>
+  <div class="era-block reveal reveal-delay-1">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--gold), transparent)"></div>
+    <div class="bg-number">50/50</div>
+    <div class="era-header"><h3 class="era-title">Weight distribution and polar moment</h3></div>
+    <p class="era-desc">A 50/50 front-to-rear split, which Mazda targets with the MX-5, makes a car rotate predictably. Mass packed near the centre also changes direction more eagerly than mass at the ends, like a short broom handle compared with a long one.</p>
+  </div>
+  <div class="era-block reveal reveal-delay-2">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--gold), transparent)"></div>
+    <div class="bg-number">CAMBER</div>
+    <div class="era-header"><h3 class="era-title">Suspension geometry</h3></div>
+    <p class="era-desc">Camber is the tilt of the wheel, toe is whether it points in or out, and caster is the angle of the steering axis. They keep the tyre flat on the road as the body rolls. Stiffer anti-roll bars at the front add understeer; stiffer at the rear add oversteer.</p>
+  </div>
+  <div class="era-block reveal reveal-delay-3">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--gold), transparent)"></div>
+    <div class="bg-number">AERO</div>
+    <div class="era-header"><h3 class="era-title">Aerodynamics</h3></div>
+    <p class="era-desc">Downforce presses the car into the road, and grows with the square of speed. Drag costs top speed and fuel. The BRZ GT300 relies on wings and a diffuser that only work at speed. The MX-5 and EK9 depend almost entirely on mechanical grip.</p>
+  </div>
+  <div class="era-block reveal reveal-delay-1">
+    <div class="era-accent" style="background: linear-gradient(to bottom, var(--gold), transparent)"></div>
+    <div class="bg-number">BoP</div>
+    <div class="era-header"><h3 class="era-title">Balance of Performance</h3></div>
+    <p class="era-desc">Racing series level out different cars by changing weight, power or boost. That is how a GT300 BRZ can race GT3 cars in Super GT. See the Racing Manual's <a href="super-gt.html">Super GT page</a>.</p>
+  </div>
+</section>
+</div>
+
+<!-- WINNERS -->
+<div class="section-strip">
+<section id="winners">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gold">The Verdict</p>
+    <h2 class="section-title">Which Car Is<br>Best At What?</h2>
+    <p class="section-desc">No single car wins everything. Here is who thrives where, and who comes second.</p>
+  </div>
+  <div class="cm-award-grid">
+    <article class="cm-award reveal reveal-delay-1">
+      <p class="cm-award-cat">Learning car control</p>
+      <h3>Mazda MX-5</h3>
+      <p>Light, balanced and forgiving at sensible speeds, so you can feel what the car is doing.</p>
+      <p class="cm-ru"><b>Runner-up:</b> Subaru BRZ</p>
+    </article>
+    <article class="cm-award reveal reveal-delay-2">
+      <p class="cm-award-cat">Traction in rain and gravel</p>
+      <h3>Lancer Evo III</h3>
+      <p>Turbo power through four driven wheels. Nothing else here puts power down in the wet as well.</p>
+      <p class="cm-ru"><b>Runner-up:</b> Toyota GR Yaris</p>
+    </article>
+    <article class="cm-award reveal reveal-delay-3">
+      <p class="cm-award-cat">High-rev engine thrill</p>
+      <h3>Civic Type R EK9</h3>
+      <p>VTEC takes the engine to 8,400 rpm, and the sound and response grow all the way.</p>
+      <p class="cm-ru"><b>Runner-up:</b> Porsche 911 GT3</p>
+    </article>
+    <article class="cm-award reveal reveal-delay-1">
+      <p class="cm-award-cat">Cornering balance and track pace</p>
+      <h3>Subaru BRZ GT300</h3>
+      <p>As a race car, wings and slicks give it the most grip. As a road car it ties with the MX-5.</p>
+      <p class="cm-ru"><b>Runner-up:</b> Mazda MX-5</p>
+    </article>
+    <article class="cm-award reveal reveal-delay-2">
+      <p class="cm-award-cat">Everyday usability</p>
+      <h3>Civic Type R EK9</h3>
+      <p>A hatchback with a back seat, a small footprint and a tough engine.</p>
+      <p class="cm-ru"><b>Runner-up:</b> Lancer Evo III</p>
+    </article>
+    <article class="cm-award reveal reveal-delay-3">
+      <p class="cm-award-cat">Tuning potential</p>
+      <h3>Lancer Evo III</h3>
+      <p>The 4G63 takes large boost increases. The B-series in the EK9 is the other great tuner engine.</p>
+      <p class="cm-ru"><b>Runner-up:</b> Civic Type R EK9</p>
+    </article>
+  </div>
+  <div class="table-wrap reveal" style="margin-top:2.5rem">
+    <table class="compare-table">
+      <thead><tr><th scope="col">Car</th><th scope="col">Drive</th><th scope="col">Engine</th><th scope="col" class="num">Power (hp)</th><th scope="col" class="num">Weight (kg)</th><th scope="col" class="num">hp / tonne</th><th scope="col">Thrives at</th></tr></thead>
+      <tbody><tr><td>Subaru BRZ (road car)</td><td>RWD</td><td>N/A flat-four</td><td class="num">228</td><td class="num">1,300</td><td class="num">175</td><td>Balance, corner entry</td></tr><tr><td>Mitsubishi Lancer Evo III</td><td>AWD</td><td>Turbo</td><td class="num">266</td><td class="num">1,200</td><td class="num">222</td><td>Low-grip traction, tuning</td></tr><tr><td>Mazda MX-5 (ND)</td><td>RWD</td><td>N/A four</td><td class="num">181</td><td class="num">1,050</td><td class="num">172</td><td>Feel, learning, low cost</td></tr><tr><td>Honda Civic Type R EK9</td><td>FWD</td><td>N/A VTEC</td><td class="num">182</td><td class="num">1,050</td><td class="num">173</td><td>High revs, daily use</td></tr></tbody>
+    </table>
+  </div>
+  <p class="compare-note">Power and weight are approximate and vary by year and market. The BRZ GT300 race car has its power and weight set by Balance of Performance, so the road-car figures are shown. Subaru announced its 3.0 L flat-six for the 2026 GT300 car in January 2026.</p>
+</section>
+</div>
+
+<!-- MORE CARS -->
+<div class="section-strip">
+<section id="more">
+  <div class="section-header reveal">
+    <p class="section-eyebrow eyebrow-gold">Beyond the Four</p>
+    <h2 class="section-title">More Cars,<br>More Lessons</h2>
+    <p class="section-desc">Six more cars that are the best at something, and what they give up for it.</p>
+  </div>
+  <div class="cm-extra-grid">
+    <article class="cm-extra reveal reveal-delay-1">
+      <h3>Lotus Elise</h3>
+      <p class="cm-best"><b>Thrives at:</b> Steering feel and lightness</p>
+      <p>A tiny, light mid-engine car, often under 800 kg. Hydraulic steering gives more feedback than almost anything built today.</p>
+      <p class="cm-weak"><b>Weaker at:</b> Everyday comfort and storage space.</p>
+    </article>
+    <article class="cm-extra reveal reveal-delay-2">
+      <h3>Porsche 911 GT3</h3>
+      <p class="cm-best"><b>Thrives at:</b> Braking and high-rev traction</p>
+      <p>The rear-engine layout puts weight over the driven wheels, so it launches hard out of corners. Its naturally aspirated flat-six revs to about 9,000 rpm.</p>
+      <p class="cm-weak"><b>Weaker at:</b> Price, and the cost of everything that wears out.</p>
+    </article>
+    <article class="cm-extra reveal reveal-delay-3">
+      <h3>Nissan GT-R (R35)</h3>
+      <p class="cm-best"><b>Thrives at:</b> Launching and straight-line speed</p>
+      <p>All-wheel drive, twin turbos and a clever launch system make it quick in a straight line. It is heavy, at about 1,750 kg.</p>
+      <p class="cm-weak"><b>Weaker at:</b> Lightness, and feeling nimble in tight corners.</p>
+    </article>
+    <article class="cm-extra reveal reveal-delay-1">
+      <h3>Toyota GR Yaris</h3>
+      <p class="cm-best"><b>Thrives at:</b> Modern rally-bred all-wheel drive</p>
+      <p>A small turbocharged hatch with a rally-derived all-wheel-drive system. In spirit, it is the Evo&#x27;s modern successor.</p>
+      <p class="cm-weak"><b>Weaker at:</b> Rear-seat room and ride comfort.</p>
+    </article>
+    <article class="cm-extra reveal reveal-delay-2">
+      <h3>Honda NSX (first generation)</h3>
+      <p class="cm-best"><b>Thrives at:</b> Balance and everyday usability</p>
+      <p>A mid-engine layout with an aluminium body gave supercar balance with Honda reliability, easy visibility and a usable cabin.</p>
+      <p class="cm-weak"><b>Weaker at:</b> Outright power against later rivals.</p>
+    </article>
+    <article class="cm-extra reveal reveal-delay-3">
+      <h3>Tesla Model S Plaid</h3>
+      <p class="cm-best"><b>Thrives at:</b> Acceleration</p>
+      <p>Electric motors deliver full torque instantly. Tesla claims about two seconds to 60 mph, though the car weighs over 2,100 kg.</p>
+      <p class="cm-weak"><b>Weaker at:</b> Weight, so tyres and brakes struggle on a track.</p>
+    </article>
+  </div>
+</section>
+</div>
+
+</main>
+
+<hr class="divider">
+
+<div class="page-nav">
+  <a class="prev" href="index.html"><small>&larr; Back to</small><strong>The Racing Manual</strong></a>
+  <a class="next" href="super-gt.html"><small>See the BRZ race car &rarr;</small><strong>Super GT</strong></a>
+</div>
+
+<div class="back-to-top-wrap">
+  <a href="#top" class="back-to-top">&#8593; Back to Top</a>
+</div>
+
+<footer>
+  <div class="footer-logo">The Car Manual</div>
+  <p class="footer-text">
+    A companion to The Racing Manual: the basics and the advanced ideas behind how a car works.
+    Made by @kuzeyfiratracing on Instagram.<br><br>
+    <span style="color:var(--text3);font-size:0.72rem">Figures are approximate manufacturer or published numbers and vary by year and market.</span><br>
+    <span class="last-updated">Last updated: November 2026</span>
+  </p>
+</footer>
+
+<button type="button" class="fab-top" id="fab-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<div class="tip-pop" id="tip-pop" role="tooltip" hidden></div>
+
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-box" role="dialog" aria-modal="true" aria-label="Search the manual">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="search-input" placeholder="Search drivers, cars, races, circuits, terms…" autocomplete="off" aria-controls="search-results">
+      <button type="button" class="search-close" id="search-close" aria-label="Close search">Esc</button>
+    </div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-hint" id="search-hint">Try “Senna”, “Le Mans”, “BoP” or “Daytona”.</p>
+  </div>
+</div>
+
+<script src="js/terms-data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
